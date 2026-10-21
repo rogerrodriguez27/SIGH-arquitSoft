@@ -4,7 +4,7 @@
 Roger Eduardo Rodriguez Delgadillo
 
 ## Descripción
-Sistema académico de gestión hospitalaria cuyo módulo núcleo son las **Historias Clínicas Electrónicas (HCE)**, alrededor del cual se articulan admisión y triaje, farmacia, laboratorio, reportes epidemiológicos y explotación analítica (OLAP / BI).
+Sistema académico de gestión hospitalaria cuyo módulo núcleo son las **Historias Clínicas Electrónicas (HCE)**, alrededor del cual se articulan admisión y triaje, farmacia, laboratorio, reportes epidemiológicos, explotación analítica (OLAP / BI) y, como valor agregado, un módulo de **alerta epidemiológica temprana**.
 
 Es un proyecto individual desarrollado bajo el estándar **Spec-Driven Development (SDD)**: primero se redactan especificaciones detalladas de cada módulo y, a partir de ellas, se genera el código con apoyo de inteligencia artificial (Claude Code).
 
@@ -30,6 +30,7 @@ Universidad Nacional de San Cristóbal de Huamanga (UNSCH) - Escuela Profesional
 3. **Farmacia y Laboratorio**: inventario de medicamentos, órdenes y resultados de exámenes vinculados a la HCE.
 4. **Reportes Epidemiológicos**: reportes agregados por diagnóstico, zona y periodo.
 5. **Explotación OLAP / Business Intelligence**: cubos analíticos y dashboards, separados físicamente de la base transaccional.
+6. **Alerta Epidemiológica Temprana (valor agregado)**: proceso automatizado que analiza el datamart OLAP para detectar aumentos inusuales de un diagnóstico en una zona o periodo y notificar al área de epidemiología. Es un módulo independiente y de solo lectura, que no afecta la operación transaccional.
 
 ## Tecnologías previstas
 | Capa | Tecnología |
