@@ -21,3 +21,4 @@
 | **Programador de tareas (cron)** | Ejecutar periódicamente el proceso ETL que carga los datos al datamart y el análisis de alerta epidemiológica temprana. |
 | **Proceso ETL** | Extraer los datos de la base transaccional (OLTP), transformarlos y cargarlos en el datamart analítico (OLAP). |
 | **Herramienta de BI (Metabase / Superset)** | Consultar el datamart para mostrar dashboards y reportes multidimensionales. |
+| **Servicio de identidad RENIEC** *(simulado)* | Validar el DNI del paciente durante la admisión y devolver sus datos básicos de identificación (nombres, apellidos, fecha de nacimiento). En la prueba de concepto se usa un servicio simulado con datos ficticios, ya que la integración real requiere un convenio con RENIEC. |
