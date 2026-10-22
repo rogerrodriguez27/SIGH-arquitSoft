@@ -79,11 +79,11 @@ Universidad Nacional de San Cristóbal de Huamanga (UNSCH) - Escuela Profesional
 
 ### Otras carpetas
 - `img/`: diagramas exportados (PNG) y sus fuentes editables en `img/fuentes-svg/`.
-- `tecnologia/`: código base del sistema (sprints posteriores).
+- `tecnologia/`: código base del sistema.
 
 ---
 
 ## Estado del proyecto
 - [x] Estructura del repositorio
-- [ ] Sprint 1: análisis, arquitectura, diseño y modelo C4
+- [x] Sprint 1: análisis, arquitectura, diseño y modelo C4
 - [ ] Sprints siguientes: especificaciones SDD e implementación
