@@ -35,11 +35,12 @@ Universidad Nacional de San Cristóbal de Huamanga (UNSCH) - Escuela Profesional
 ## Tecnologías previstas
 | Capa | Tecnología |
 |---|---|
-| Backend | C# / .NET |
+| Frontend | React (SPA) |
+| Backend | C# / .NET – ASP.NET Core (monolito modular con Clean Architecture) |
 | Base de datos transaccional (OLTP) | PostgreSQL |
 | Caché | Redis |
 | ETL | Scripts Python programados (cron) |
-| Analítica (OLAP / BI) | PostgreSQL (vistas materializadas / datamart) + Metabase o Apache Superset |
+| Analítica (OLAP / BI) | PostgreSQL (vistas materializadas / datamart) + Metabase |
 | Seguridad | JWT, TLS, AWS WAF (capa básica), Fail2ban |
 | Observabilidad | Grafana / Prometheus |
 | Contenedores | Docker Compose |
