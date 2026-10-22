@@ -151,3 +151,359 @@ src/
 | 9–10 | `RegistrarAtencionCasoUso` → `IBitacoraAuditoria` → PostgreSQL | `RegistrarAccesoAsync(...)`; se registra quién, cuándo y qué acción realizó (RN-06) | Aplicación → Infraestructura → BD |
 | 11 | `AtencionesController` → Cliente web | `201 Created` con `atencionId` | Presentación |
 | 12–13 | Alternativa | Si la historia no existe (RN-01) o un código CIE-10 no es válido (RN-02): no se guarda la atención y se responde `404` o `422` | Aplicación → Presentación |
+---
+
+## 6. Código de referencia
+
+> Fragmentos de referencia en C# / .NET para el módulo HCE. Sirven como ejemplo de estilo para las especificaciones SDD; el código definitivo se genera con Claude Code a partir de las especificaciones de cada módulo.
+
+### 6.1 Dominio · entidades e interfaces
+
+```csharp
+// Sigh.Hce.Dominio/Entidades/Atencion.cs
+using Sigh.Compartido.Errores;
+
+namespace Sigh.Hce.Dominio.Entidades;
+
+public enum EstadoAtencion { Borrador, Firmada }
+
+public sealed class Atencion
+{
+    private readonly List<Diagnostico> _diagnosticos = new();
+    private readonly List<NotaCorreccion> _notas = new();
+
+    public Guid Id { get; private set; }
+    public Guid HistoriaClinicaId { get; private set; }
+    public Guid MedicoId { get; private set; }
+    public string Evolucion { get; private set; } = string.Empty;
+    public string Tratamiento { get; private set; } = string.Empty;
+    public EstadoAtencion Estado { get; private set; }
+    public DateTime? FechaFirma { get; private set; }
+    public IReadOnlyList<Diagnostico> Diagnosticos => _diagnosticos;
+    public IReadOnlyList<NotaCorreccion> Notas => _notas;
+
+    private Atencion() { }                                       // requerido por EF Core
+
+    internal static Atencion Crear(Guid historiaId, Guid medicoId, string evolucion,
+        IEnumerable<Diagnostico> diagnosticos, string tratamiento)
+    {
+        if (string.IsNullOrWhiteSpace(evolucion))
+            throw new ReglaNegocioError("La evolución es obligatoria.");
+
+        var atencion = new Atencion
+        {
+            Id = Guid.NewGuid(),
+            HistoriaClinicaId = historiaId,
+            MedicoId = medicoId,
+            Evolucion = evolucion,
+            Tratamiento = tratamiento,
+            Estado = EstadoAtencion.Borrador
+        };
+        atencion._diagnosticos.AddRange(diagnosticos);
+        return atencion;
+    }
+
+    public void Firmar(Guid medicoId)
+    {
+        if (Estado == EstadoAtencion.Firmada)                    // RN-04
+            throw new ReglaNegocioError("RN-04: la atención ya fue firmada y no puede modificarse.");
+        if (medicoId != MedicoId)                                // RN-03
+            throw new ReglaNegocioError("RN-03: solo el médico que registró la atención puede firmarla.");
+        if (_diagnosticos.Count == 0)                            // RN-02
+            throw new ReglaNegocioError("RN-02: la atención debe tener al menos un diagnóstico.");
+
+        Estado = EstadoAtencion.Firmada;
+        FechaFirma = DateTime.UtcNow;
+    }
+
+    public NotaCorreccion AgregarNotaCorreccion(Guid autorId, string texto)   // RN-05
+    {
+        if (Estado != EstadoAtencion.Firmada)
+            throw new ReglaNegocioError("RN-05: las notas de corrección solo se agregan a atenciones firmadas.");
+
+        var nota = new NotaCorreccion(Id, autorId, texto);       // el registro original no cambia
+        _notas.Add(nota);
+        return nota;
+    }
+}
+```
+
+```csharp
+// Sigh.Hce.Dominio/Entidades/HistoriaClinica.cs
+namespace Sigh.Hce.Dominio.Entidades;
+
+public sealed class HistoriaClinica
+{
+    private readonly List<Atencion> _atenciones = new();
+
+    public Guid Id { get; private set; }
+    public Guid PacienteId { get; private set; }
+    public IReadOnlyList<Atencion> Atenciones => _atenciones;
+
+    private HistoriaClinica() { }                                // requerido por EF Core
+
+    public Atencion RegistrarAtencion(Guid medicoId, string evolucion,
+        IEnumerable<Diagnostico> diagnosticos, string tratamiento)
+    {
+        var atencion = Atencion.Crear(Id, medicoId, evolucion, diagnosticos, tratamiento);  // RN-01
+        _atenciones.Add(atencion);
+        return atencion;
+    }
+}
+
+// Sigh.Hce.Dominio/Entidades/Diagnostico.cs
+public sealed record Diagnostico(string CodigoCie10, string? Descripcion = null);
+```
+
+```csharp
+// Sigh.Hce.Dominio/Contratos/IRepositorioHistorias.cs
+using Sigh.Hce.Dominio.Entidades;
+
+namespace Sigh.Hce.Dominio.Contratos;
+
+public interface IRepositorioHistorias
+{
+    Task<HistoriaClinica?> ObtenerPorPacienteAsync(Guid pacienteId);
+    Task GuardarAtencionAsync(Atencion atencion);
+}
+
+// Sigh.Hce.Dominio/Contratos/ICatalogoCie10.cs
+public interface ICatalogoCie10
+{
+    Task<bool> ExisteCodigoAsync(string codigo);
+}
+
+// Sigh.Hce.Dominio/Contratos/IBitacoraAuditoria.cs
+public interface IBitacoraAuditoria
+{
+    Task RegistrarAccesoAsync(Guid usuarioId, string accion, Guid historiaId);
+}
+```
+
+### 6.2 Aplicación · caso de uso
+
+```csharp
+// Sigh.Hce.Aplicacion/RegistrarAtencion/RegistrarAtencionComando.cs
+namespace Sigh.Hce.Aplicacion.RegistrarAtencion;
+
+public sealed record RegistrarAtencionComando(
+    Guid PacienteId,
+    Guid MedicoId,
+    string Evolucion,
+    IReadOnlyList<string> CodigosCie10,
+    string Tratamiento);
+```
+
+```csharp
+// Sigh.Hce.Aplicacion/RegistrarAtencion/RegistrarAtencionCasoUso.cs
+using Sigh.Compartido.Errores;
+using Sigh.Hce.Dominio.Contratos;
+using Sigh.Hce.Dominio.Entidades;
+
+namespace Sigh.Hce.Aplicacion.RegistrarAtencion;
+
+public sealed class RegistrarAtencionCasoUso
+{
+    private readonly IRepositorioHistorias _repositorio;         // interfaz, no PostgreSQL
+    private readonly ICatalogoCie10 _cie10;                      // interfaz, no Redis
+    private readonly IBitacoraAuditoria _bitacora;               // interfaz, no EF Core
+
+    public RegistrarAtencionCasoUso(IRepositorioHistorias repositorio,
+        ICatalogoCie10 cie10, IBitacoraAuditoria bitacora)
+    {
+        _repositorio = repositorio;
+        _cie10 = cie10;
+        _bitacora = bitacora;
+    }
+
+    public async Task<Guid> EjecutarAsync(RegistrarAtencionComando comando)
+    {
+        var historia = await _repositorio.ObtenerPorPacienteAsync(comando.PacienteId)
+            ?? throw new RecursoNoEncontradoError("RN-01: el paciente no tiene historia clínica.");
+
+        foreach (var codigo in comando.CodigosCie10)                                         // RN-02
+        {
+            if (!await _cie10.ExisteCodigoAsync(codigo))
+                throw new ReglaNegocioError($"RN-02: el código CIE-10 '{codigo}' no es válido.");
+        }
+
+        var diagnosticos = comando.CodigosCie10.Select(codigo => new Diagnostico(codigo));
+        var atencion = historia.RegistrarAtencion(comando.MedicoId, comando.Evolucion,
+            diagnosticos, comando.Tratamiento);
+        atencion.Firmar(comando.MedicoId);                                                   // RN-04
+
+        await _repositorio.GuardarAtencionAsync(atencion);
+        await _bitacora.RegistrarAccesoAsync(comando.MedicoId, "REGISTRAR_ATENCION", historia.Id);  // RN-06
+        return atencion.Id;
+    }
+}
+```
+
+> En la implementación, el guardado de la atención y el registro en la bitácora deben ejecutarse en una misma transacción, para que no quede una atención sin su registro de auditoría. Se omite aquí para mantener el ejemplo corto.
+
+### 6.3 Infraestructura · repositorio y decorador
+
+```csharp
+// Sigh.Hce.Infraestructura/Persistencia/RepositorioHistoriasEfCore.cs
+using Microsoft.EntityFrameworkCore;
+using Sigh.Hce.Dominio.Contratos;
+using Sigh.Hce.Dominio.Entidades;
+
+namespace Sigh.Hce.Infraestructura.Persistencia;
+
+public sealed class RepositorioHistoriasEfCore : IRepositorioHistorias
+{
+    private readonly HceDbContext _contexto;
+
+    public RepositorioHistoriasEfCore(HceDbContext contexto) => _contexto = contexto;
+
+    public Task<HistoriaClinica?> ObtenerPorPacienteAsync(Guid pacienteId) =>
+        _contexto.Historias.FirstOrDefaultAsync(h => h.PacienteId == pacienteId);
+
+    public async Task GuardarAtencionAsync(Atencion atencion)
+    {
+        _contexto.Atenciones.Add(atencion);                      // EF Core genera el INSERT
+        await _contexto.SaveChangesAsync();
+    }
+}
+```
+
+```csharp
+// Sigh.Hce.Infraestructura/Catalogos/CatalogoCie10EnCache.cs
+using StackExchange.Redis;
+using Sigh.Hce.Dominio.Contratos;
+
+namespace Sigh.Hce.Infraestructura.Catalogos;
+
+public sealed class CatalogoCie10EnCache : ICatalogoCie10      // patrón Decorator
+{
+    private static readonly TimeSpan Duracion = TimeSpan.FromHours(12);
+    private readonly ICatalogoCie10 _interno;                    // CatalogoCie10EfCore
+    private readonly IDatabase _redis;
+
+    public CatalogoCie10EnCache(ICatalogoCie10 interno, IConnectionMultiplexer redis)
+    {
+        _interno = interno;
+        _redis = redis.GetDatabase();
+    }
+
+    public async Task<bool> ExisteCodigoAsync(string codigo)
+    {
+        var clave = $"cie10:{codigo.ToUpperInvariant()}";
+        var enCache = await _redis.StringGetAsync(clave);
+        if (enCache.HasValue)
+            return enCache == "1";                               // encontrado en Redis
+
+        var existe = await _interno.ExisteCodigoAsync(codigo);   // consulta en PostgreSQL
+        await _redis.StringSetAsync(clave, existe ? "1" : "0", Duracion);
+        return existe;
+    }
+}
+```
+
+### 6.4 Presentación · controlador
+
+```csharp
+// Sigh.Hce.Api/Solicitudes/RegistrarAtencionSolicitud.cs
+public sealed record RegistrarAtencionSolicitud(
+    string Evolucion, List<string> CodigosCie10, string Tratamiento);
+```
+
+```csharp
+// Sigh.Hce.Api/Controladores/AtencionesController.cs
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Sigh.Hce.Aplicacion.RegistrarAtencion;
+
+namespace Sigh.Hce.Api.Controladores;
+
+[ApiController]
+[Route("api/v1/pacientes/{pacienteId:guid}/atenciones")]
+[Authorize(Roles = "Medico")]                                    // RN-03
+public sealed class AtencionesController : ControllerBase
+{
+    private readonly RegistrarAtencionCasoUso _registrarAtencion;
+
+    public AtencionesController(RegistrarAtencionCasoUso registrarAtencion) =>
+        _registrarAtencion = registrarAtencion;
+
+    [HttpPost]
+    public async Task<IActionResult> Registrar(Guid pacienteId, RegistrarAtencionSolicitud solicitud)
+    {
+        var medicoId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);  // del token JWT, no del body
+
+        var comando = new RegistrarAtencionComando(pacienteId, medicoId,
+            solicitud.Evolucion, solicitud.CodigosCie10, solicitud.Tratamiento);
+
+        var atencionId = await _registrarAtencion.EjecutarAsync(comando);
+        return Created($"/api/v1/atenciones/{atencionId}", new { atencionId });
+    }
+}
+```
+
+> Los errores `RecursoNoEncontradoError` y `ReglaNegocioError` los traduce a `404` y `422` un manejador global de excepciones configurado en `Program.cs`, para no repetir esa lógica en cada controlador.
+
+### 6.5 Raíz de composición
+
+```csharp
+// Sigh.Hce.Infraestructura/DependencyInjection.cs
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using StackExchange.Redis;
+using Sigh.Hce.Dominio.Contratos;
+using Sigh.Hce.Infraestructura.Auditoria;
+using Sigh.Hce.Infraestructura.Catalogos;
+using Sigh.Hce.Infraestructura.Persistencia;
+
+namespace Sigh.Hce.Infraestructura;
+
+public static class DependencyInjection
+{
+    public static IServiceCollection AgregarModuloHce(this IServiceCollection services,
+        IConfiguration configuracion)
+    {
+        services.AddDbContext<HceDbContext>(opciones =>
+            opciones.UseNpgsql(configuracion.GetConnectionString("SighOltp")));
+
+        services.AddScoped<IRepositorioHistorias, RepositorioHistoriasEfCore>();  // en pruebas: RepositorioHistoriasEnMemoria
+        services.AddScoped<IBitacoraAuditoria, BitacoraAuditoriaEfCore>();
+
+        services.AddScoped<CatalogoCie10EfCore>();
+        services.AddScoped<ICatalogoCie10>(sp => new CatalogoCie10EnCache(       // Decorator: Redis envuelve a EF Core
+            sp.GetRequiredService<CatalogoCie10EfCore>(),
+            sp.GetRequiredService<IConnectionMultiplexer>()));
+
+        return services;
+    }
+}
+```
+
+```csharp
+// Sigh.Api/Program.cs (fragmento)
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using StackExchange.Redis;
+using Sigh.Hce.Aplicacion.RegistrarAtencion;
+using Sigh.Hce.Infraestructura;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddSingleton<IConnectionMultiplexer>(
+    ConnectionMultiplexer.Connect(builder.Configuration.GetConnectionString("Redis")!));
+
+builder.Services.AgregarModuloHce(builder.Configuration);       // adaptadores del módulo HCE
+builder.Services.AddScoped<RegistrarAtencionCasoUso>();         // casos de uso del módulo HCE
+// builder.Services.AgregarModuloFarmacia(builder.Configuration);   ... resto de módulos
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(opciones => { /* emisor, audiencia y clave desde appsettings.json */ });
+builder.Services.AddAuthorization();
+builder.Services.AddControllers();
+
+var app = builder.Build();
+app.UseAuthentication();
+app.UseAuthorization();
+app.MapControllers();
+app.Run();
+```
