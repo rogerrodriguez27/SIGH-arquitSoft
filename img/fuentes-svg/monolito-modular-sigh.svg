@@ -1,0 +1,243 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1700" height="1320" viewBox="0 0 1700 1320" font-family="Segoe UI, Arial, Helvetica, sans-serif">
+<defs><marker id="arr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#111"/></marker><marker id="arrg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2e8b3a"/></marker></defs>
+<rect x="0" y="0" width="1700" height="1320" rx="0" fill="#fff" stroke="none" stroke-width="0"/>
+<rect x="409" y="14" width="22" height="44" rx="0" fill="#fff" stroke="#333" stroke-width="1.6"/>
+<text x="438" y="40" font-size="13" font-weight="bold" text-anchor="start" fill="#111">Personal clínico</text>
+<rect x="629" y="14" width="22" height="44" rx="0" fill="#fff" stroke="#333" stroke-width="1.6"/>
+<text x="658" y="40" font-size="13" font-weight="bold" text-anchor="start" fill="#111">Epidemiólogo</text>
+<rect x="849" y="14" width="22" height="44" rx="0" fill="#fff" stroke="#333" stroke-width="1.6"/>
+<text x="878" y="40" font-size="13" font-weight="bold" text-anchor="start" fill="#111">Administrador</text>
+<line x1="420" y1="58" x2="420" y2="78" stroke="#111" stroke-width="1.6"/>
+<line x1="640" y1="58" x2="640" y2="78" stroke="#111" stroke-width="1.6"/>
+<line x1="860" y1="58" x2="860" y2="78" stroke="#111" stroke-width="1.6"/>
+<line x1="420" y1="78" x2="860" y2="78" stroke="#111" stroke-width="1.6"/>
+<line x1="640" y1="78" x2="640" y2="108" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
+<rect x="400" y="110" width="480" height="52" rx="0" fill="#fff" stroke="#111" stroke-width="1.8"/>
+<text x="640.0" y="133.0" font-size="14" font-weight="bold" text-anchor="middle" fill="#111">Cliente Web SIGH</text>
+<text x="640.0" y="147.0" font-size="11.5" font-weight="normal" text-anchor="middle" fill="#111">[React SPA – navegador web]</text>
+<rect x="1534" y="14" width="22" height="44" rx="0" fill="#fff" stroke="#333" stroke-width="1.6"/>
+<text x="1563" y="40" font-size="13" font-weight="bold" text-anchor="start" fill="#111">Directivo</text>
+<line x1="1545" y1="58" x2="1545" y2="108" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
+<rect x="1440" y="110" width="240" height="52" rx="0" fill="#e6e6e6" stroke="#555" stroke-width="1.5"/>
+<text x="1560.0" y="133.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#111">«BI» Metabase</text>
+<text x="1560.0" y="147.0" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#111">dashboards OLAP (directivos y epidemiología)</text>
+<rect x="20" y="195" width="1230" height="640" rx="0" fill="none" stroke="#222" stroke-width="1.8" stroke-dasharray="8,5"/>
+<rect x="580" y="186" width="120" height="34" fill="#fff"/>
+<text x="640" y="199" font-size="12" font-weight="normal" text-anchor="middle" fill="#111">HTTPS – JSON</text>
+<text x="640" y="215" font-size="12" font-weight="normal" text-anchor="middle" fill="#111">/api/v1/</text>
+<text x="30" y="216" font-size="14" text-anchor="start" fill="#111"><tspan font-weight="bold">«monolito modular» SIGH API </tspan><tspan font-weight="normal">[C# / .NET – ASP.NET Core]</tspan></text>
+<text x="30" y="233" font-size="12" font-weight="normal" text-anchor="start" fill="#111">Una sola aplicación – un solo proceso – un solo despliegue</text>
+<rect x="30" y="240" width="1212" height="140" rx="0" fill="#e3efff" stroke="#4a86e8" stroke-width="1.2"/>
+<rect x="30" y="240" width="150" height="140" rx="0" fill="#e3efff" stroke="#4a86e8" stroke-width="1.2"/>
+<text x="40" y="266" font-size="12.5" font-weight="bold" text-anchor="start" fill="#111">1. PRESENTACIÓN</text>
+<text x="40" y="290" font-size="11" font-weight="normal" text-anchor="start" fill="#111">API REST: autentica,</text>
+<text x="40" y="305" font-size="11" font-weight="normal" text-anchor="start" fill="#111">autoriza por rol y</text>
+<text x="40" y="320" font-size="11" font-weight="normal" text-anchor="start" fill="#111">responde JSON</text>
+<rect x="30" y="385" width="1212" height="120" rx="0" fill="#e6f5e6" stroke="#3c9a48" stroke-width="1.2"/>
+<rect x="30" y="385" width="150" height="120" rx="0" fill="#e6f5e6" stroke="#3c9a48" stroke-width="1.2"/>
+<text x="40" y="411" font-size="12.5" font-weight="bold" text-anchor="start" fill="#111">2. APLICACIÓN</text>
+<text x="40" y="435" font-size="11" font-weight="normal" text-anchor="start" fill="#111">Casos de uso que</text>
+<text x="40" y="450" font-size="11" font-weight="normal" text-anchor="start" fill="#111">coordinan el flujo</text>
+<text x="40" y="465" font-size="11" font-weight="normal" text-anchor="start" fill="#111">de cada módulo</text>
+<rect x="30" y="510" width="1212" height="120" rx="0" fill="#fff3d6" stroke="#e0a100" stroke-width="1.2"/>
+<rect x="30" y="510" width="150" height="120" rx="0" fill="#fff3d6" stroke="#e0a100" stroke-width="1.2"/>
+<text x="40" y="536" font-size="12.5" font-weight="bold" text-anchor="start" fill="#111">3. DOMINIO</text>
+<text x="40" y="560" font-size="11" font-weight="normal" text-anchor="start" fill="#111">Entidades y reglas</text>
+<text x="40" y="575" font-size="11" font-weight="normal" text-anchor="start" fill="#111">del negocio clínico</text>
+<text x="40" y="590" font-size="11" font-weight="normal" text-anchor="start" fill="#111">(C# puro)</text>
+<rect x="30" y="635" width="1212" height="190" rx="0" fill="#efe6fb" stroke="#7e57c2" stroke-width="1.2"/>
+<rect x="30" y="635" width="150" height="190" rx="0" fill="#efe6fb" stroke="#7e57c2" stroke-width="1.2"/>
+<text x="40" y="661" font-size="12.5" font-weight="bold" text-anchor="start" fill="#111">4. INFRAESTRUCTURA</text>
+<text x="40" y="685" font-size="11" font-weight="normal" text-anchor="start" fill="#111">Adaptadores: base de</text>
+<text x="40" y="700" font-size="11" font-weight="normal" text-anchor="start" fill="#111">datos, caché y</text>
+<text x="40" y="715" font-size="11" font-weight="normal" text-anchor="start" fill="#111">servicios externos</text>
+<rect x="190" y="248" width="1045" height="30" rx="0" fill="#cfe0fb" stroke="#4a86e8" stroke-width="1.5"/>
+<text x="712.5" y="267.0" font-size="12" font-weight="normal" text-anchor="middle" fill="#111">Middlewares transversales:  HTTPS – autenticación JWT – autorización por rol (RBAC) – auditoría de accesos – validación – manejo de errores – logs</text>
+<rect x="190.0" y="286" width="168" height="460" rx="0" fill="none" stroke="#555" stroke-width="1.3" stroke-dasharray="6,4"/>
+<text x="274.0" y="302" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#111">módulo Admisión y Triaje</text>
+<text x="274.0" y="316" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#111">Sigh.Admision</text>
+<rect x="198.0" y="326" width="152" height="46" rx="0" fill="#fff" stroke="#4a86e8" stroke-width="1.5"/>
+<text x="274.0" y="346.0" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">PacientesController</text>
+<text x="274.0" y="360.0" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">TriajeController</text>
+<rect x="198.0" y="410" width="152" height="46" rx="0" fill="#d9efd9" stroke="#3c9a48" stroke-width="1.5"/>
+<text x="274.0" y="430.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#111">RegistrarPaciente</text>
+<text x="274.0" y="444.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#111">ClasificarUrgencia</text>
+<rect x="198.0" y="535" width="152" height="46" rx="0" fill="#ffe9b0" stroke="#e0a100" stroke-width="1.5"/>
+<text x="274.0" y="555.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#111">Paciente, Triaje</text>
+<text x="274.0" y="569.0" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#111">prioridad I – IV</text>
+<rect x="198.0" y="662" width="152" height="46" rx="0" fill="#fff" stroke="#7e57c2" stroke-width="1.5"/>
+<text x="274.0" y="682.0" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">RepositorioAdmision</text>
+<text x="274.0" y="696.0" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#111">+ IServicioIdentidad</text>
+<line x1="274.0" y1="372" x2="274.0" y2="408" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
+<line x1="274.0" y1="456" x2="274.0" y2="533" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
+<line x1="274.0" y1="581" x2="274.0" y2="660" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
+<rect x="365.4" y="286" width="168" height="460" rx="0" fill="none" stroke="#c08000" stroke-width="2.2" stroke-dasharray="6,4"/>
+<text x="449.4" y="302" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#111">módulo HCE (núcleo)</text>
+<text x="449.4" y="316" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#111">Sigh.Hce</text>
+<rect x="373.4" y="326" width="152" height="46" rx="0" fill="#fff" stroke="#4a86e8" stroke-width="1.5"/>
+<text x="449.4" y="346.0" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">HistoriasController</text>
+<text x="449.4" y="360.0" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">AtencionesController</text>
+<rect x="373.4" y="410" width="152" height="46" rx="0" fill="#d9efd9" stroke="#3c9a48" stroke-width="1.5"/>
+<text x="449.4" y="430.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#111">RegistrarAtencion</text>
+<text x="449.4" y="444.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#111">ConsultarHistoria</text>
+<rect x="373.4" y="535" width="152" height="46" rx="0" fill="#ffe9b0" stroke="#e0a100" stroke-width="1.5"/>
+<text x="449.4" y="555.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#111">HistoriaClinica, Atencion</text>
+<text x="449.4" y="569.0" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#111">registros inmutables</text>
+<rect x="373.4" y="662" width="152" height="46" rx="0" fill="#fff" stroke="#7e57c2" stroke-width="1.5"/>
+<text x="449.4" y="682.0" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">RepositorioHistorias</text>
+<text x="449.4" y="696.0" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#111">EF Core</text>
+<line x1="449.4" y1="372" x2="449.4" y2="408" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
+<line x1="449.4" y1="456" x2="449.4" y2="533" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
+<line x1="449.4" y1="581" x2="449.4" y2="660" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
+<rect x="540.8" y="286" width="168" height="460" rx="0" fill="none" stroke="#555" stroke-width="1.3" stroke-dasharray="6,4"/>
+<text x="624.8" y="302" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#111">módulo Farmacia</text>
+<text x="624.8" y="316" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#111">Sigh.Farmacia</text>
+<rect x="548.8" y="326" width="152" height="46" rx="0" fill="#fff" stroke="#4a86e8" stroke-width="1.5"/>
+<text x="624.8" y="346.0" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">InventarioController</text>
+<text x="624.8" y="360.0" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">RecetasController</text>
+<rect x="548.8" y="410" width="152" height="46" rx="0" fill="#d9efd9" stroke="#3c9a48" stroke-width="1.5"/>
+<text x="624.8" y="430.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#111">RegistrarIngreso</text>
+<text x="624.8" y="444.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#111">DispensarReceta</text>
+<rect x="548.8" y="535" width="152" height="46" rx="0" fill="#ffe9b0" stroke="#e0a100" stroke-width="1.5"/>
+<text x="624.8" y="555.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#111">Medicamento, Lote</text>
+<text x="624.8" y="569.0" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#111">Dispensacion</text>
+<rect x="548.8" y="662" width="152" height="46" rx="0" fill="#fff" stroke="#7e57c2" stroke-width="1.5"/>
+<text x="624.8" y="682.0" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">RepositorioFarmacia</text>
+<text x="624.8" y="696.0" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#111">EF Core</text>
+<line x1="624.8" y1="372" x2="624.8" y2="408" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
+<line x1="624.8" y1="456" x2="624.8" y2="533" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
+<line x1="624.8" y1="581" x2="624.8" y2="660" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
+<rect x="716.2" y="286" width="168" height="460" rx="0" fill="none" stroke="#555" stroke-width="1.3" stroke-dasharray="6,4"/>
+<text x="800.2" y="302" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#111">módulo Laboratorio</text>
+<text x="800.2" y="316" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#111">Sigh.Laboratorio</text>
+<rect x="724.2" y="326" width="152" height="46" rx="0" fill="#fff" stroke="#4a86e8" stroke-width="1.5"/>
+<text x="800.2" y="353.0" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">OrdenesController</text>
+<rect x="724.2" y="410" width="152" height="46" rx="0" fill="#d9efd9" stroke="#3c9a48" stroke-width="1.5"/>
+<text x="800.2" y="430.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#111">RegistrarResultado</text>
+<text x="800.2" y="444.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#111">ConsultarPendientes</text>
+<rect x="724.2" y="535" width="152" height="46" rx="0" fill="#ffe9b0" stroke="#e0a100" stroke-width="1.5"/>
+<text x="800.2" y="555.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#111">OrdenExamen</text>
+<text x="800.2" y="569.0" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#111">Resultado</text>
+<rect x="724.2" y="662" width="152" height="46" rx="0" fill="#fff" stroke="#7e57c2" stroke-width="1.5"/>
+<text x="800.2" y="682.0" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">RepositorioLaboratorio</text>
+<text x="800.2" y="696.0" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#111">EF Core</text>
+<line x1="800.2" y1="372" x2="800.2" y2="408" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
+<line x1="800.2" y1="456" x2="800.2" y2="533" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
+<line x1="800.2" y1="581" x2="800.2" y2="660" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
+<rect x="891.6" y="286" width="168" height="460" rx="0" fill="none" stroke="#555" stroke-width="1.3" stroke-dasharray="6,4"/>
+<text x="975.6" y="302" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#111">módulo Administración</text>
+<text x="975.6" y="316" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#111">Sigh.Administracion</text>
+<rect x="899.6" y="326" width="152" height="46" rx="0" fill="#fff" stroke="#4a86e8" stroke-width="1.5"/>
+<text x="975.6" y="346.0" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">AuthController</text>
+<text x="975.6" y="360.0" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">UsuariosController</text>
+<rect x="899.6" y="410" width="152" height="46" rx="0" fill="#d9efd9" stroke="#3c9a48" stroke-width="1.5"/>
+<text x="975.6" y="430.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#111">IniciarSesion</text>
+<text x="975.6" y="444.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#111">GestionarRoles</text>
+<rect x="899.6" y="535" width="152" height="46" rx="0" fill="#ffe9b0" stroke="#e0a100" stroke-width="1.5"/>
+<text x="975.6" y="555.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#111">Usuario, Rol</text>
+<text x="975.6" y="569.0" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#111">RegistroAcceso</text>
+<rect x="899.6" y="662" width="152" height="46" rx="0" fill="#fff" stroke="#7e57c2" stroke-width="1.5"/>
+<text x="975.6" y="682.0" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">RepositorioAdministracion</text>
+<text x="975.6" y="696.0" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#111">EF Core</text>
+<line x1="975.6" y1="372" x2="975.6" y2="408" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
+<line x1="975.6" y1="456" x2="975.6" y2="533" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
+<line x1="975.6" y1="581" x2="975.6" y2="660" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
+<rect x="1067.0" y="286" width="168" height="460" rx="0" fill="none" stroke="#555" stroke-width="1.3" stroke-dasharray="6,4"/>
+<text x="1151.0" y="302" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#111">módulo Reportes y Alertas</text>
+<text x="1151.0" y="316" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#111">Sigh.Reportes</text>
+<rect x="1075.0" y="326" width="152" height="46" rx="0" fill="#fff" stroke="#4a86e8" stroke-width="1.5"/>
+<text x="1151.0" y="346.0" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">ReportesController</text>
+<text x="1151.0" y="360.0" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">AlertasController</text>
+<rect x="1075.0" y="410" width="152" height="46" rx="0" fill="#d9efd9" stroke="#3c9a48" stroke-width="1.5"/>
+<text x="1151.0" y="430.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#111">GenerarReporte</text>
+<text x="1151.0" y="444.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#111">RevisarAlerta</text>
+<rect x="1075.0" y="535" width="152" height="46" rx="0" fill="#ffe9b0" stroke="#e0a100" stroke-width="1.5"/>
+<text x="1151.0" y="555.0" font-size="11" font-weight="bold" text-anchor="middle" fill="#111">Reporte</text>
+<text x="1151.0" y="569.0" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#111">AlertaEpidemiologica</text>
+<rect x="1075.0" y="662" width="152" height="46" rx="0" fill="#fff" stroke="#7e57c2" stroke-width="1.5"/>
+<text x="1151.0" y="682.0" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">ConsultasDatamart</text>
+<text x="1151.0" y="696.0" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#111">solo lectura OLAP</text>
+<line x1="1151.0" y1="372" x2="1151.0" y2="408" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
+<line x1="1151.0" y1="456" x2="1151.0" y2="533" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
+<line x1="1151.0" y1="581" x2="1151.0" y2="660" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
+<line x1="350.0" y1="433" x2="371.4" y2="433" stroke="#2e8b3a" stroke-width="1.6" stroke-dasharray="5,4" marker-end="url(#arrg)"/>
+<line x1="548.8" y1="433" x2="527.4" y2="433" stroke="#2e8b3a" stroke-width="1.6" stroke-dasharray="5,4" marker-end="url(#arrg)"/>
+<polyline points="760.2,456 760.2,490 479.4,490 479.4,458" fill="none" stroke="#2e8b3a" stroke-width="1.6" stroke-dasharray="5,4" marker-end="url(#arrg)"/>
+<rect x="190" y="760" width="869.5999999999999" height="56" rx="0" fill="#e2d6f7" stroke="#7e57c2" stroke-width="1.5"/>
+<text x="624.8" y="785.0" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#111">Infraestructura compartida (src/Sigh.Compartido)</text>
+<text x="624.8" y="799.0" font-size="11.5" font-weight="normal" text-anchor="middle" fill="#111">EF Core + Npgsql (contexto OLTP) – caché Redis – adaptador RENIEC simulado – logs y métricas</text>
+<line x1="274.0" y1="708" x2="274.0" y2="758" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
+<line x1="449.4" y1="708" x2="449.4" y2="758" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
+<line x1="624.8" y1="708" x2="624.8" y2="758" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
+<line x1="800.2" y1="708" x2="800.2" y2="758" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
+<line x1="975.6" y1="708" x2="975.6" y2="758" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M370,912 L370,1003 A125.0,12 0 0 0 620,1003 L620,912" fill="#fff" stroke="#333" stroke-width="1.8"/>
+<ellipse cx="495.0" cy="912" rx="125.0" ry="12" fill="#fff" stroke="#333" stroke-width="1.8"/>
+<text x="495.0" y="961.5" font-size="14" font-weight="bold" text-anchor="middle" fill="#111">PostgreSQL</text>
+<text x="495.0" y="978.5" font-size="11.5" font-weight="normal" text-anchor="middle" fill="#111">sigh_oltp</text>
+<text x="495.0" y="993.5" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">base transaccional</text>
+<line x1="495" y1="816" x2="495" y2="898" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
+<text x="540" y="862" font-size="11.5" font-weight="normal" text-anchor="middle" fill="#111">SQL – TCP 5432</text>
+<rect x="690" y="925" width="230" height="62" rx="0" fill="#e6e6e6" stroke="#555" stroke-width="1.5"/>
+<text x="805.0" y="946.0" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">«proceso programado»</text>
+<text x="805.0" y="960.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#111">ETL</text>
+<text x="805.0" y="974.0" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">[Python + cron]</text>
+<line x1="620" y1="956" x2="688" y2="956" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
+<text x="654" y="948" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">lee</text>
+<path d="M1010,912 L1010,1003 A120.0,12 0 0 0 1250,1003 L1250,912" fill="#fff" stroke="#333" stroke-width="1.8"/>
+<ellipse cx="1130.0" cy="912" rx="120.0" ry="12" fill="#fff" stroke="#333" stroke-width="1.8"/>
+<text x="1130.0" y="961.5" font-size="14" font-weight="bold" text-anchor="middle" fill="#111">PostgreSQL</text>
+<text x="1130.0" y="978.5" font-size="11.5" font-weight="normal" text-anchor="middle" fill="#111">sigh_olap</text>
+<text x="1130.0" y="993.5" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">datamart analítico</text>
+<line x1="920" y1="956" x2="1008" y2="956" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
+<text x="964" y="948" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">carga</text>
+<line x1="1151.0" y1="708" x2="1151.0" y2="898" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
+<text x="1193.0" y="862" font-size="11.5" font-weight="normal" text-anchor="middle" fill="#111">SQL (lectura)</text>
+<rect x="1010" y="1060" width="240" height="62" rx="0" fill="#e6e6e6" stroke="#555" stroke-width="1.5"/>
+<text x="1130.0" y="1081.0" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">«proceso programado»</text>
+<text x="1130.0" y="1095.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#111">Alerta epidemiológica</text>
+<text x="1130.0" y="1109.0" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">[Python + cron]</text>
+<line x1="1090" y1="1058" x2="1090" y2="1017" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
+<text x="1060" y="1043" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">lee</text>
+<line x1="1170" y1="1017" x2="1170" y2="1058" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
+<text x="1222" y="1043" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">registra alertas</text>
+<polyline points="1640,162 1640,958 1252,958" fill="none" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
+<text x="1600" y="948" font-size="11.5" font-weight="normal" text-anchor="middle" fill="#111">SQL (lectura)</text>
+<rect x="1290" y="600" width="240" height="56" rx="0" fill="#e6e6e6" stroke="#555" stroke-width="1.5"/>
+<text x="1410.0" y="618.0" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">«caché»</text>
+<text x="1410.0" y="632.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#111">Redis</text>
+<text x="1410.0" y="646.0" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#111">catálogos y datos frecuentes</text>
+<rect x="1290" y="690" width="240" height="56" rx="0" fill="#e6e6e6" stroke="#555" stroke-width="1.5"/>
+<text x="1410.0" y="708.0" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">«sistema externo»</text>
+<text x="1410.0" y="722.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#111">Servicio RENIEC</text>
+<text x="1410.0" y="736.0" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#111">simulado – datos ficticios</text>
+<polyline points="1047,788 1265,788 1265,628 1288,628" fill="none" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
+<polyline points="1265,718 1288,718" fill="none" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
+<text x="1300" y="778" font-size="11" font-weight="normal" text-anchor="start" fill="#111">TCP / HTTPS</text>
+<rect x="30" y="925" width="280" height="62" rx="0" fill="#e6e6e6" stroke="#555" stroke-width="1.5"/>
+<text x="170.0" y="946.0" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">«monitoreo»</text>
+<text x="170.0" y="960.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#111">Prometheus + Grafana</text>
+<text x="170.0" y="974.0" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#111">métricas y logs de todos los contenedores</text>
+<rect x="20" y="1150" width="640" height="160" rx="0" fill="#fff" stroke="#555" stroke-width="1.4"/>
+<text x="35" y="1174" font-size="14" font-weight="bold" text-anchor="start" fill="#111">Leyenda</text>
+<line x1="40" y1="1197" x2="110" y2="1197" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
+<text x="125" y="1201" font-size="12" font-weight="normal" text-anchor="start" fill="#111">Llamada síncrona (entre capas, de arriba hacia abajo)</text>
+<line x1="40" y1="1222" x2="110" y2="1222" stroke="#2e8b3a" stroke-width="1.6" stroke-dasharray="5,4" marker-end="url(#arrg)"/>
+<text x="125" y="1226" font-size="12" font-weight="normal" text-anchor="start" fill="#111">Uso entre módulos: solo a través de sus casos de uso (hacia la HCE)</text>
+<rect x="40" y="1238" width="70" height="20" rx="0" fill="none" stroke="#555" stroke-width="1.3" stroke-dasharray="6,4"/>
+<text x="125" y="1253" font-size="12" font-weight="normal" text-anchor="start" fill="#111">Límite de módulo (proyecto Sigh.&lt;Módulo&gt;)</text>
+<rect x="40" y="1266" width="70" height="20" rx="0" fill="#e6e6e6" stroke="#555" stroke-width="1.3"/>
+<text x="125" y="1281" font-size="12" font-weight="normal" text-anchor="start" fill="#111">Contenedor o sistema fuera del monolito</text>
+<text x="125" y="1302" font-size="11.5" font-weight="normal" text-anchor="start" fill="#111">Todo, excepto el navegador y RENIEC, corre en Docker Compose sobre AWS EC2.</text>
+<rect x="690" y="1150" width="990" height="160" rx="0" fill="#fff" stroke="#555" stroke-width="1.4"/>
+<text x="705" y="1174" font-size="14" font-weight="bold" text-anchor="start" fill="#111">Reglas de la arquitectura</text>
+<text x="705" y="1198" font-size="12" font-weight="normal" text-anchor="start" fill="#111">1. Dentro de cada módulo, cada capa solo depende de la capa interior (Clean Architecture).</text>
+<text x="705" y="1221" font-size="12" font-weight="normal" text-anchor="start" fill="#111">2. Un módulo no accede al repositorio ni a las tablas de otro módulo; usa sus casos de uso.</text>
+<text x="705" y="1244" font-size="12" font-weight="normal" text-anchor="start" fill="#111">3. La HCE es el núcleo: Admisión, Farmacia y Laboratorio se vinculan a la historia clínica.</text>
+<text x="705" y="1267" font-size="12" font-weight="normal" text-anchor="start" fill="#111">4. Reportes y Alertas solo leen el datamart (sigh_olap), nunca la base transaccional.</text>
+<text x="705" y="1290" font-size="12" font-weight="normal" text-anchor="start" fill="#111">5. El ETL y la alerta epidemiológica corren fuera del monolito: si fallan, la operación clínica sigue.</text>
+<line x1="640" y1="162" x2="640" y2="246" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
+<rect x="580" y="186" width="120" height="34" fill="#fff"/>
+<text x="640" y="199" font-size="12" font-weight="normal" text-anchor="middle" fill="#111">HTTPS – JSON</text>
+<text x="640" y="215" font-size="12" font-weight="normal" text-anchor="middle" fill="#111">/api/v1/</text>
+</svg>
