@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1110" viewBox="0 0 1600 1110" font-family="Arial, Helvetica, sans-serif">
+<defs><marker id="open" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto"><path d="M1,1 L12,7 L1,13" fill="none" stroke="#3d4656" stroke-width="1.8"/></marker><marker id="tri" markerWidth="18" markerHeight="18" refX="16" refY="9" orient="auto"><path d="M1,1 L16,9 L1,17 z" fill="#fff" stroke="#3d4656" stroke-width="1.6"/></marker></defs>
+<rect x="0" y="0" width="1600" height="1110" rx="0" fill="#fff" stroke="none" stroke-width="0"/>
+<text x="24" y="38" font-size="22" font-weight="bold" font-style="normal" text-anchor="start" fill="#1d2533">Principios SOLID aplicados · módulo HCE (SIGH)</text>
+<text x="24" y="64" font-size="14" font-weight="normal" font-style="normal" text-anchor="start" fill="#5a6578">Clean Architecture · C# / .NET · cada clase indica el principio que cumple</text>
+<rect x="20" y="90" width="310" height="880" rx="0" fill="#f7f8fc" stroke="#b9c0cc" stroke-width="1.3" stroke-dasharray="6,4"/>
+<text x="175.0" y="116" font-size="15" font-weight="bold" font-style="normal" text-anchor="middle" fill="#2f5aa8">PRESENTACIÓN</text>
+<rect x="345" y="90" width="345" height="880" rx="0" fill="#f4faf5" stroke="#b9c0cc" stroke-width="1.3" stroke-dasharray="6,4"/>
+<text x="517.5" y="116" font-size="15" font-weight="bold" font-style="normal" text-anchor="middle" fill="#2e7d4a">APLICACIÓN</text>
+<rect x="705" y="90" width="420" height="880" rx="0" fill="#fffaf0" stroke="#b9c0cc" stroke-width="1.3" stroke-dasharray="6,4"/>
+<text x="915.0" y="116" font-size="15" font-weight="bold" font-style="normal" text-anchor="middle" fill="#b8741a">DOMINIO</text>
+<rect x="1140" y="90" width="440" height="880" rx="0" fill="#f8f5fc" stroke="#b9c0cc" stroke-width="1.3" stroke-dasharray="6,4"/>
+<text x="1360.0" y="116" font-size="15" font-weight="bold" font-style="normal" text-anchor="middle" fill="#6b3fa6">INFRAESTRUCTURA</text>
+<rect x="35" y="160" width="280" height="82" rx="0" fill="#fff" stroke="#3d4656" stroke-width="1.6"/>
+<text x="175.0" y="184" font-size="15" font-weight="bold" font-style="normal" text-anchor="middle" fill="#1d2533">AtencionesController</text>
+<line x1="35" y1="196" x2="315" y2="196" stroke="#3d4656" stroke-width="1.4"/>
+<line x1="35" y1="210" x2="315" y2="210" stroke="#3d4656" stroke-width="1.4"/>
+<text x="47" y="232" font-size="12.5" font-weight="normal" font-style="normal" text-anchor="start" fill="#1d2533">+ Registrar(request)</text>
+<circle cx="299" cy="140" r="15" fill="#2f5aa8"/>
+<text x="299" y="145" font-size="14" font-weight="bold" font-style="normal" text-anchor="middle" fill="#fff">S</text>
+<rect x="360" y="160" width="315" height="144" rx="0" fill="#fff" stroke="#3d4656" stroke-width="1.6"/>
+<text x="517.5" y="184" font-size="15" font-weight="bold" font-style="normal" text-anchor="middle" fill="#1d2533">RegistrarAtencionCasoUso</text>
+<line x1="360" y1="196" x2="675" y2="196" stroke="#3d4656" stroke-width="1.4"/>
+<line x1="360" y1="272" x2="675" y2="272" stroke="#3d4656" stroke-width="1.4"/>
+<text x="372" y="218" font-size="12.5" font-weight="normal" font-style="normal" text-anchor="start" fill="#1d2533">- _repositorio: IRepositorioHistorias</text>
+<text x="372" y="240" font-size="12.5" font-weight="normal" font-style="normal" text-anchor="start" fill="#1d2533">- _bitacora: IBitacoraAuditoria</text>
+<text x="372" y="262" font-size="12.5" font-weight="normal" font-style="normal" text-anchor="start" fill="#1d2533">- _cie10: ICatalogoCie10</text>
+<text x="372" y="294" font-size="12.5" font-weight="normal" font-style="normal" text-anchor="start" fill="#1d2533">+ EjecutarAsync(comando)</text>
+<circle cx="659" cy="140" r="15" fill="#c0392b"/>
+<text x="659" y="145" font-size="14" font-weight="bold" font-style="normal" text-anchor="middle" fill="#fff">D</text>
+<circle cx="625" cy="140" r="15" fill="#2f5aa8"/>
+<text x="625" y="145" font-size="14" font-weight="bold" font-style="normal" text-anchor="middle" fill="#fff">S</text>
+<polyline points="315,222 358,222" fill="none" stroke="#3d4656" stroke-width="1.8" marker-end="url(#open)"/>
+<rect x="720" y="150" width="390" height="136" rx="0" fill="#fff" stroke="#3d4656" stroke-width="1.6"/>
+<text x="915.0" y="170" font-size="11.5" font-weight="normal" font-style="normal" text-anchor="middle" fill="#4a5568">«entidad»</text>
+<text x="915.0" y="190" font-size="15" font-weight="bold" font-style="normal" text-anchor="middle" fill="#1d2533">Atencion</text>
+<line x1="720" y1="200" x2="1110" y2="200" stroke="#3d4656" stroke-width="1.4"/>
+<line x1="720" y1="232" x2="1110" y2="232" stroke="#3d4656" stroke-width="1.4"/>
+<text x="732" y="222" font-size="12.5" font-weight="normal" font-style="normal" text-anchor="start" fill="#1d2533">- firmada: bool</text>
+<text x="732" y="254" font-size="12.5" font-weight="normal" font-style="normal" text-anchor="start" fill="#1d2533">+ Firmar(medicoId)</text>
+<text x="732" y="276" font-size="12.5" font-weight="normal" font-style="normal" text-anchor="start" fill="#1d2533">+ AgregarNotaCorreccion(texto)</text>
+<circle cx="1094" cy="132" r="15" fill="#2f5aa8"/>
+<text x="1094" y="137" font-size="14" font-weight="bold" font-style="normal" text-anchor="middle" fill="#fff">S</text>
+<polyline points="675,185 718,185" fill="none" stroke="#3d4656" stroke-width="1.8" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<text x="697" y="168" font-size="11.5" font-weight="normal" font-style="normal" text-anchor="middle" fill="#4a5568">«crea»</text>
+<text x="915" y="330" font-size="12" font-weight="normal" font-style="italic" text-anchor="middle" fill="#7a4d00">Regla: una atención firmada no se modifica;</text>
+<text x="915" y="346" font-size="12" font-weight="normal" font-style="italic" text-anchor="middle" fill="#7a4d00">solo se le agregan notas de corrección.</text>
+<rect x="720" y="400" width="390" height="118" rx="0" fill="#fff" stroke="#3d4656" stroke-width="1.6"/>
+<text x="915.0" y="420" font-size="11.5" font-weight="normal" font-style="normal" text-anchor="middle" fill="#4a5568">«interfaz»</text>
+<text x="915.0" y="440" font-size="15" font-weight="bold" font-style="italic" text-anchor="middle" fill="#1d2533">IRepositorioHistorias</text>
+<line x1="720" y1="450" x2="1110" y2="450" stroke="#3d4656" stroke-width="1.4"/>
+<line x1="720" y1="464" x2="1110" y2="464" stroke="#3d4656" stroke-width="1.4"/>
+<text x="732" y="486" font-size="12.5" font-weight="normal" font-style="normal" text-anchor="start" fill="#1d2533">+ ObtenerPorPacienteAsync(pacienteId)</text>
+<text x="732" y="508" font-size="12.5" font-weight="normal" font-style="normal" text-anchor="start" fill="#1d2533">+ GuardarAtencionAsync(atencion)</text>
+<circle cx="1094" cy="382" r="15" fill="#6b3fa6"/>
+<text x="1094" y="387" font-size="14" font-weight="bold" font-style="normal" text-anchor="middle" fill="#fff">I</text>
+<rect x="720" y="610" width="390" height="96" rx="0" fill="#fff" stroke="#3d4656" stroke-width="1.6"/>
+<text x="915.0" y="630" font-size="11.5" font-weight="normal" font-style="normal" text-anchor="middle" fill="#4a5568">«interfaz»</text>
+<text x="915.0" y="650" font-size="15" font-weight="bold" font-style="italic" text-anchor="middle" fill="#1d2533">IBitacoraAuditoria</text>
+<line x1="720" y1="660" x2="1110" y2="660" stroke="#3d4656" stroke-width="1.4"/>
+<line x1="720" y1="674" x2="1110" y2="674" stroke="#3d4656" stroke-width="1.4"/>
+<text x="732" y="696" font-size="12.5" font-weight="normal" font-style="normal" text-anchor="start" fill="#1d2533">+ RegistrarAccesoAsync(usuario, accion, historiaId)</text>
+<circle cx="1094" cy="592" r="15" fill="#6b3fa6"/>
+<text x="1094" y="597" font-size="14" font-weight="bold" font-style="normal" text-anchor="middle" fill="#fff">I</text>
+<rect x="720" y="790" width="390" height="96" rx="0" fill="#fff" stroke="#3d4656" stroke-width="1.6"/>
+<text x="915.0" y="810" font-size="11.5" font-weight="normal" font-style="normal" text-anchor="middle" fill="#4a5568">«interfaz»</text>
+<text x="915.0" y="830" font-size="15" font-weight="bold" font-style="italic" text-anchor="middle" fill="#1d2533">ICatalogoCie10</text>
+<line x1="720" y1="840" x2="1110" y2="840" stroke="#3d4656" stroke-width="1.4"/>
+<line x1="720" y1="854" x2="1110" y2="854" stroke="#3d4656" stroke-width="1.4"/>
+<text x="732" y="876" font-size="12.5" font-weight="normal" font-style="normal" text-anchor="start" fill="#1d2533">+ ExisteCodigoAsync(codigo)</text>
+<circle cx="1094" cy="772" r="15" fill="#6b3fa6"/>
+<text x="1094" y="777" font-size="14" font-weight="bold" font-style="normal" text-anchor="middle" fill="#fff">I</text>
+<polyline points="620,304 620,445 718,445" fill="none" stroke="#3d4656" stroke-width="1.8" marker-end="url(#open)"/>
+<polyline points="560,304 560,655 718,655" fill="none" stroke="#3d4656" stroke-width="1.8" marker-end="url(#open)"/>
+<polyline points="500,304 500,835 718,835" fill="none" stroke="#3d4656" stroke-width="1.8" marker-end="url(#open)"/>
+<rect x="1160" y="380" width="400" height="104" rx="0" fill="#fff" stroke="#3d4656" stroke-width="1.6"/>
+<text x="1360.0" y="404" font-size="15" font-weight="bold" font-style="normal" text-anchor="middle" fill="#1d2533">RepositorioHistoriasEfCore</text>
+<line x1="1160" y1="416" x2="1560" y2="416" stroke="#3d4656" stroke-width="1.4"/>
+<line x1="1160" y1="430" x2="1560" y2="430" stroke="#3d4656" stroke-width="1.4"/>
+<text x="1172" y="452" font-size="12.5" font-weight="normal" font-style="normal" text-anchor="start" fill="#1d2533">+ ObtenerPorPacienteAsync(pacienteId)</text>
+<text x="1172" y="474" font-size="12.5" font-weight="normal" font-style="normal" text-anchor="start" fill="#1d2533">+ GuardarAtencionAsync(atencion)</text>
+<circle cx="1544" cy="362" r="15" fill="#b8741a"/>
+<text x="1544" y="367" font-size="14" font-weight="bold" font-style="normal" text-anchor="middle" fill="#fff">L</text>
+<circle cx="1510" cy="362" r="15" fill="#2e7d4a"/>
+<text x="1510" y="367" font-size="14" font-weight="bold" font-style="normal" text-anchor="middle" fill="#fff">O</text>
+<circle cx="1476" cy="362" r="15" fill="#2f5aa8"/>
+<text x="1476" y="367" font-size="14" font-weight="bold" font-style="normal" text-anchor="middle" fill="#fff">S</text>
+<rect x="1160" y="520" width="400" height="104" rx="0" fill="#fff" stroke="#3d4656" stroke-width="1.6"/>
+<text x="1360.0" y="544" font-size="15" font-weight="bold" font-style="normal" text-anchor="middle" fill="#1d2533">RepositorioHistoriasEnMemoria</text>
+<line x1="1160" y1="556" x2="1560" y2="556" stroke="#3d4656" stroke-width="1.4"/>
+<line x1="1160" y1="570" x2="1560" y2="570" stroke="#3d4656" stroke-width="1.4"/>
+<text x="1172" y="592" font-size="12.5" font-weight="normal" font-style="normal" text-anchor="start" fill="#1d2533">+ ObtenerPorPacienteAsync(pacienteId)</text>
+<text x="1172" y="614" font-size="12.5" font-weight="normal" font-style="normal" text-anchor="start" fill="#1d2533">+ GuardarAtencionAsync(atencion)</text>
+<circle cx="1544" cy="502" r="15" fill="#b8741a"/>
+<text x="1544" y="507" font-size="14" font-weight="bold" font-style="normal" text-anchor="middle" fill="#fff">L</text>
+<circle cx="1510" cy="502" r="15" fill="#2e7d4a"/>
+<text x="1510" y="507" font-size="14" font-weight="bold" font-style="normal" text-anchor="middle" fill="#fff">O</text>
+<text x="1360" y="652" font-size="11.5" font-weight="normal" font-style="italic" text-anchor="middle" fill="#5a6578">(implementación para pruebas unitarias)</text>
+<rect x="1160" y="680" width="400" height="82" rx="0" fill="#fff" stroke="#3d4656" stroke-width="1.6"/>
+<text x="1360.0" y="704" font-size="15" font-weight="bold" font-style="normal" text-anchor="middle" fill="#1d2533">BitacoraAuditoriaEfCore</text>
+<line x1="1160" y1="716" x2="1560" y2="716" stroke="#3d4656" stroke-width="1.4"/>
+<line x1="1160" y1="730" x2="1560" y2="730" stroke="#3d4656" stroke-width="1.4"/>
+<text x="1172" y="752" font-size="12.5" font-weight="normal" font-style="normal" text-anchor="start" fill="#1d2533">+ RegistrarAccesoAsync(usuario, accion, historiaId)</text>
+<circle cx="1544" cy="662" r="15" fill="#2f5aa8"/>
+<text x="1544" y="667" font-size="14" font-weight="bold" font-style="normal" text-anchor="middle" fill="#fff">S</text>
+<rect x="1160" y="820" width="400" height="82" rx="0" fill="#fff" stroke="#3d4656" stroke-width="1.6"/>
+<text x="1360.0" y="844" font-size="15" font-weight="bold" font-style="normal" text-anchor="middle" fill="#1d2533">CatalogoCie10EnCache</text>
+<line x1="1160" y1="856" x2="1560" y2="856" stroke="#3d4656" stroke-width="1.4"/>
+<line x1="1160" y1="870" x2="1560" y2="870" stroke="#3d4656" stroke-width="1.4"/>
+<text x="1172" y="892" font-size="12.5" font-weight="normal" font-style="normal" text-anchor="start" fill="#1d2533">+ ExisteCodigoAsync(codigo)</text>
+<circle cx="1544" cy="802" r="15" fill="#2e7d4a"/>
+<text x="1544" y="807" font-size="14" font-weight="bold" font-style="normal" text-anchor="middle" fill="#fff">O</text>
+<polyline points="1160,410 1112,410" fill="none" stroke="#3d4656" stroke-width="1.8" stroke-dasharray="6,4" marker-end="url(#tri)"/>
+<polyline points="1160,550 1135,550 1135,485 1112,485" fill="none" stroke="#3d4656" stroke-width="1.8" stroke-dasharray="6,4" marker-end="url(#tri)"/>
+<polyline points="1160,710 1135,710 1135,670 1112,670" fill="none" stroke="#3d4656" stroke-width="1.8" stroke-dasharray="6,4" marker-end="url(#tri)"/>
+<polyline points="1160,850 1112,850" fill="none" stroke="#3d4656" stroke-width="1.8" stroke-dasharray="6,4" marker-end="url(#tri)"/>
+<path d="M35,640 L295,640 L315,660 L315,800 L35,800 z" fill="#fffbe6" stroke="#c9a227" stroke-width="1.4"/>
+<text x="50" y="666" font-size="12.5" font-weight="normal" font-style="normal" text-anchor="start" fill="#1d2533">DependencyInjection.cs registra</text>
+<text x="50" y="685" font-size="12.5" font-weight="normal" font-style="normal" text-anchor="start" fill="#1d2533">RepositorioHistoriasEfCore,</text>
+<text x="50" y="704" font-size="12.5" font-weight="normal" font-style="normal" text-anchor="start" fill="#1d2533">BitacoraAuditoriaEfCore y</text>
+<text x="50" y="723" font-size="12.5" font-weight="normal" font-style="normal" text-anchor="start" fill="#1d2533">CatalogoCie10EnCache, y Program.cs</text>
+<text x="50" y="742" font-size="12.5" font-weight="normal" font-style="normal" text-anchor="start" fill="#1d2533">los inyecta en el caso de uso (D).</text>
+<text x="50" y="761" font-size="12.5" font-weight="normal" font-style="normal" text-anchor="start" fill="#1d2533">En las pruebas se usa</text>
+<text x="50" y="780" font-size="12.5" font-weight="normal" font-style="normal" text-anchor="start" fill="#1d2533">RepositorioHistoriasEnMemoria.</text>
+<circle cx="42" cy="1015" r="16" fill="#2f5aa8"/>
+<text x="42" y="1020" font-size="14" font-weight="bold" font-style="normal" text-anchor="middle" fill="#fff">S</text>
+<text x="70" y="1020" font-size="14" font-weight="normal" font-style="normal" text-anchor="start" fill="#1d2533">Responsabilidad única: una sola tarea por clase</text>
+<circle cx="578" cy="1015" r="16" fill="#2e7d4a"/>
+<text x="578" y="1020" font-size="14" font-weight="bold" font-style="normal" text-anchor="middle" fill="#fff">O</text>
+<text x="606" y="1020" font-size="14" font-weight="normal" font-style="normal" text-anchor="start" fill="#1d2533">Abierto/cerrado: nueva tecnología = nueva clase</text>
+<circle cx="1098" cy="1015" r="16" fill="#b8741a"/>
+<text x="1098" y="1020" font-size="14" font-weight="bold" font-style="normal" text-anchor="middle" fill="#fff">L</text>
+<text x="1126" y="1020" font-size="14" font-weight="normal" font-style="normal" text-anchor="start" fill="#1d2533">Liskov: EF Core y En memoria son intercambiables</text>
+<circle cx="42" cy="1068" r="16" fill="#6b3fa6"/>
+<text x="42" y="1073" font-size="14" font-weight="bold" font-style="normal" text-anchor="middle" fill="#fff">I</text>
+<text x="70" y="1073" font-size="14" font-weight="normal" font-style="normal" text-anchor="start" fill="#1d2533">Segregación: interfaces pequeñas por necesidad</text>
+<circle cx="578" cy="1068" r="16" fill="#c0392b"/>
+<text x="578" y="1073" font-size="14" font-weight="bold" font-style="normal" text-anchor="middle" fill="#fff">D</text>
+<text x="606" y="1073" font-size="14" font-weight="normal" font-style="normal" text-anchor="start" fill="#1d2533">Inversión: el caso de uso depende de interfaces</text>
+</svg>
