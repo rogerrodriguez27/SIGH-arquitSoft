@@ -1,0 +1,185 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1460" height="1270" viewBox="0 0 1460 1270" font-family="Arial, Helvetica, sans-serif">
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#666"/></marker></defs>
+<rect x="0" y="0" width="1460" height="1270" rx="0" fill="#fff" stroke="none" stroke-width="1"/>
+<text x="20" y="32" font-size="19" font-weight="bold" text-anchor="start" fill="#111">[Diagrama de componentes] SIGH – API Backend</text>
+<text x="20" y="54" font-size="12.5" font-weight="normal" text-anchor="start" fill="#444">Modelo C4 · Nivel 3 (componentes) · Estilo: monolito modular en capas</text>
+<text x="1440" y="32" font-size="11.5" font-weight="normal" text-anchor="end" fill="#777">Vista de componentes · v1</text>
+<circle cx="470" cy="92" r="22" fill="#1f3a6b"/>
+<rect x="395" y="108" width="150" height="66" rx="4" fill="#1f3a6b" stroke="#16305a" stroke-width="1"/>
+<text x="470.0" y="126.5" font-size="13" font-weight="bold" text-anchor="middle" fill="#fff">Personal clínico</text>
+<text x="470.0" y="141.5" font-size="10" font-weight="normal" text-anchor="middle" fill="#d6e2f7">[Persona]</text>
+<text x="470.0" y="155.5" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#fff">Admisión, triaje, médicos,</text>
+<text x="470.0" y="168.5" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#fff">farmacia y laboratorio</text>
+<circle cx="690" cy="92" r="22" fill="#1f3a6b"/>
+<rect x="615" y="108" width="150" height="66" rx="4" fill="#1f3a6b" stroke="#16305a" stroke-width="1"/>
+<text x="690.0" y="126.5" font-size="13" font-weight="bold" text-anchor="middle" fill="#fff">Epidemiólogo</text>
+<text x="690.0" y="141.5" font-size="10" font-weight="normal" text-anchor="middle" fill="#d6e2f7">[Persona]</text>
+<text x="690.0" y="155.5" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#fff">Revisa reportes</text>
+<text x="690.0" y="168.5" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#fff">y alertas</text>
+<circle cx="910" cy="92" r="22" fill="#1f3a6b"/>
+<rect x="835" y="108" width="150" height="66" rx="4" fill="#1f3a6b" stroke="#16305a" stroke-width="1"/>
+<text x="910.0" y="126.5" font-size="13" font-weight="bold" text-anchor="middle" fill="#fff">Administrador</text>
+<text x="910.0" y="141.5" font-size="10" font-weight="normal" text-anchor="middle" fill="#d6e2f7">[Persona]</text>
+<text x="910.0" y="155.5" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#fff">Gestiona usuarios,</text>
+<text x="910.0" y="168.5" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#fff">roles y catálogos</text>
+<polyline points="470,174 470,190 910,190 910,174" fill="none" stroke="#666" stroke-width="1.4"/>
+<polyline points="690,174 690,213" fill="none" stroke="#666" stroke-width="1.4" marker-end="url(#a)"/>
+<rect x="588.81" y="182.5" width="22.38" height="14.5" rx="0" fill="#fff" stroke="none" stroke-width="1"/>
+<text x="600" y="194.0" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#333">Usa</text>
+<rect x="570" y="215" width="240" height="62" rx="4" fill="#3a68b8" stroke="#16305a" stroke-width="1"/>
+<text x="690.0" y="238.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#fff">Aplicación web</text>
+<text x="690.0" y="253.0" font-size="10" font-weight="normal" text-anchor="middle" fill="#d6e2f7">[Contenedor: React SPA]</text>
+<text x="690.0" y="267.0" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#fff">Interfaz para el personal del hospital</text>
+<rect x="220" y="322" width="950" height="508" rx="0" fill="none" stroke="#666" stroke-width="1.4" stroke-dasharray="8,5"/>
+<text x="236" y="344" font-size="13" fill="#111"><tspan font-weight="bold">API SIGH </tspan><tspan fill="#444">[Contenedor: C# / .NET – ASP.NET Core · monolito modular]</tspan></text>
+<polyline points="690,277 690,353" fill="none" stroke="#666" stroke-width="1.4" marker-end="url(#a)"/>
+<rect x="648.78" y="292.5" width="82.44" height="14.5" rx="0" fill="#fff" stroke="none" stroke-width="1"/>
+<text x="690" y="304.0" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#333">Llama a la API</text>
+<rect x="648.78" y="305.0" width="82.44" height="14.5" rx="0" fill="#fff" stroke="none" stroke-width="1"/>
+<text x="690" y="316.5" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#333">[HTTPS / JSON]</text>
+<rect x="545" y="356" width="290" height="70" rx="4" fill="#9dbbeb" stroke="#5b84c4" stroke-width="1"/>
+<text x="690.0" y="376.5" font-size="13" font-weight="bold" text-anchor="middle" fill="#0d1b33">API REST</text>
+<text x="690.0" y="391.5" font-size="10" font-weight="normal" text-anchor="middle" fill="#2b4470">[Componente: controladores + middlewares]</text>
+<text x="690.0" y="405.5" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#0d1b33">Expone /api/v1, autentica (JWT),</text>
+<text x="690.0" y="418.5" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#0d1b33">autoriza por rol y audita accesos</text>
+<polyline points="690,426 690,463" fill="none" stroke="#666" stroke-width="1.4" marker-end="url(#a)"/>
+<rect x="635.13" y="438.5" width="109.74000000000001" height="14.5" rx="0" fill="#fff" stroke="none" stroke-width="1"/>
+<text x="690" y="450.0" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#333">Invoca casos de uso</text>
+<rect x="250" y="466" width="890" height="330" rx="0" fill="none" stroke="#999" stroke-width="1.1" stroke-dasharray="3,3"/>
+<text x="262" y="484" font-size="11" font-weight="normal" text-anchor="start" fill="#555">Módulos de negocio</text>
+<rect x="275" y="520" width="170" height="76" rx="4" fill="#9dbbeb" stroke="#5b84c4" stroke-width="1"/>
+<text x="360.0" y="543.5" font-size="13" font-weight="bold" text-anchor="middle" fill="#0d1b33">Admisión y Triaje</text>
+<text x="360.0" y="558.5" font-size="10" font-weight="normal" text-anchor="middle" fill="#2b4470">[Componente: módulo]</text>
+<text x="360.0" y="572.5" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#0d1b33">Registro de pacientes,</text>
+<text x="360.0" y="585.5" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#0d1b33">triaje y prioridad I – IV</text>
+<rect x="505" y="520" width="170" height="76" rx="4" fill="#9dbbeb" stroke="#c08000" stroke-width="3"/>
+<text x="590.0" y="543.5" font-size="13" font-weight="bold" text-anchor="middle" fill="#0d1b33">HCE (núcleo)</text>
+<text x="590.0" y="558.5" font-size="10" font-weight="normal" text-anchor="middle" fill="#2b4470">[Componente: módulo]</text>
+<text x="590.0" y="572.5" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#0d1b33">Historia clínica, atenciones,</text>
+<text x="590.0" y="585.5" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#0d1b33">recetas y órdenes</text>
+<rect x="735" y="520" width="170" height="76" rx="4" fill="#9dbbeb" stroke="#5b84c4" stroke-width="1"/>
+<text x="820.0" y="543.5" font-size="13" font-weight="bold" text-anchor="middle" fill="#0d1b33">Farmacia</text>
+<text x="820.0" y="558.5" font-size="10" font-weight="normal" text-anchor="middle" fill="#2b4470">[Componente: módulo]</text>
+<text x="820.0" y="572.5" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#0d1b33">Inventario, lotes y</text>
+<text x="820.0" y="585.5" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#0d1b33">dispensación de recetas</text>
+<rect x="965" y="520" width="170" height="76" rx="4" fill="#9dbbeb" stroke="#5b84c4" stroke-width="1"/>
+<text x="1050.0" y="543.5" font-size="13" font-weight="bold" text-anchor="middle" fill="#0d1b33">Laboratorio</text>
+<text x="1050.0" y="558.5" font-size="10" font-weight="normal" text-anchor="middle" fill="#2b4470">[Componente: módulo]</text>
+<text x="1050.0" y="572.5" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#0d1b33">Órdenes de examen</text>
+<text x="1050.0" y="585.5" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#0d1b33">y resultados</text>
+<rect x="275" y="690" width="170" height="76" rx="4" fill="#9dbbeb" stroke="#5b84c4" stroke-width="1"/>
+<text x="360.0" y="713.5" font-size="13" font-weight="bold" text-anchor="middle" fill="#0d1b33">Administración</text>
+<text x="360.0" y="728.5" font-size="10" font-weight="normal" text-anchor="middle" fill="#2b4470">[Componente: módulo]</text>
+<text x="360.0" y="742.5" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#0d1b33">Usuarios, roles, catálogos</text>
+<text x="360.0" y="755.5" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#0d1b33">y bitácora de accesos</text>
+<rect x="965" y="690" width="170" height="76" rx="4" fill="#9dbbeb" stroke="#5b84c4" stroke-width="1"/>
+<text x="1050.0" y="713.5" font-size="13" font-weight="bold" text-anchor="middle" fill="#0d1b33">Reportes y Alertas</text>
+<text x="1050.0" y="728.5" font-size="10" font-weight="normal" text-anchor="middle" fill="#2b4470">[Componente: módulo]</text>
+<text x="1050.0" y="742.5" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#0d1b33">Reportes epidemiológicos</text>
+<text x="1050.0" y="755.5" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#0d1b33">y revisión de alertas</text>
+<polyline points="445,558.0 503,558.0" fill="none" stroke="#666" stroke-width="1.4" marker-end="url(#a)"/>
+<rect x="457.18" y="533.5" width="35.64" height="13.5" rx="0" fill="#fff" stroke="none" stroke-width="1"/>
+<text x="475" y="544.0" font-size="9.5" font-weight="normal" text-anchor="middle" fill="#333">Abre y</text>
+<rect x="447.3" y="545.0" width="55.4" height="13.5" rx="0" fill="#fff" stroke="none" stroke-width="1"/>
+<text x="475" y="555.5" font-size="9.5" font-weight="normal" text-anchor="middle" fill="#333">vincula HC</text>
+<polyline points="735,558.0 677,558.0" fill="none" stroke="#666" stroke-width="1.4" marker-end="url(#a)"/>
+<rect x="695.59" y="533.5" width="20.82" height="13.5" rx="0" fill="#fff" stroke="none" stroke-width="1"/>
+<text x="706" y="544.0" font-size="9.5" font-weight="normal" text-anchor="middle" fill="#333">Lee</text>
+<rect x="685.71" y="545.0" width="40.58" height="13.5" rx="0" fill="#fff" stroke="none" stroke-width="1"/>
+<text x="706" y="555.5" font-size="9.5" font-weight="normal" text-anchor="middle" fill="#333">recetas</text>
+<polyline points="1050,520 1050,500 610,500 610,518" fill="none" stroke="#666" stroke-width="1.4" marker-end="url(#a)"/>
+<rect x="739.64" y="491.5" width="180.72" height="14.5" rx="0" fill="#fff" stroke="none" stroke-width="1"/>
+<text x="830" y="503.0" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#333">Lee órdenes y vincula resultados</text>
+<polyline points="590,596 590,728.0 447,728.0" fill="none" stroke="#666" stroke-width="1.4" marker-end="url(#a)"/>
+<rect x="543.32" y="638.5" width="93.36" height="14.5" rx="0" fill="#fff" stroke="none" stroke-width="1"/>
+<text x="590" y="650.0" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#333">Registra accesos</text>
+<rect x="548.78" y="651.0" width="82.44" height="14.5" rx="0" fill="#fff" stroke="none" stroke-width="1"/>
+<text x="590" y="662.5" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#333">en la bitácora</text>
+<rect x="1240" y="520" width="190" height="76" rx="4" fill="#3a68b8" stroke="#16305a" stroke-width="1"/>
+<text x="1335.0" y="543.5" font-size="13" font-weight="bold" text-anchor="middle" fill="#fff">Caché</text>
+<text x="1335.0" y="558.5" font-size="10" font-weight="normal" text-anchor="middle" fill="#d6e2f7">[Contenedor: Redis]</text>
+<text x="1335.0" y="572.5" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#fff">Catálogos CIE-10, medicamentos</text>
+<text x="1335.0" y="585.5" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#fff">y datos frecuentes</text>
+<polyline points="1140,558.0 1238,558.0" fill="none" stroke="#666" stroke-width="1.4" marker-end="url(#a)"/>
+<rect x="1154.24" y="540.5" width="71.52" height="14.5" rx="0" fill="#fff" stroke="none" stroke-width="1"/>
+<text x="1190" y="552.0" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#333">Cachea [TCP]</text>
+<rect x="20" y="520" width="175" height="76" rx="4" fill="#9a9a9a" stroke="#777" stroke-width="1"/>
+<text x="107.5" y="543.5" font-size="13" font-weight="bold" text-anchor="middle" fill="#fff">Servicio RENIEC</text>
+<text x="107.5" y="558.5" font-size="10" font-weight="normal" text-anchor="middle" fill="#d6e2f7">[Sistema externo (simulado)]</text>
+<text x="107.5" y="572.5" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#fff">Valida DNI con</text>
+<text x="107.5" y="585.5" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#fff">datos ficticios</text>
+<polyline points="275,558.0 197,558.0" fill="none" stroke="#666" stroke-width="1.4" marker-end="url(#a)"/>
+<rect x="208.3" y="569.5" width="55.4" height="13.5" rx="0" fill="#fff" stroke="none" stroke-width="1"/>
+<text x="236" y="580.0" font-size="9.5" font-weight="normal" text-anchor="middle" fill="#333">Valida DNI</text>
+<rect x="203.36" y="581.0" width="65.28" height="13.5" rx="0" fill="#fff" stroke="none" stroke-width="1"/>
+<text x="236" y="591.5" font-size="9.5" font-weight="normal" text-anchor="middle" fill="#333">[HTTPS/JSON]</text>
+<rect x="380" y="885" width="220" height="78" rx="4" fill="#3a68b8" stroke="#16305a" stroke-width="1"/>
+<text x="490.0" y="916.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#fff">Base transaccional</text>
+<text x="490.0" y="931.0" font-size="10" font-weight="normal" text-anchor="middle" fill="#d6e2f7">[Contenedor: PostgreSQL]</text>
+<text x="490.0" y="945.0" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#fff">sigh_oltp – operación clínica</text>
+<polyline points="490,796 490,883" fill="none" stroke="#666" stroke-width="1.4" marker-end="url(#a)"/>
+<rect x="418.75" y="840.5" width="142.5" height="14.5" rx="0" fill="#fff" stroke="none" stroke-width="1"/>
+<text x="490" y="852.0" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#333">Cada módulo lee y escribe</text>
+<rect x="443.32" y="853.0" width="93.36" height="14.5" rx="0" fill="#fff" stroke="none" stroke-width="1"/>
+<text x="490" y="864.5" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#333">sus tablas [SQL]</text>
+<rect x="655" y="885" width="190" height="78" rx="4" fill="#3a68b8" stroke="#16305a" stroke-width="1"/>
+<text x="750.0" y="916.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#fff">ETL</text>
+<text x="750.0" y="931.0" font-size="10" font-weight="normal" text-anchor="middle" fill="#d6e2f7">[Contenedor: Python + cron]</text>
+<text x="750.0" y="945.0" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#fff">Carga periódica al datamart</text>
+<polyline points="600,924 653,924" fill="none" stroke="#666" stroke-width="1.4" marker-end="url(#a)"/>
+<rect x="609.18" y="904.5" width="35.64" height="13.5" rx="0" fill="#fff" stroke="none" stroke-width="1"/>
+<text x="627" y="915.0" font-size="9.5" font-weight="normal" text-anchor="middle" fill="#333">Extrae</text>
+<rect x="900" y="885" width="220" height="78" rx="4" fill="#3a68b8" stroke="#16305a" stroke-width="1"/>
+<text x="1010.0" y="916.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#fff">Datamart analítico</text>
+<text x="1010.0" y="931.0" font-size="10" font-weight="normal" text-anchor="middle" fill="#d6e2f7">[Contenedor: PostgreSQL]</text>
+<text x="1010.0" y="945.0" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#fff">sigh_olap – datos agregados</text>
+<polyline points="845,924 898,924" fill="none" stroke="#666" stroke-width="1.4" marker-end="url(#a)"/>
+<rect x="855.65" y="904.5" width="30.7" height="13.5" rx="0" fill="#fff" stroke="none" stroke-width="1"/>
+<text x="871" y="915.0" font-size="9.5" font-weight="normal" text-anchor="middle" fill="#333">Carga</text>
+<polyline points="1050,766 1050,883" fill="none" stroke="#666" stroke-width="1.4" marker-end="url(#a)"/>
+<rect x="984.21" y="840.5" width="131.57999999999998" height="14.5" rx="0" fill="#fff" stroke="none" stroke-width="1"/>
+<text x="1050" y="852.0" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#333">Consulta (solo lectura)</text>
+<rect x="1033.35" y="853.0" width="33.3" height="14.5" rx="0" fill="#fff" stroke="none" stroke-width="1"/>
+<text x="1050" y="864.5" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#333">[SQL]</text>
+<rect x="900" y="1030" width="220" height="70" rx="4" fill="#3a68b8" stroke="#16305a" stroke-width="1"/>
+<text x="1010.0" y="1057.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#fff">Alerta epidemiológica</text>
+<text x="1010.0" y="1072.0" font-size="10" font-weight="normal" text-anchor="middle" fill="#d6e2f7">[Contenedor: Python + cron]</text>
+<text x="1010.0" y="1086.0" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#fff">Detecta aumentos inusuales</text>
+<polyline points="1010,1030 1010,965" fill="none" stroke="#666" stroke-width="1.4" marker-end="url(#a)"/>
+<rect x="905.99" y="990.5" width="208.02" height="14.5" rx="0" fill="#fff" stroke="none" stroke-width="1"/>
+<text x="1010" y="1002.0" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#333">Lee datamart y registra alertas [SQL]</text>
+<rect x="1190" y="885" width="200" height="78" rx="4" fill="#3a68b8" stroke="#16305a" stroke-width="1"/>
+<text x="1290.0" y="916.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#fff">Metabase</text>
+<text x="1290.0" y="931.0" font-size="10" font-weight="normal" text-anchor="middle" fill="#d6e2f7">[Contenedor: BI]</text>
+<text x="1290.0" y="945.0" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#fff">Dashboards OLAP</text>
+<polyline points="1190,924 1122,924" fill="none" stroke="#666" stroke-width="1.4" marker-end="url(#a)"/>
+<rect x="1133.24" y="904.5" width="45.52" height="13.5" rx="0" fill="#fff" stroke="none" stroke-width="1"/>
+<text x="1156" y="915.0" font-size="9.5" font-weight="normal" text-anchor="middle" fill="#333">Consulta</text>
+<circle cx="1290" cy="1040" r="20" fill="#1f3a6b"/>
+<rect x="1215" y="1054" width="150" height="60" rx="4" fill="#1f3a6b" stroke="#16305a" stroke-width="1"/>
+<text x="1290.0" y="1076.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#fff">Directivo</text>
+<text x="1290.0" y="1091.0" font-size="10" font-weight="normal" text-anchor="middle" fill="#d6e2f7">[Persona]</text>
+<text x="1290.0" y="1105.0" font-size="10.5" font-weight="normal" text-anchor="middle" fill="#fff">Consulta indicadores</text>
+<polyline points="1290,1018 1290,965" fill="none" stroke="#666" stroke-width="1.4" marker-end="url(#a)"/>
+<rect x="1317.24" y="981.5" width="45.52" height="13.5" rx="0" fill="#fff" stroke="none" stroke-width="1"/>
+<text x="1340" y="992.0" font-size="9.5" font-weight="normal" text-anchor="middle" fill="#333">Consulta</text>
+<rect x="1312.3" y="993.0" width="55.4" height="13.5" rx="0" fill="#fff" stroke="none" stroke-width="1"/>
+<text x="1340" y="1003.5" font-size="9.5" font-weight="normal" text-anchor="middle" fill="#333">dashboards</text>
+<rect x="20" y="1150" width="640" height="105" rx="0" fill="#fff" stroke="#aaa" stroke-width="1"/>
+<text x="34" y="1172" font-size="12" font-weight="bold" text-anchor="start" fill="#111">Leyenda</text>
+<rect x="34" y="1186" width="135" height="26" rx="3" fill="#1f3a6b" stroke="#555" stroke-width="1"/>
+<text x="101" y="1203" font-size="11.5" font-weight="normal" text-anchor="middle" fill="#fff">Persona</text>
+<rect x="184" y="1186" width="135" height="26" rx="3" fill="#3a68b8" stroke="#555" stroke-width="1"/>
+<text x="251" y="1203" font-size="11.5" font-weight="normal" text-anchor="middle" fill="#fff">Contenedor</text>
+<rect x="334" y="1186" width="135" height="26" rx="3" fill="#9dbbeb" stroke="#555" stroke-width="1"/>
+<text x="401" y="1203" font-size="11.5" font-weight="normal" text-anchor="middle" fill="#0d1b33">Componente</text>
+<rect x="484" y="1186" width="135" height="26" rx="3" fill="#9a9a9a" stroke="#555" stroke-width="1"/>
+<text x="551" y="1203" font-size="11.5" font-weight="normal" text-anchor="middle" fill="#fff">Sistema externo</text>
+<text x="34" y="1240" font-size="11" font-weight="normal" text-anchor="start" fill="#333">Flecha: relación con verbo y [protocolo] · Línea discontinua: límite de contenedor · Borde dorado: módulo núcleo</text>
+<rect x="690" y="1150" width="750" height="105" rx="0" fill="#fff" stroke="#aaa" stroke-width="1"/>
+<text x="704" y="1172" font-size="12" font-weight="bold" text-anchor="start" fill="#111">Notas</text>
+<text x="704" y="1194" font-size="11" font-weight="normal" text-anchor="start" fill="#333">• Cada componente es un módulo del monolito: todos se despliegan juntos en un solo contenedor.</text>
+<text x="704" y="1211" font-size="11" font-weight="normal" text-anchor="start" fill="#333">• Un módulo usa a otro solo a través de sus casos de uso, nunca sus tablas. La HCE es el núcleo.</text>
+<text x="704" y="1228" font-size="11" font-weight="normal" text-anchor="start" fill="#333">• ETL, alerta epidemiológica y Metabase solo usan el datamart: no afectan la operación clínica.</text>
+<text x="704" y="1245" font-size="11" font-weight="normal" text-anchor="start" fill="#333">• El servicio RENIEC es simulado; la integración real requiere convenio.</text>
+</svg>
