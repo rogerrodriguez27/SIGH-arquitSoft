@@ -115,3 +115,39 @@ src/
 | RN-04 | Una atención firmada no se modifica ni se elimina. | `Atencion` |
 | RN-05 | Las correcciones se registran como una nota vinculada a la atención original, con autor y fecha. | `Atencion`, `NotaCorreccion` |
 | RN-06 | Todo acceso o modificación a una historia clínica se registra en la bitácora de auditoría. | `IBitacoraAuditoria` |
+---
+
+## 4. Diagrama de clases
+
+![Diagrama de clases del módulo HCE](../../../img/clases-modulo-hce.png)
+
+### 4.1 Notación UML utilizada
+
+| Símbolo | Significado | Ejemplo en el diagrama |
+|---|---|---|
+| Línea continua con flecha abierta | Asociación: la clase guarda una referencia a la otra | `RegistrarAtencionCasoUso` → `IRepositorioHistorias` |
+| Línea discontinua con flecha abierta | Dependencia: la usa o la crea, pero no la guarda | `AtencionesController` «crea» `RegistrarAtencionComando` |
+| Línea discontinua con triángulo hueco | Realización: implementa una interfaz | `RepositorioHistoriasEfCore` ▷ `IRepositorioHistorias` |
+| Rombo relleno | Composición: la parte no existe sin el todo | `HistoriaClinica` ◆ `Atencion` (0..*), `Atencion` ◆ `Diagnostico` (1..*) |
+| Nombre en cursiva + «interfaz» | Interfaz (contrato sin implementación) | `IRepositorioHistorias`, `ICatalogoCie10` |
+| «decorador» | Clase que envuelve a otra implementación de la misma interfaz | `CatalogoCie10EnCache` «envuelve» `CatalogoCie10EfCore` |
+| `-` / `+` | Privado / público | `- Estado`, `+ Firmar(medicoId)` |
+
+---
+
+## 5. Flujo de ejecución: registrar atención
+
+![Diagrama de secuencia de registrar atención](../../../img/secuencia-registrar-atencion.png)
+
+| Paso | Origen → destino | Acción | Capa |
+|---|---|---|---|
+| 1 | Cliente web → `AtencionesController` | `POST /api/v1/pacientes/{id}/atenciones` con `evolucion`, `codigosCie10`, `tratamiento` y el token JWT; el middleware valida el rol Médico (RN-03) | Presentación |
+| 2 | `AtencionesController` → `RegistrarAtencionCasoUso` | `EjecutarAsync(comando)`; el `medicoId` se toma del token, no del cuerpo de la petición | Presentación → Aplicación |
+| 3 | `RegistrarAtencionCasoUso` → `IRepositorioHistorias` | `ObtenerPorPacienteAsync(pacienteId)`; consulta la historia en PostgreSQL (RN-01) | Aplicación → Dominio (interfaz) |
+| 4 | `RegistrarAtencionCasoUso` → `ICatalogoCie10` | `ExisteCodigoAsync(codigo)` por cada diagnóstico; busca primero en Redis y, si no está, en PostgreSQL (RN-02) | Aplicación → Dominio (interfaz) |
+| 5 | `RegistrarAtencionCasoUso` → `HistoriaClinica` | `RegistrarAtencion(...)`; se crea la atención en estado BORRADOR | Aplicación → Dominio |
+| 6 | `RegistrarAtencionCasoUso` → `Atencion` | `Firmar(medicoId)`; pasa a estado FIRMADA y ya no puede modificarse (RN-02, RN-04) | Aplicación → Dominio |
+| 7–8 | `RegistrarAtencionCasoUso` → `IRepositorioHistorias` → PostgreSQL | `GuardarAtencionAsync(atencion)`; `INSERT` de la atención y sus diagnósticos | Aplicación → Infraestructura → BD |
+| 9–10 | `RegistrarAtencionCasoUso` → `IBitacoraAuditoria` → PostgreSQL | `RegistrarAccesoAsync(...)`; se registra quién, cuándo y qué acción realizó (RN-06) | Aplicación → Infraestructura → BD |
+| 11 | `AtencionesController` → Cliente web | `201 Created` con `atencionId` | Presentación |
+| 12–13 | Alternativa | Si la historia no existe (RN-01) o un código CIE-10 no es válido (RN-02): no se guarda la atención y se responde `404` o `422` | Aplicación → Presentación |
