@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="900" viewBox="0 0 2000 900" font-family="Arial, Helvetica, sans-serif">
+<defs><marker id="o" markerWidth="16" markerHeight="16" refX="13" refY="8" orient="auto"><path d="M1,1 L13,8 L1,15" fill="none" stroke="#3d4656" stroke-width="2.2"/></marker></defs>
+<rect width="2000" height="900" fill="#fff"/>
+<text x="40" y="46" font-size="28" font-weight="bold" text-anchor="start" fill="#1d2533">Diagrama de paquetes · módulo HCE (SIGH)</text>
+<text x="40" y="82" font-size="18" font-weight="normal" text-anchor="start" fill="#5a6578">src/Modulos/Hce · cada capa es un proyecto .NET (.csproj) · las referencias apuntan hacia el dominio</text>
+<rect x="40" y="140" width="154" height="38" fill="#ebf1fb" stroke="#2f5aa8" stroke-width="2"/>
+<rect x="40" y="178" width="400" height="400" fill="#ebf1fb" stroke="#2f5aa8" stroke-width="2"/>
+<text x="54" y="166" font-size="18" font-weight="bold" text-anchor="start" fill="#1d2533">Sigh.Hce.Api</text>
+<text x="62" y="216" font-size="14.5" font-weight="normal" text-anchor="start" fill="#4a5568">Controladores/</text>
+<text x="86" y="244" font-size="14.5" font-weight="normal" text-anchor="start" fill="#1d2533">AtencionesController.cs</text>
+<text x="86" y="272" font-size="14.5" font-weight="normal" text-anchor="start" fill="#1d2533">HistoriasController.cs</text>
+<text x="62" y="300" font-size="14.5" font-weight="normal" text-anchor="start" fill="#4a5568">Solicitudes/</text>
+<text x="86" y="328" font-size="14.5" font-weight="normal" text-anchor="start" fill="#1d2533">RegistrarAtencionSolicitud.cs</text>
+<rect x="530" y="140" width="224" height="38" fill="#e9f4ec" stroke="#2e7d4a" stroke-width="2"/>
+<rect x="530" y="178" width="420" height="400" fill="#e9f4ec" stroke="#2e7d4a" stroke-width="2"/>
+<text x="544" y="166" font-size="18" font-weight="bold" text-anchor="start" fill="#1d2533">Sigh.Hce.Aplicacion</text>
+<text x="552" y="216" font-size="14.5" font-weight="normal" text-anchor="start" fill="#4a5568">RegistrarAtencion/</text>
+<text x="576" y="244" font-size="14.5" font-weight="normal" text-anchor="start" fill="#1d2533">RegistrarAtencionCasoUso.cs</text>
+<text x="576" y="272" font-size="14.5" font-weight="normal" text-anchor="start" fill="#1d2533">RegistrarAtencionComando.cs</text>
+<text x="552" y="300" font-size="14.5" font-weight="normal" text-anchor="start" fill="#4a5568">ConsultarHistoria/</text>
+<text x="576" y="328" font-size="14.5" font-weight="normal" text-anchor="start" fill="#1d2533">ConsultarHistoriaCasoUso.cs</text>
+<text x="552" y="356" font-size="14.5" font-weight="normal" text-anchor="start" fill="#4a5568">Fachada/</text>
+<text x="576" y="384" font-size="14.5" font-weight="normal" text-anchor="start" fill="#1d2533">IHceFachada.cs</text>
+<text x="576" y="412" font-size="14.5" font-weight="normal" text-anchor="start" fill="#1d2533">HceFachada.cs</text>
+<rect x="1040" y="140" width="194" height="38" fill="#fdf3e1" stroke="#c58a1c" stroke-width="2"/>
+<rect x="1040" y="178" width="430" height="400" fill="#fdf3e1" stroke="#c58a1c" stroke-width="2"/>
+<text x="1054" y="166" font-size="18" font-weight="bold" text-anchor="start" fill="#1d2533">Sigh.Hce.Dominio</text>
+<text x="1062" y="216" font-size="14.5" font-weight="normal" text-anchor="start" fill="#4a5568">Entidades/</text>
+<text x="1086" y="244" font-size="14.5" font-weight="normal" text-anchor="start" fill="#1d2533">HistoriaClinica.cs</text>
+<text x="1086" y="272" font-size="14.5" font-weight="normal" text-anchor="start" fill="#1d2533">Atencion.cs</text>
+<text x="1086" y="300" font-size="14.5" font-weight="normal" text-anchor="start" fill="#1d2533">NotaCorreccion.cs</text>
+<text x="1086" y="328" font-size="14.5" font-weight="normal" text-anchor="start" fill="#1d2533">Diagnostico.cs</text>
+<text x="1062" y="356" font-size="14.5" font-weight="normal" text-anchor="start" fill="#4a5568">Contratos/</text>
+<text x="1086" y="384" font-size="14.5" font-weight="normal" text-anchor="start" fill="#1d2533">IRepositorioHistorias.cs</text>
+<text x="1086" y="412" font-size="14.5" font-weight="normal" text-anchor="start" fill="#1d2533">IBitacoraAuditoria.cs</text>
+<text x="1086" y="440" font-size="14.5" font-weight="normal" text-anchor="start" fill="#1d2533">ICatalogoCie10.cs</text>
+<rect x="1560" y="140" width="274" height="38" fill="#f1ebf9" stroke="#6b3fa6" stroke-width="2"/>
+<rect x="1560" y="178" width="410" height="400" fill="#f1ebf9" stroke="#6b3fa6" stroke-width="2"/>
+<text x="1574" y="166" font-size="18" font-weight="bold" text-anchor="start" fill="#1d2533">Sigh.Hce.Infraestructura</text>
+<text x="1582" y="216" font-size="14.5" font-weight="normal" text-anchor="start" fill="#4a5568">Persistencia/</text>
+<text x="1606" y="244" font-size="14.5" font-weight="normal" text-anchor="start" fill="#1d2533">HceDbContext.cs</text>
+<text x="1606" y="272" font-size="14.5" font-weight="normal" text-anchor="start" fill="#1d2533">RepositorioHistoriasEfCore.cs</text>
+<text x="1606" y="300" font-size="14.5" font-weight="normal" text-anchor="start" fill="#1d2533">RepositorioHistoriasEnMemoria.cs</text>
+<text x="1582" y="328" font-size="14.5" font-weight="normal" text-anchor="start" fill="#4a5568">Auditoria/</text>
+<text x="1606" y="356" font-size="14.5" font-weight="normal" text-anchor="start" fill="#1d2533">BitacoraAuditoriaEfCore.cs</text>
+<text x="1582" y="384" font-size="14.5" font-weight="normal" text-anchor="start" fill="#4a5568">Catalogos/</text>
+<text x="1606" y="412" font-size="14.5" font-weight="normal" text-anchor="start" fill="#1d2533">CatalogoCie10EfCore.cs</text>
+<text x="1606" y="440" font-size="14.5" font-weight="normal" text-anchor="start" fill="#1d2533">CatalogoCie10EnCache.cs</text>
+<text x="1582" y="468" font-size="14.5" font-weight="normal" text-anchor="start" fill="#1d2533">DependencyInjection.cs</text>
+<polyline points="440,348 528,348" fill="none" stroke="#3d4656" stroke-width="2.2" stroke-dasharray="9,6" marker-end="url(#o)"/>
+<text x="484" y="334" font-size="15" font-weight="normal" text-anchor="middle" fill="#5a6578">«referencia»</text>
+<polyline points="950,348 1038,348" fill="none" stroke="#3d4656" stroke-width="2.2" stroke-dasharray="9,6" marker-end="url(#o)"/>
+<text x="994" y="334" font-size="15" font-weight="normal" text-anchor="middle" fill="#5a6578">«referencia»</text>
+<polyline points="1560,348 1472,348" fill="none" stroke="#3d4656" stroke-width="2.2" stroke-dasharray="9,6" marker-end="url(#o)"/>
+<text x="1516" y="334" font-size="15" font-weight="normal" text-anchor="middle" fill="#5a6578">«implementa»</text>
+<rect x="40" y="650" width="250" height="38" fill="#eef1f6" stroke="#5a6578" stroke-width="2"/>
+<rect x="40" y="688" width="1930" height="150" fill="#eef1f6" stroke="#5a6578" stroke-width="2"/>
+<text x="54" y="676" font-size="18" font-weight="bold" text-anchor="start" fill="#1d2533">Sigh.Api / Program.cs</text>
+<text x="64" y="730" font-size="15.5" font-weight="normal" text-anchor="start" fill="#1d2533">Raíz de composición del monolito: un solo host ASP.NET Core que referencia todos los módulos. Llama a AgregarModuloHce(),</text>
+<text x="64" y="758" font-size="15.5" font-weight="normal" text-anchor="start" fill="#1d2533">definido en DependencyInjection.cs, que registra qué adaptador implementa cada contrato, y mapea los controladores.</text>
+<text x="64" y="786" font-size="15.5" font-weight="normal" text-anchor="start" fill="#1d2533">Es el único proyecto que conoce todas las capas. Las referencias entre proyectos impiden en compilación que el dominio dependa de las capas externas.</text>
+<polyline points="240,650 240,580" fill="none" stroke="#3d4656" stroke-width="2.2" stroke-dasharray="9,6" marker-end="url(#o)"/>
+<text x="292" y="610" font-size="15" font-weight="normal" text-anchor="middle" fill="#5a6578">«registra»</text>
+<polyline points="740,650 740,580" fill="none" stroke="#3d4656" stroke-width="2.2" stroke-dasharray="9,6" marker-end="url(#o)"/>
+<text x="792" y="610" font-size="15" font-weight="normal" text-anchor="middle" fill="#5a6578">«registra»</text>
+<polyline points="1765,650 1765,580" fill="none" stroke="#3d4656" stroke-width="2.2" stroke-dasharray="9,6" marker-end="url(#o)"/>
+<text x="1817" y="610" font-size="15" font-weight="normal" text-anchor="middle" fill="#5a6578">«registra»</text>
+</svg>
