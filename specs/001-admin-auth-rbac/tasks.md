@@ -274,18 +274,18 @@ obtener exactamente las esperadas, de la más reciente a la más antigua.
 
 ### Pruebas de la historia 5 ⚠️
 
-- [ ] T102 [P] [US5] Pruebas de `ConsultarBitacoraCasoUso`: rango obligatorio, `desde ≤ hasta`, un año como máximo y `tamano ≤ 100` (→ `ReglaNegocioError`); combinación de filtros; orden descendente; evento `BITACORA_CONSULTADA` con los filtros en `EventoSeguridad.Detalle`; en `TApl/Bitacora/ConsultarBitacoraCasoUsoTests.cs`
-- [ ] T103 [P] [US5] Pruebas de API de `BitacoraController`: `200` para el administrador con exactamente los campos de `EntradaBitacora` del contrato (FR-023), `403` para los demás roles, `422` por rango inválido; en `TApi/Bitacora/BitacoraControllerTests.cs`
-- [ ] T104 [P] [US5] Prueba de integración de rendimiento: con 100 000 entradas ficticias, el 95 % de las consultas filtradas responde en 2 s o menos, en `TInt/Bitacora/ConsultaBitacoraRendimientoTests.cs` (SC-006, research D8)
-- [ ] T105 [P] [US5] Prueba de la pantalla de la bitácora (filtros, paginación, mensaje de rango inválido) en `front/src/pages/Bitacora.test.tsx`
+- [X] T102 [P] [US5] Pruebas de `ConsultarBitacoraCasoUso`: rango obligatorio, `desde ≤ hasta`, un año como máximo y `tamano ≤ 100` (→ `ReglaNegocioError`); combinación de filtros; orden descendente; evento `BITACORA_CONSULTADA` con los filtros en `EventoSeguridad.Detalle`; en `TApl/Bitacora/ConsultarBitacoraCasoUsoTests.cs`
+- [X] T103 [P] [US5] Pruebas de API de `BitacoraController`: `200` para el administrador con exactamente los campos de `EntradaBitacora` del contrato (FR-023), `403` para los demás roles, `422` por rango inválido; en `TApi/Bitacora/BitacoraControllerTests.cs`
+- [X] T104 [P] [US5] Prueba de integración de rendimiento: con 100 000 entradas ficticias, el 95 % de las consultas filtradas responde en 2 s o menos, en `TInt/Bitacora/ConsultaBitacoraRendimientoTests.cs` (SC-006, research D8)
+- [X] T105 [P] [US5] Prueba de la pantalla de la bitácora (filtros, paginación, mensaje de rango inválido) en `front/src/pages/Bitacora.test.tsx`
 
 ### Implementación de la historia 5
 
-- [ ] T106 [US5] Agregar `ConsultarAsync(filtro, pagina, tamano)` a `IRepositorioBitacora` en `Dom/Contratos/IRepositorioBitacora.cs`, y sus implementaciones en `Inf/Persistencia/RepositorioBitacoraEfCore.cs` y `Inf/Persistencia/RepositorioBitacoraEnMemoria.cs`
-- [ ] T107 [US5] Implementar `ConsultarBitacoraCasoUso`, su consulta y su DTO en `Apl/Bitacora/ConsultarBitacora/`
-- [ ] T108 [US5] Crear `BitacoraController` (`GET /api/v1/bitacora-accesos`, permiso `bitacora.consultar`) en `AdmApi/Controladores/BitacoraController.cs`
-- [ ] T109 [US5] Registrar el caso de uso en `Api/Program.cs`
-- [ ] T110 [US5] Crear la pantalla de la bitácora con filtros y paginación en `front/src/pages/Bitacora.tsx`
+- [X] T106 [US5] Agregar `ConsultarAsync(filtro, pagina, tamano)` a `IRepositorioBitacora` en `Dom/Contratos/IRepositorioBitacora.cs`, y sus implementaciones en `Inf/Persistencia/RepositorioBitacoraEfCore.cs` y `Inf/Persistencia/RepositorioBitacoraEnMemoria.cs`
+- [X] T107 [US5] Implementar `ConsultarBitacoraCasoUso`, su consulta y su DTO en `Apl/Bitacora/ConsultarBitacora/`
+- [X] T108 [US5] Crear `BitacoraController` (`GET /api/v1/bitacora-accesos`, permiso `bitacora.consultar`) en `AdmApi/Controladores/BitacoraController.cs`
+- [X] T109 [US5] Registrar el caso de uso en `Api/Program.cs`
+- [X] T110 [US5] Crear la pantalla de la bitácora con filtros y paginación en `front/src/pages/Bitacora.tsx`
 
 **Punto de control**: las cinco historias funcionan de forma independiente.
 

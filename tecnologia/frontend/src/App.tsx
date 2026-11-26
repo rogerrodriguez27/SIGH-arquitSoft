@@ -1,6 +1,7 @@
 import { Navigate, Outlet, Route, Routes } from 'react-router';
 import { RUTA_CAMBIAR_CONTRASENA, RUTA_INICIAR_SESION, RutaProtegida } from './auth/RutaProtegida';
 import { MenuPrincipal } from './components/MenuPrincipal';
+import { Bitacora } from './pages/Bitacora';
 import { CambiarContrasena } from './pages/CambiarContrasena';
 import { IniciarSesion } from './pages/IniciarSesion';
 import { Inicio } from './pages/Inicio';
@@ -43,6 +44,14 @@ export function App() {
           element={
             <RutaProtegida permiso="usuarios.gestionar">
               <MatrizPermisos />
+            </RutaProtegida>
+          }
+        />
+        <Route
+          path="/bitacora"
+          element={
+            <RutaProtegida permiso="bitacora.consultar">
+              <Bitacora />
             </RutaProtegida>
           }
         />

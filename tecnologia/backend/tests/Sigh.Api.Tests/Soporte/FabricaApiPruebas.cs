@@ -26,6 +26,7 @@ public sealed class FabricaApiPruebas : WebApplicationFactory<Program>
     public string ClaveFirma { get; } = Convert.ToBase64String(RandomNumberGenerator.GetBytes(48));
     public RepositorioUsuariosEnMemoria Usuarios { get; } = new();
     public RepositorioEventosSeguridadEnMemoria Eventos { get; } = new();
+    public RepositorioBitacoraEnMemoria Bitacora { get; } = new();
     public TokensPrueba Tokens => new(ClaveFirma, Emisor, Audiencia);
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
@@ -50,6 +51,8 @@ public sealed class FabricaApiPruebas : WebApplicationFactory<Program>
             services.RemoveAll<IRepositorioEventosSeguridad>();
             services.AddSingleton<IRepositorioUsuarios>(Usuarios);
             services.AddSingleton<IRepositorioEventosSeguridad>(Eventos);
+            services.RemoveAll<IRepositorioBitacora>();
+            services.AddSingleton<IRepositorioBitacora>(Bitacora);
             services.AddControllers().AddApplicationPart(typeof(FabricaApiPruebas).Assembly);
         });
     }
