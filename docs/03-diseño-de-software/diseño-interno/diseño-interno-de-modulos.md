@@ -507,3 +507,37 @@ app.UseAuthorization();
 app.MapControllers();
 app.Run();
 ```
+
+---
+
+### 6.6 Configuración del servicio APIPERU (módulo Admisión y Triaje)
+
+El token nunca se escribe en el código ni en `appsettings.json`: se lee de la variable de entorno `ApiPeru__Token` (archivo `.env` local o entorno del servidor), según ADR-012. La llamada a APIPERU se protege con tiempo de espera, reintentos limitados y Circuit Breaker (ADR-009, EQ-03).
+
+```csharp
+// Sigh.Admision.Infraestructura/Identidad/OpcionesApiPeru.cs
+public sealed class OpcionesApiPeru
+{
+    public string BaseUrl { get; set; } = string.Empty;   // ApiPeru__BaseUrl
+    public string Token { get; set; } = string.Empty;     // ApiPeru__Token (secreto)
+}
+```
+
+```csharp
+// Sigh.Api/Program.cs (fragmento)
+builder.Services.Configure<OpcionesApiPeru>(builder.Configuration.GetSection("ApiPeru"));
+
+builder.Services.AddHttpClient<IServicioIdentidad, AdaptadorApiPeru>((sp, http) =>
+{
+    var opciones = sp.GetRequiredService<IOptions<OpcionesApiPeru>>().Value;
+    http.BaseAddress = new Uri(opciones.BaseUrl);
+    http.DefaultRequestHeaders.Authorization =
+        new AuthenticationHeaderValue("Bearer", opciones.Token);   // formato según la documentación de APIPERU
+    http.Timeout = TimeSpan.FromSeconds(5);                         // EQ-03: un intento fallido no supera 5 s
+})
+.AddStandardResilienceHandler();   // reintentos limitados y Circuit Breaker (Microsoft.Extensions.Http.Resilience)
+
+// En las pruebas automatizadas se registra AdaptadorIdentidadSimulado en lugar de AdaptadorApiPeru.
+```
+
+> Si el Circuit Breaker está abierto o APIPERU responde con error, el caso de uso de admisión devuelve "identidad no verificada" y la interfaz ofrece el registro manual (RF02).
