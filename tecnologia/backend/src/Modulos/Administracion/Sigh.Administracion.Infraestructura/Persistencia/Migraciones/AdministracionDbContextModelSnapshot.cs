@@ -23,6 +23,71 @@ namespace Sigh.Administracion.Infraestructura.Persistencia.Migraciones
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("Sigh.Administracion.Dominio.Bitacora.EntradaBitacora", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Accion")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("character varying(40)")
+                        .HasColumnName("accion");
+
+                    b.Property<DateTimeOffset>("FechaHora")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("fecha_hora");
+
+                    b.Property<Guid>("HistoriaId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("historia_id");
+
+                    b.Property<string>("ModuloOrigen")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)")
+                        .HasColumnName("modulo_origen");
+
+                    b.Property<string>("NombreUsuario")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("nombre_usuario");
+
+                    b.Property<string>("Resultado")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("character varying(10)")
+                        .HasColumnName("resultado");
+
+                    b.Property<string>("Rol")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("character varying(30)")
+                        .HasColumnName("rol");
+
+                    b.Property<Guid>("UsuarioId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("usuario_id");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FechaHora")
+                        .IsDescending()
+                        .HasDatabaseName("ix_bitacora_accesos_hce_fecha_hora");
+
+                    b.HasIndex("HistoriaId", "FechaHora")
+                        .IsDescending(false, true)
+                        .HasDatabaseName("ix_bitacora_accesos_hce_historia_fecha_hora");
+
+                    b.HasIndex("UsuarioId", "FechaHora")
+                        .IsDescending(false, true)
+                        .HasDatabaseName("ix_bitacora_accesos_hce_usuario_fecha_hora");
+
+                    b.ToTable("bitacora_accesos_hce", "administracion");
+                });
+
             modelBuilder.Entity("Sigh.Administracion.Dominio.Seguridad.EventoSeguridad", b =>
                 {
                     b.Property<Guid>("Id")

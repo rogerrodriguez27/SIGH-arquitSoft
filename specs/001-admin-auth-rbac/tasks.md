@@ -244,21 +244,21 @@ una historia ficticia y verificar que ambos quedan con todos sus datos.
 
 ### Pruebas de la historia 4 ⚠️
 
-- [ ] T090 [P] [US4] Pruebas de `EntradaBitacora`: rechaza `Accion` y `ModuloOrigen` fuera de la lista cerrada y no tiene métodos de modificación, según [data-model.md](./data-model.md) `EntradaBitacora.Accion`, `EntradaBitacora.ModuloOrigen`, `EntradaBitacora.Resultado` y `EntradaBitacora.Rol`, en `TDom/Bitacora/EntradaBitacoraTests.cs`
-- [ ] T091 [P] [US4] Pruebas de `ServicioBitacora`: `RegistrarAccesoAsync` sin transacción activa lanza `InvalidOperationException`; completa `NombreUsuario` y `FechaHora` dentro del módulo; valores fuera de lista → `ArgumentException`; `RegistrarIntentoDenegadoAsync` guarda `Denegado`; en `TApl/Bitacora/ServicioBitacoraTests.cs` (contrato servicio-bitacora.md)
-- [ ] T092 [P] [US4] Prueba de integración con un "módulo simulado" (tabla propia en el esquema `modulo_simulado`): ambas escrituras se confirman juntas; si falla la bitácora, la del módulo se revierte; un intento denegado queda aunque se revierta la operación; en `TInt/Bitacora/TransaccionCompartidaTests.cs` (FR-022, SC-002)
-- [ ] T093 [P] [US4] Prueba de integración: `UPDATE` y `DELETE` sobre `administracion.bitacora_accesos_hce` fallan por el *trigger*, en `TInt/Bitacora/BitacoraInmutableTests.cs` (FR-021, SC-003)
-- [ ] T094 [P] [US4] Prueba de integración: 100 registros simultáneos quedan todos guardados, en `TInt/Bitacora/RegistrosConcurrentesTests.cs` (caso límite "muchos accesos simultáneos")
+- [X] T090 [P] [US4] Pruebas de `EntradaBitacora`: rechaza `Accion` y `ModuloOrigen` fuera de la lista cerrada y no tiene métodos de modificación, según [data-model.md](./data-model.md) `EntradaBitacora.Accion`, `EntradaBitacora.ModuloOrigen`, `EntradaBitacora.Resultado` y `EntradaBitacora.Rol`, en `TDom/Bitacora/EntradaBitacoraTests.cs`
+- [X] T091 [P] [US4] Pruebas de `ServicioBitacora`: `RegistrarAccesoAsync` sin transacción activa lanza `InvalidOperationException`; completa `NombreUsuario` y `FechaHora` dentro del módulo; valores fuera de lista → `ArgumentException`; `RegistrarIntentoDenegadoAsync` guarda `Denegado`; en `TApl/Bitacora/ServicioBitacoraTests.cs` (contrato servicio-bitacora.md)
+- [X] T092 [P] [US4] Prueba de integración con un "módulo simulado" (tabla propia en el esquema `modulo_simulado`): ambas escrituras se confirman juntas; si falla la bitácora, la del módulo se revierte; un intento denegado queda aunque se revierta la operación; en `TInt/Bitacora/TransaccionCompartidaTests.cs` (FR-022, SC-002)
+- [X] T093 [P] [US4] Prueba de integración: `UPDATE` y `DELETE` sobre `administracion.bitacora_accesos_hce` fallan por el *trigger*, en `TInt/Bitacora/BitacoraInmutableTests.cs` (FR-021, SC-003)
+- [X] T094 [P] [US4] Prueba de integración: 100 registros simultáneos quedan todos guardados, en `TInt/Bitacora/RegistrosConcurrentesTests.cs` (caso límite "muchos accesos simultáneos")
 
 ### Implementación de la historia 4
 
-- [ ] T095 [P] [US4] Crear la entidad inmutable `EntradaBitacora` y las listas cerradas `AccionBitacora`, `ModuloOrigen` y `ResultadoAcceso`, según [data-model.md](./data-model.md) `EntradaBitacora.Id`, `EntradaBitacora.UsuarioId`, `EntradaBitacora.NombreUsuario`, `EntradaBitacora.Rol`, `EntradaBitacora.FechaHora`, `EntradaBitacora.Accion`, `EntradaBitacora.HistoriaId`, `EntradaBitacora.ModuloOrigen` y `EntradaBitacora.Resultado`, en `Dom/Bitacora/`
-- [ ] T096 [P] [US4] Crear el puerto de solo inserción `IRepositorioBitacora` (`AgregarAsync`, `AgregarEnTransaccionPropiaAsync`) en `Dom/Contratos/IRepositorioBitacora.cs`
-- [ ] T097 [US4] Crear el contrato público `IServicioBitacora` y `RegistroAcceso` exactamente como en [contracts/servicio-bitacora.md](./contracts/servicio-bitacora.md), en `Apl/Publico/IServicioBitacora.cs` y `Apl/Publico/RegistroAcceso.cs`
-- [ ] T098 [US4] Implementar `ServicioBitacora` (interno al módulo) en `Apl/Bitacora/ServicioBitacora.cs`
-- [ ] T099 [US4] Crear el mapeo `EntradaBitacoraConfiguracion` según [data-model.md](./data-model.md) tabla `bitacora_accesos_hce`, `RepositorioBitacoraEfCore` (la variante denegada usa conexión y transacción propias, research D3) y el doble `RepositorioBitacoraEnMemoria`, en `Inf/Persistencia/Configuraciones/EntradaBitacoraConfiguracion.cs`, `Inf/Persistencia/RepositorioBitacoraEfCore.cs` y `Inf/Persistencia/RepositorioBitacoraEnMemoria.cs`
-- [ ] T100 [US4] Crear la migración `AgregarBitacoraAccesosHce` con los tres índices, el *trigger* `bloquear_modificacion` y `REVOKE UPDATE, DELETE`, en `Inf/Persistencia/Migraciones/`
-- [ ] T101 [US4] Registrar `IServicioBitacora` y el repositorio en `Inf/DependencyInjection.cs`
+- [X] T095 [P] [US4] Crear la entidad inmutable `EntradaBitacora` y las listas cerradas `AccionBitacora`, `ModuloOrigen` y `ResultadoAcceso`, según [data-model.md](./data-model.md) `EntradaBitacora.Id`, `EntradaBitacora.UsuarioId`, `EntradaBitacora.NombreUsuario`, `EntradaBitacora.Rol`, `EntradaBitacora.FechaHora`, `EntradaBitacora.Accion`, `EntradaBitacora.HistoriaId`, `EntradaBitacora.ModuloOrigen` y `EntradaBitacora.Resultado`, en `Dom/Bitacora/`
+- [X] T096 [P] [US4] Crear el puerto de solo inserción `IRepositorioBitacora` (`AgregarAsync`, `AgregarEnTransaccionPropiaAsync`) en `Dom/Contratos/IRepositorioBitacora.cs`
+- [X] T097 [US4] Crear el contrato público `IServicioBitacora` y `RegistroAcceso` exactamente como en [contracts/servicio-bitacora.md](./contracts/servicio-bitacora.md), en `Apl/Publico/IServicioBitacora.cs` y `Apl/Publico/RegistroAcceso.cs`
+- [X] T098 [US4] Implementar `ServicioBitacora` (interno al módulo) en `Apl/Bitacora/ServicioBitacora.cs`
+- [X] T099 [US4] Crear el mapeo `EntradaBitacoraConfiguracion` según [data-model.md](./data-model.md) tabla `bitacora_accesos_hce`, `RepositorioBitacoraEfCore` (la variante denegada usa conexión y transacción propias, research D3) y el doble `RepositorioBitacoraEnMemoria`, en `Inf/Persistencia/Configuraciones/EntradaBitacoraConfiguracion.cs`, `Inf/Persistencia/RepositorioBitacoraEfCore.cs` y `Inf/Persistencia/RepositorioBitacoraEnMemoria.cs`
+- [X] T100 [US4] Crear la migración `AgregarBitacoraAccesosHce` con los tres índices, el *trigger* `bloquear_modificacion` y `REVOKE UPDATE, DELETE`, en `Inf/Persistencia/Migraciones/`
+- [X] T101 [US4] Registrar `IServicioBitacora` y el repositorio en `Inf/DependencyInjection.cs`
 
 **Punto de control**: la bitácora registra accesos permitidos y denegados, y nadie puede alterarla.
 

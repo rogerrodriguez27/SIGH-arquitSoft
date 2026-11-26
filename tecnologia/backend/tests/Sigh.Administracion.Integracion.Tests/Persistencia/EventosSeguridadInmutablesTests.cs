@@ -56,6 +56,13 @@ public sealed class EventosSeguridadInmutablesTests(PostgresFixture bd)
     }
 
     [Fact]
+    public async Task Un_UPDATE_que_no_afecta_filas_tambien_se_rechaza()
+    {
+        await Assert.ThrowsAsync<PostgresException>(() =>
+            EjecutarAsync("UPDATE administracion.eventos_seguridad SET detalle = 'x' WHERE id = $1", Guid.NewGuid()));
+    }
+
+    [Fact]
     public async Task TRUNCATE_se_rechaza()
     {
         await InsertarEventoAsync();

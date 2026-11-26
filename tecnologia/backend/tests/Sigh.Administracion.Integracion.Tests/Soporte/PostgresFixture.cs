@@ -13,6 +13,7 @@ public sealed class PostgresFixture : IAsyncLifetime
 {
     private readonly PostgreSqlContainer _contenedor = new PostgreSqlBuilder("postgres:17")
         .WithDatabase("sigh_oltp")
+        .WithCommand("-c", "max_connections=300")      // la prueba de concurrencia abre muchas conexiones a la vez
         .Build();
 
     public NpgsqlDataSource FuenteDatos { get; private set; } = null!;

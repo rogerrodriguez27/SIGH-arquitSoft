@@ -1,5 +1,7 @@
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
+using Sigh.Administracion.Dominio.Bitacora;
 using Sigh.Administracion.Dominio.Seguridad;
 using Sigh.Administracion.Dominio.Usuarios;
 using Sigh.Administracion.Infraestructura.Persistencia.Configuraciones;
@@ -26,6 +28,7 @@ public sealed class AdministracionDbContext : DbContext
 
     public DbSet<EventoSeguridad> EventosSeguridad => Set<EventoSeguridad>();
     public DbSet<Usuario> Usuarios => Set<Usuario>();
+    public DbSet<EntradaBitacora> EntradasBitacora => Set<EntradaBitacora>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -36,8 +39,13 @@ public sealed class AdministracionDbContext : DbContext
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
-        if (_conexion?.Transaccion is { } transaccion && Database.CurrentTransaction is null)
-            await Database.UseTransactionAsync(transaccion, cancellationToken);
+        // Se une a la transacción compartida activa; si ya terminó, deja de usarla (varias transacciones por petición).
+        if (_conexion is not null)
+        {
+            var compartida = _conexion.Transaccion;
+            if (!ReferenceEquals(Database.CurrentTransaction?.GetDbTransaction(), compartida))
+                await Database.UseTransactionAsync(compartida, cancellationToken);
+        }
 
         IncrementarVersiones();
         return await base.SaveChangesAsync(cancellationToken);

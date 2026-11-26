@@ -40,6 +40,8 @@ namespace Sigh.Administracion.Infraestructura.Persistencia.Migraciones
 
             // Inmutabilidad en la base de datos (FR-021, research D5): ningún UPDATE, DELETE ni TRUNCATE,
             // ni siquiera desde SQL manual. La función se reutiliza en la bitácora de accesos.
+            // El trigger es por sentencia: rechaza la orden aunque no afecte ninguna fila, y también
+            // protege cuando la aplicación se conecta como superusuario (al que no le afecta el REVOKE).
             migrationBuilder.Sql("""
                 CREATE OR REPLACE FUNCTION administracion.bloquear_modificacion()
                 RETURNS trigger
@@ -53,11 +55,7 @@ namespace Sigh.Administracion.Infraestructura.Persistencia.Migraciones
                 $$;
 
                 CREATE TRIGGER bloquear_modificacion
-                    BEFORE UPDATE OR DELETE ON administracion.eventos_seguridad
-                    FOR EACH ROW EXECUTE FUNCTION administracion.bloquear_modificacion();
-
-                CREATE TRIGGER bloquear_truncado
-                    BEFORE TRUNCATE ON administracion.eventos_seguridad
+                    BEFORE UPDATE OR DELETE OR TRUNCATE ON administracion.eventos_seguridad
                     FOR EACH STATEMENT EXECUTE FUNCTION administracion.bloquear_modificacion();
 
                 REVOKE UPDATE, DELETE, TRUNCATE ON administracion.eventos_seguridad FROM CURRENT_USER;

@@ -4,6 +4,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Npgsql;
+using Sigh.Administracion.Aplicacion.Bitacora;
+using Sigh.Administracion.Aplicacion.Publico;
 using Sigh.Administracion.Dominio.Contratos;
 using Sigh.Administracion.Infraestructura.Persistencia;
 using Sigh.Administracion.Infraestructura.Seguridad;
@@ -35,6 +37,10 @@ public static class DependencyInjection
 
         services.AddScoped<IRepositorioEventosSeguridad, RepositorioEventosSeguridadEfCore>();
         services.AddScoped<IRepositorioUsuarios, RepositorioUsuariosEfCore>();
+        services.AddScoped<IRepositorioBitacora, RepositorioBitacoraEfCore>();
+
+        // Contrato público para los demás módulos (FR-018, contracts/servicio-bitacora.md)
+        services.AddScoped<IServicioBitacora, ServicioBitacora>();
 
         // Seguridad: hash de contraseñas y emisión de JWT (research D2, D4)
         services.AddSingleton<IHasherContrasenas, HasherContrasenasIdentity>();
