@@ -95,7 +95,7 @@ src/
 
 ![Diagrama de paquetes del módulo HCE](../../../img/paquetes-modulo-hce.png)
 
-**Regla de dependencia:** el código solo puede referenciar hacia el centro (dominio). El dominio no conoce ASP.NET Core, EF Core, PostgreSQL ni Redis. En .NET esta regla se refuerza con las **referencias entre proyectos**: `Sigh.Hce.Dominio` no referencia ningún otro proyecto, por lo que si se intenta usar EF Core en el dominio, el código no compila.
+**Regla de dependencia:** el código solo puede referenciar hacia el centro (dominio). El dominio no conoce ASP.NET Core, EF Core, PostgreSQL ni Redis. En .NET esta regla se refuerza con las **referencias entre proyectos**: `Sigh.Hce.Dominio` solo referencia a `Sigh.Compartido` (errores de negocio y utilidades comunes, sin paquetes externos visibles), por lo que si se intenta usar EF Core en el dominio, el código no compila.
 
 | Capa | Contiene | Responsabilidad | Puede depender de | **No** puede depender de |
 |---|---|---|---|---|
@@ -105,7 +105,7 @@ src/
 | **Presentación** | Controladores, solicitudes | Traducir HTTP a llamadas del caso de uso y viceversa | Aplicación | Infraestructura, base de datos |
 | **Composición** | `Program.cs`, `DependencyInjection.cs` | Elegir implementaciones concretas y conectarlas | Todas | — |
 
-> **Cómo comprobarlo en el código:** basta revisar el archivo `Sigh.Hce.Dominio.csproj`. Si aparece una referencia a `Microsoft.EntityFrameworkCore`, `Npgsql`, `StackExchange.Redis` o a otro proyecto del sistema, la regla se rompió.
+> **Cómo comprobarlo en el código:** basta revisar el archivo `Sigh.Hce.Dominio.csproj`. Si aparece una referencia a `Microsoft.EntityFrameworkCore`, `Npgsql`, `StackExchange.Redis` o a otro proyecto del sistema distinto de `Sigh.Compartido`, la regla se rompió.
 
 ### 3.1 Reglas de negocio del módulo HCE
 
