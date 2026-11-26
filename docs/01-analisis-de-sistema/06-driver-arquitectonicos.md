@@ -12,8 +12,9 @@ Los **drivers arquitectónicos** identificados para el sistema son los siguiente
 | DA06 | El sistema debe estar disponible permanentemente y poder recuperarse ante fallas o pérdida de datos. | AC03 – Disponibilidad, AC06 – Recuperabilidad | Influye en los healthchecks, el reinicio automático de servicios, la estrategia de backups (snapshots + WAL) y los mecanismos de contingencia ante servicios externos. | Media |
 | DA07 | El sistema debe poder crecer agregando instancias, sin cambiar su diseño lógico. | AC02 – Escalabilidad | Obliga a que los servicios no guarden estado de sesión (JWT, caché externa) y a empaquetarlos en contenedores portables a Kubernetes. | Media |
 | DA08 | Cada módulo debe poder especificarse, generarse y modificarse de forma independiente. | AC08 – Mantenibilidad, RC02 – SDD | Influye en la separación de responsabilidades por módulo, en los contratos entre ellos y en que el módulo de alertas funcione de forma independiente. | Alta |
-| DA09 | La integración con RENIEC debe poder simularse ahora y reemplazarse por el servicio real en el futuro. | RC13 – RENIEC sin convenio, RF01, RF02 | Obliga a aislar los servicios externos detrás de una interfaz, para cambiar la implementación sin afectar la lógica del sistema. | Media |
+| DA09 | La validación de DNI depende de un servicio externo (APIPERU) que puede fallar, agotar su límite de consultas o cambiar de proveedor, y que requiere un token secreto. | RC13 – APIPERU, RC18 – Secretos, RF01, RF02 | Obliga a aislar el servicio externo detrás de una interfaz y un adaptador, a protegerlo con tiempo de espera y Circuit Breaker con registro manual de contingencia, y a leer el token desde la configuración del entorno. | Media |
 | DA10 | El sistema debe ser una aplicación web que se comunique con el backend mediante una API REST. | RC10 – Aplicación web, RC11 – API REST | Limita las alternativas de comunicación entre frontend y backend y define los contratos de API de las especificaciones SDD. | Media |
+| DA11 | Los eventos clínicos relevantes deben notificarse a tiempo a quien corresponda, sin acoplar los módulos entre sí, sin exponer datos clínicos y sin que una falla del envío afecte la operación clínica. | RF25 a RF27, RC19, RC20, AC04 – Seguridad, AC08 – Mantenibilidad | Obliga a crear un módulo transversal de Notificaciones que reciba eventos de los demás módulos (patrón Observer), envíe los mensajes en segundo plano mediante Web Push y los guarde en una bandeja interna. | Media |
 
 ---
 
@@ -21,8 +22,8 @@ Los **drivers arquitectónicos** identificados para el sistema son los siguiente
 
 | Aspecto de la arquitectura | Drivers que lo condicionan |
 |---|---|
-| Organización en módulos y sus dependencias | DA01, DA04, DA08 |
+| Organización en módulos y sus dependencias | DA01, DA04, DA08, DA11 |
 | Almacenamiento de datos (OLTP, OLAP, caché) | DA01, DA03, DA05 |
-| Seguridad y auditoría | DA02 |
+| Seguridad, auditoría y gestión de secretos | DA02, DA09, DA11 |
 | Despliegue e infraestructura | DA04, DA06, DA07 |
-| Integración con servicios externos | DA09, DA10 |
+| Integración con servicios externos (APIPERU, Web Push) | DA09, DA10, DA11 |
