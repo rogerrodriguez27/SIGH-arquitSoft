@@ -44,6 +44,9 @@ docker compose --env-file ../.env up --build
 ```
 
 - API: `http://localhost:8080`. Su healthcheck responde en `GET /salud`.
+- Documentación de la API: Swagger UI en `http://localhost:8080/swagger` y el documento OpenAPI en
+  `http://localhost:8080/openapi/v1.json`. Para probar los endpoints protegidos, inicia sesión con
+  `POST /api/v1/autenticacion/iniciar-sesion`, copia el `token` y pégalo en **Authorize**.
 - Web: `http://localhost:5173`.
 
 ## 4. Validación manual (historias 1 a 5)

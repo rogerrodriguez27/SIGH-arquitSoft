@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Sigh.Administracion.Api.Respuestas;
 using Sigh.Administracion.Aplicacion.Bitacora.ConsultarBitacora;
@@ -14,10 +15,18 @@ namespace Sigh.Administracion.Api.Controladores;
 /// </summary>
 [ApiController]
 [Route("api/v1/bitacora-accesos")]
+[Tags("Bitacora")]
 [Authorize(Policy = CodigoPermiso.ConsultarBitacora)]
 public sealed class BitacoraController(ConsultarBitacoraCasoUso consultarBitacora) : ControllerBase
 {
     [HttpGet]
+    [EndpointSummary("Consulta la bitácora de accesos a la HCE (FR-024, FR-025) – permiso bitacora.consultar")]
+    [EndpointDescription("Rango obligatorio de un año o menos. Resultados de la entrada más reciente a la más antigua. Cada consulta se registra como evento de seguridad BITACORA_CONSULTADA. Nunca incluye contenido clínico.")]
+    [ProducesResponseType<PaginaRespuesta<EntradaBitacoraDto>>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ValidationProblemDetails>(StatusCodes.Status400BadRequest, "application/problem+json")]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status401Unauthorized, "application/problem+json")]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status403Forbidden, "application/problem+json")]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status422UnprocessableEntity, "application/problem+json")]
     public async Task<ActionResult<PaginaRespuesta<EntradaBitacoraDto>>> Consultar(
         [FromQuery, Required(ErrorMessage = "La fecha inicial es obligatoria.")] DateTimeOffset? desde,
         [FromQuery, Required(ErrorMessage = "La fecha final es obligatoria.")] DateTimeOffset? hasta,

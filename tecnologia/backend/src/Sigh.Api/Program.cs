@@ -67,11 +67,15 @@ builder.Services.AddControllers()
 
 builder.Services.AddHealthChecks().AddCheck<VerificacionBaseDatos>("base-datos");
 
+// Documentación OpenAPI generada desde los controladores y Swagger UI
+builder.Services.AgregarDocumentacionOpenApi();
+
 var app = builder.Build();
 
 app.UseExceptionHandler();
 app.UseStatusCodePages();
 app.UseCors(PoliticaCors);
+app.UsarDocumentacionOpenApi();                                        // /openapi/v1.json y /swagger
 app.UseAuthentication();
 app.UseAuthorization();
 
