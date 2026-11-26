@@ -47,6 +47,16 @@ describe('Usuarios', () => {
   });
   afterEach(() => vi.unstubAllGlobals());
 
+  it('al abrir la ruta directamente, la primera petición ya lleva el token de la sesión', async () => {
+    simularApi();
+
+    renderizarApp('/usuarios');
+    await screen.findByText('med01');
+
+    const [, opciones] = vi.mocked(fetch).mock.calls[0];
+    expect((opciones?.headers as Record<string, string>).Authorization).toBe('Bearer token-de-prueba');
+  });
+
   it('lista los usuarios con sus roles y no ofrece eliminar', async () => {
     simularApi();
 

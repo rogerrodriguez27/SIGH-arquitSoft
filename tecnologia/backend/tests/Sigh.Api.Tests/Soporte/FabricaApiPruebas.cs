@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Logging;
 using Sigh.Administracion.Dominio.Contratos;
 using Sigh.Administracion.Dominio.Roles;
 using Sigh.Administracion.Dominio.Usuarios;
@@ -27,6 +28,7 @@ public sealed class FabricaApiPruebas : WebApplicationFactory<Program>
     public RepositorioUsuariosEnMemoria Usuarios { get; } = new();
     public RepositorioEventosSeguridadEnMemoria Eventos { get; } = new();
     public RepositorioBitacoraEnMemoria Bitacora { get; } = new();
+    public RegistroLogsPrueba Logs { get; } = new();
     public TokensPrueba Tokens => new(ClaveFirma, Emisor, Audiencia);
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
@@ -44,6 +46,9 @@ public sealed class FabricaApiPruebas : WebApplicationFactory<Program>
                 ["AdminInicial:NombreCompleto"] = null,
                 ["AdminInicial:Contrasena"] = null,
             }));
+
+        // Todos los niveles, también Debug y Trace, para comprobar que ningún log expone secretos (SC-008).
+        builder.ConfigureLogging(logs => logs.AddProvider(Logs).SetMinimumLevel(LogLevel.Trace));
 
         builder.ConfigureTestServices(services =>
         {

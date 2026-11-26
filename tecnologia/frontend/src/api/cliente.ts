@@ -1,5 +1,7 @@
 // Cliente HTTP de la API del SIGH (research D9): agrega el JWT y traduce application/problem+json.
 
+import { borrarSesion, leerSesion } from '../auth/sesion';
+
 export const URL_API: string = import.meta.env.VITE_API_URL ?? 'http://localhost:8080';
 
 /** Error devuelto por la API en formato problem+json (RFC 9457). */
@@ -21,9 +23,11 @@ interface ConfiguracionCliente {
   alExpirarSesion: () => void;
 }
 
+// El token se lee de la sesión guardada desde la primera petición: al recargar o abrir una ruta directa,
+// las páginas piden datos antes de que el contexto de sesión termine de configurarse.
 let configuracion: ConfiguracionCliente = {
-  obtenerToken: () => null,
-  alExpirarSesion: () => {},
+  obtenerToken: () => leerSesion()?.token ?? null,
+  alExpirarSesion: () => borrarSesion(),
 };
 
 /** Lo llama el contexto de sesión para entregar el token y saber cuándo la sesión dejó de valer. */

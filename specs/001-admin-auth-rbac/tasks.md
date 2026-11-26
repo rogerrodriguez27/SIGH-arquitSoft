@@ -293,10 +293,10 @@ obtener exactamente las esperadas, de la más reciente a la más antigua.
 
 ## Fase 8: Cierre y aspectos transversales
 
-- [ ] T111 [P] Prueba de integración de carga: 100 inicios de sesión simultáneos con el 95 % en 2 s o menos, en `TInt/Autenticacion/InicioSesionCargaTests.cs` (SC-007)
-- [ ] T112 [P] Prueba de que los registros (*logs*) de inicio de sesión, cambio y restablecimiento de contraseña no contienen la contraseña ni el token, en `TApi/Seguridad/SinSecretosEnLogsTests.cs` (FR-023, SC-008)
-- [ ] T113 Ejecutar `dotnet test` (con y sin `Category=Integracion`) y `npm test` en `front/`, y corregir lo que falle
-- [ ] T114 Ejecutar la validación manual completa de [quickstart.md](./quickstart.md) (pasos 1 a 5) con `docker compose up`
+- [X] T111 [P] Prueba de integración de carga: 100 inicios de sesión simultáneos con el 95 % en 2 s o menos, en `TInt/Autenticacion/InicioSesionCargaTests.cs` (SC-007)
+- [X] T112 [P] Prueba de que los registros (*logs*) de inicio de sesión, cambio y restablecimiento de contraseña no contienen la contraseña ni el token, en `TApi/Seguridad/SinSecretosEnLogsTests.cs` (FR-023, SC-008)
+- [X] T113 Ejecutar `dotnet test` (con y sin `Category=Integracion`) y `npm test` en `front/`, y corregir lo que falle
+- [X] T114 Ejecutar la validación manual completa de [quickstart.md](./quickstart.md) (pasos 1 a 5) con `docker compose up`
 
 ---
 
