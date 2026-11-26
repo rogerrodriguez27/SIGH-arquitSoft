@@ -13,6 +13,9 @@ public sealed class TokensPrueba(string claveFirma, string emisor, string audien
 {
     public string ParaRoles(params CodigoRol[] roles) => Crear(roles, DateTime.UtcNow.AddMinutes(30));
 
+    public string ParaUsuario(Guid usuarioId, params CodigoRol[] roles) =>
+        Crear(roles, DateTime.UtcNow.AddMinutes(30), usuarioId: usuarioId);
+
     public string ConCambioPendiente(params CodigoRol[] roles) =>
         Crear(roles, DateTime.UtcNow.AddMinutes(30), cambioPendiente: true);
 
@@ -24,11 +27,11 @@ public sealed class TokensPrueba(string claveFirma, string emisor, string audien
         Crear(roles, DateTime.UtcNow.AddMinutes(30), clave: Convert.ToBase64String(RandomNumberGenerator.GetBytes(48)));
 
     private string Crear(CodigoRol[] roles, DateTime expira, bool cambioPendiente = false,
-        DateTime? emitidoEn = null, string? clave = null)
+        DateTime? emitidoEn = null, string? clave = null, Guid? usuarioId = null)
     {
         var claims = new List<Claim>
         {
-            new("sub", Guid.NewGuid().ToString()),
+            new("sub", (usuarioId ?? Guid.NewGuid()).ToString()),
             new("name", "usuario.prueba"),
         };
         claims.AddRange(roles.Select(r => new Claim("role", r.ToString())));

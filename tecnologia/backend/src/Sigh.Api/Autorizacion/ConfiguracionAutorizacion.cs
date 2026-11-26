@@ -13,6 +13,7 @@ public static class ConfiguracionAutorizacion
     public static IServiceCollection AgregarAutorizacionPorPermisos(this IServiceCollection services)
     {
         services.AddSingleton<IAuthorizationHandler, ManejadorSinCambioPendiente>();
+        services.AddSingleton<IAuthorizationMiddlewareResultHandler, ManejadorResultadoAutorizacion>();
 
         services.AddAuthorization(opciones =>
         {

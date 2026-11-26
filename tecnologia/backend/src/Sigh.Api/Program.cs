@@ -4,6 +4,8 @@ using System.Text.Json.Serialization;
 using Sigh.Administracion.Aplicacion.AdministradorInicial;
 using Sigh.Administracion.Aplicacion.Autenticacion.CambiarContrasena;
 using Sigh.Administracion.Aplicacion.Autenticacion.IniciarSesion;
+using Sigh.Administracion.Aplicacion.Permisos.ConsultarMatrizPermisos;
+using Sigh.Administracion.Aplicacion.Seguridad.RegistrarAccesoDenegado;
 using Sigh.Administracion.Aplicacion.Usuarios.CambiarRoles;
 using Sigh.Administracion.Aplicacion.Usuarios.ConsultarUsuario;
 using Sigh.Administracion.Aplicacion.Usuarios.CrearUsuario;
@@ -34,6 +36,8 @@ builder.Services.AddScoped<ReactivarUsuarioCasoUso>();
 builder.Services.AddScoped<RestablecerContrasenaCasoUso>();
 builder.Services.AddScoped<ListarUsuariosCasoUso>();
 builder.Services.AddScoped<ConsultarUsuarioCasoUso>();
+builder.Services.AddScoped<RegistrarAccesoDenegadoCasoUso>();
+builder.Services.AddSingleton<ConsultarMatrizPermisosCasoUso>();
 // builder.Services.AgregarModuloHce(builder.Configuration);           ... resto de módulos
 
 // Seguridad: JWT sin estado y una política por permiso (ADR-007, DA07)

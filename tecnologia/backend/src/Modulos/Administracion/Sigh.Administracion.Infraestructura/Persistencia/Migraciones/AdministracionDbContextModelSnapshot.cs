@@ -149,11 +149,314 @@ namespace Sigh.Administracion.Infraestructura.Persistencia.Migraciones
                         });
                 });
 
+            modelBuilder.Entity("Sigh.Administracion.Infraestructura.Persistencia.Configuraciones.FilaPermiso", b =>
+                {
+                    b.Property<string>("Codigo")
+                        .HasMaxLength(40)
+                        .HasColumnType("character varying(40)")
+                        .HasColumnName("codigo");
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)")
+                        .HasColumnName("descripcion");
+
+                    b.HasKey("Codigo");
+
+                    b.ToTable("permisos", "administracion");
+
+                    b.HasData(
+                        new
+                        {
+                            Codigo = "usuarios.gestionar",
+                            Descripcion = "Gestionar usuarios, roles y permisos"
+                        },
+                        new
+                        {
+                            Codigo = "bitacora.consultar",
+                            Descripcion = "Consultar la bitácora de accesos"
+                        },
+                        new
+                        {
+                            Codigo = "pacientes.registrar",
+                            Descripcion = "Registrar y buscar pacientes, registrar el ingreso"
+                        },
+                        new
+                        {
+                            Codigo = "triaje.registrar",
+                            Descripcion = "Registrar el triaje"
+                        },
+                        new
+                        {
+                            Codigo = "hce.consultar",
+                            Descripcion = "Consultar la historia clínica completa"
+                        },
+                        new
+                        {
+                            Codigo = "hce.registrar_atencion",
+                            Descripcion = "Registrar y firmar una atención o una nota de corrección"
+                        },
+                        new
+                        {
+                            Codigo = "hce.recetas_examenes",
+                            Descripcion = "Emitir recetas y solicitar exámenes"
+                        },
+                        new
+                        {
+                            Codigo = "farmacia.dispensar",
+                            Descripcion = "Consultar las recetas pendientes y dispensar"
+                        },
+                        new
+                        {
+                            Codigo = "farmacia.inventario",
+                            Descripcion = "Gestionar el inventario de medicamentos"
+                        },
+                        new
+                        {
+                            Codigo = "laboratorio.resultados",
+                            Descripcion = "Consultar las órdenes y registrar los resultados de laboratorio"
+                        },
+                        new
+                        {
+                            Codigo = "epidemiologia.reportes",
+                            Descripcion = "Consultar reportes y revisar alertas epidemiológicas"
+                        },
+                        new
+                        {
+                            Codigo = "bi.dashboards",
+                            Descripcion = "Consultar los dashboards de gestión"
+                        },
+                        new
+                        {
+                            Codigo = "notificaciones.recibir",
+                            Descripcion = "Recibir notificaciones y gestionar la suscripción"
+                        });
+                });
+
+            modelBuilder.Entity("Sigh.Administracion.Infraestructura.Persistencia.Configuraciones.FilaRol", b =>
+                {
+                    b.Property<string>("Codigo")
+                        .HasMaxLength(30)
+                        .HasColumnType("character varying(30)")
+                        .HasColumnName("codigo");
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)")
+                        .HasColumnName("descripcion");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("character varying(60)")
+                        .HasColumnName("nombre");
+
+                    b.HasKey("Codigo");
+
+                    b.ToTable("roles", "administracion");
+
+                    b.HasData(
+                        new
+                        {
+                            Codigo = "Administrador",
+                            Descripcion = "Gestiona usuarios, roles y permisos, y supervisa el funcionamiento del sistema.",
+                            Nombre = "Administrador"
+                        },
+                        new
+                        {
+                            Codigo = "PersonalAdmision",
+                            Descripcion = "Registra y busca pacientes, actualiza sus datos de filiación y registra el ingreso.",
+                            Nombre = "Personal de Admisión"
+                        },
+                        new
+                        {
+                            Codigo = "EnfermeroTriaje",
+                            Descripcion = "Registra signos vitales y motivo de consulta, y clasifica el nivel de urgencia.",
+                            Nombre = "Enfermero(a) de Triaje"
+                        },
+                        new
+                        {
+                            Codigo = "Medico",
+                            Descripcion = "Consulta la historia clínica, registra atenciones, emite recetas y solicita exámenes.",
+                            Nombre = "Médico"
+                        },
+                        new
+                        {
+                            Codigo = "Farmaceutico",
+                            Descripcion = "Gestiona el inventario de medicamentos y dispensa las recetas.",
+                            Nombre = "Farmacéutico"
+                        },
+                        new
+                        {
+                            Codigo = "PersonalLaboratorio",
+                            Descripcion = "Recibe las órdenes de exámenes y registra sus resultados.",
+                            Nombre = "Personal de Laboratorio"
+                        },
+                        new
+                        {
+                            Codigo = "Epidemiologo",
+                            Descripcion = "Consulta reportes epidemiológicos, revisa alertas tempranas y explora dashboards.",
+                            Nombre = "Epidemiólogo"
+                        },
+                        new
+                        {
+                            Codigo = "Directivo",
+                            Descripcion = "Consulta dashboards e indicadores de gestión.",
+                            Nombre = "Directivo"
+                        });
+                });
+
+            modelBuilder.Entity("Sigh.Administracion.Infraestructura.Persistencia.Configuraciones.FilaRolPermiso", b =>
+                {
+                    b.Property<string>("Rol")
+                        .HasColumnType("character varying(30)")
+                        .HasColumnName("rol");
+
+                    b.Property<string>("Permiso")
+                        .HasColumnType("character varying(40)")
+                        .HasColumnName("permiso");
+
+                    b.HasKey("Rol", "Permiso");
+
+                    b.HasIndex("Permiso");
+
+                    b.ToTable("rol_permisos", "administracion");
+
+                    b.HasData(
+                        new
+                        {
+                            Rol = "Administrador",
+                            Permiso = "usuarios.gestionar"
+                        },
+                        new
+                        {
+                            Rol = "Administrador",
+                            Permiso = "bitacora.consultar"
+                        },
+                        new
+                        {
+                            Rol = "PersonalAdmision",
+                            Permiso = "pacientes.registrar"
+                        },
+                        new
+                        {
+                            Rol = "EnfermeroTriaje",
+                            Permiso = "pacientes.registrar"
+                        },
+                        new
+                        {
+                            Rol = "EnfermeroTriaje",
+                            Permiso = "triaje.registrar"
+                        },
+                        new
+                        {
+                            Rol = "Medico",
+                            Permiso = "hce.consultar"
+                        },
+                        new
+                        {
+                            Rol = "Medico",
+                            Permiso = "hce.registrar_atencion"
+                        },
+                        new
+                        {
+                            Rol = "Medico",
+                            Permiso = "hce.recetas_examenes"
+                        },
+                        new
+                        {
+                            Rol = "Farmaceutico",
+                            Permiso = "farmacia.dispensar"
+                        },
+                        new
+                        {
+                            Rol = "Farmaceutico",
+                            Permiso = "farmacia.inventario"
+                        },
+                        new
+                        {
+                            Rol = "PersonalLaboratorio",
+                            Permiso = "laboratorio.resultados"
+                        },
+                        new
+                        {
+                            Rol = "Epidemiologo",
+                            Permiso = "epidemiologia.reportes"
+                        },
+                        new
+                        {
+                            Rol = "Epidemiologo",
+                            Permiso = "bi.dashboards"
+                        },
+                        new
+                        {
+                            Rol = "Directivo",
+                            Permiso = "bi.dashboards"
+                        },
+                        new
+                        {
+                            Rol = "Administrador",
+                            Permiso = "notificaciones.recibir"
+                        },
+                        new
+                        {
+                            Rol = "PersonalAdmision",
+                            Permiso = "notificaciones.recibir"
+                        },
+                        new
+                        {
+                            Rol = "EnfermeroTriaje",
+                            Permiso = "notificaciones.recibir"
+                        },
+                        new
+                        {
+                            Rol = "Medico",
+                            Permiso = "notificaciones.recibir"
+                        },
+                        new
+                        {
+                            Rol = "Farmaceutico",
+                            Permiso = "notificaciones.recibir"
+                        },
+                        new
+                        {
+                            Rol = "PersonalLaboratorio",
+                            Permiso = "notificaciones.recibir"
+                        },
+                        new
+                        {
+                            Rol = "Epidemiologo",
+                            Permiso = "notificaciones.recibir"
+                        },
+                        new
+                        {
+                            Rol = "Directivo",
+                            Permiso = "notificaciones.recibir"
+                        });
+                });
+
             modelBuilder.Entity("Sigh.Administracion.Dominio.Usuarios.RolAsignado", b =>
                 {
                     b.HasOne("Sigh.Administracion.Dominio.Usuarios.Usuario", null)
                         .WithMany("RolesAsignados")
                         .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Sigh.Administracion.Infraestructura.Persistencia.Configuraciones.FilaRolPermiso", b =>
+                {
+                    b.HasOne("Sigh.Administracion.Infraestructura.Persistencia.Configuraciones.FilaPermiso", null)
+                        .WithMany()
+                        .HasForeignKey("Permiso")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Sigh.Administracion.Infraestructura.Persistencia.Configuraciones.FilaRol", null)
+                        .WithMany()
+                        .HasForeignKey("Rol")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });

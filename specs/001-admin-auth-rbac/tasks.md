@@ -213,21 +213,21 @@ verificar que el 100 % de las no permitidas se rechaza (SC-001).
 
 ### Pruebas de la historia 3 ⚠️
 
-- [ ] T078 [P] [US3] Crear un controlador solo de pruebas con un endpoint por cada `CodigoPermiso` en `TApi/Soporte/ControladorPermisosPrueba.cs`, y la prueba que recorre los 8 roles × 13 permisos: `200` si `MatrizPermisos` lo concede y `403` si no, más un usuario con dos roles, en `TApi/Autorizacion/AutorizacionPorPermisoTests.cs` (SC-001)
-- [ ] T079 [P] [US3] Prueba de que un `403` no expone información en el cuerpo y registra `ACCESO_DENEGADO` con actor y ruta, en `TApi/Autorizacion/AccesoDenegadoTests.cs` (historia 2, escenario 6; historia 3, escenario 2)
-- [ ] T080 [P] [US3] Pruebas de `RolesController`: `GET /api/v1/roles/matriz-permisos` devuelve 8 roles y 13 permisos iguales a `MatrizPermisos`; no existen rutas para crear o editar roles ni permisos; en `TApi/Permisos/MatrizPermisosControllerTests.cs`
-- [ ] T081 [P] [US3] Prueba de integración: las tablas `roles`, `permisos` y `rol_permisos` coinciden con `MatrizPermisos`, en `TInt/Persistencia/CatalogoPermisosTests.cs` (data-model §2)
-- [ ] T082 [P] [US3] Prueba de la pantalla de la matriz (solo lectura, sin botones de edición) en `front/src/pages/MatrizPermisos.test.tsx`
+- [X] T078 [P] [US3] Crear un controlador solo de pruebas con un endpoint por cada `CodigoPermiso` en `TApi/Soporte/ControladorPermisosPrueba.cs`, y la prueba que recorre los 8 roles × 13 permisos: `200` si `MatrizPermisos` lo concede y `403` si no, más un usuario con dos roles, en `TApi/Autorizacion/AutorizacionPorPermisoTests.cs` (SC-001)
+- [X] T079 [P] [US3] Prueba de que un `403` no expone información en el cuerpo y registra `ACCESO_DENEGADO` con actor y ruta, en `TApi/Autorizacion/AccesoDenegadoTests.cs` (historia 2, escenario 6; historia 3, escenario 2)
+- [X] T080 [P] [US3] Pruebas de `RolesController`: `GET /api/v1/roles/matriz-permisos` devuelve 8 roles y 13 permisos iguales a `MatrizPermisos`; no existen rutas para crear o editar roles ni permisos; en `TApi/Permisos/MatrizPermisosControllerTests.cs`
+- [X] T081 [P] [US3] Prueba de integración: las tablas `roles`, `permisos` y `rol_permisos` coinciden con `MatrizPermisos`, en `TInt/Persistencia/CatalogoPermisosTests.cs` (data-model §2)
+- [X] T082 [P] [US3] Prueba de la pantalla de la matriz (solo lectura, sin botones de edición) en `front/src/pages/MatrizPermisos.test.tsx`
 
 ### Implementación de la historia 3
 
-- [ ] T083 [P] [US3] Crear los nombres y descripciones visibles de cada rol en `Dom/Roles/CatalogoRoles.cs`
-- [ ] T084 [US3] Implementar `RegistrarAccesoDenegadoCasoUso` en `Apl/Seguridad/RegistrarAccesoDenegado/` y el manejador `IAuthorizationMiddlewareResultHandler` que lo invoca en cada `403` en `Api/Autorizacion/ManejadorResultadoAutorizacion.cs`
-- [ ] T085 [US3] Implementar `ConsultarMatrizPermisosCasoUso` y su DTO en `Apl/Permisos/ConsultarMatrizPermisos/`
-- [ ] T086 [US3] Crear `RolesController` (solo `GET matriz-permisos`, permiso `usuarios.gestionar`) en `AdmApi/Controladores/RolesController.cs`
-- [ ] T087 [US3] Crear la migración `AgregarCatalogoRolesPermisos` con los datos de `CatalogoRoles`, `CodigoPermiso` y `MatrizPermisos` en `Inf/Persistencia/Migraciones/` y sus mapeos en `Inf/Persistencia/Configuraciones/CatalogoPermisosConfiguracion.cs`
-- [ ] T088 [US3] Registrar los casos de uso y el manejador en `Api/Program.cs`
-- [ ] T089 [US3] Crear la pantalla de solo lectura de la matriz en `front/src/pages/MatrizPermisos.tsx`
+- [X] T083 [P] [US3] Crear los nombres y descripciones visibles de cada rol en `Dom/Roles/CatalogoRoles.cs`
+- [X] T084 [US3] Implementar `RegistrarAccesoDenegadoCasoUso` en `Apl/Seguridad/RegistrarAccesoDenegado/` y el manejador `IAuthorizationMiddlewareResultHandler` que lo invoca en cada `403` en `Api/Autorizacion/ManejadorResultadoAutorizacion.cs`
+- [X] T085 [US3] Implementar `ConsultarMatrizPermisosCasoUso` y su DTO en `Apl/Permisos/ConsultarMatrizPermisos/`
+- [X] T086 [US3] Crear `RolesController` (solo `GET matriz-permisos`, permiso `usuarios.gestionar`) en `AdmApi/Controladores/RolesController.cs`
+- [X] T087 [US3] Crear la migración `AgregarCatalogoRolesPermisos` con los datos de `CatalogoRoles`, `CodigoPermiso` y `MatrizPermisos` en `Inf/Persistencia/Migraciones/` y sus mapeos en `Inf/Persistencia/Configuraciones/CatalogoPermisosConfiguracion.cs`
+- [X] T088 [US3] Registrar los casos de uso y el manejador en `Api/Program.cs`
+- [X] T089 [US3] Crear la pantalla de solo lectura de la matriz en `front/src/pages/MatrizPermisos.tsx`
 
 **Punto de control**: el 100 % de las combinaciones rol × permiso se comporta según la matriz.
 

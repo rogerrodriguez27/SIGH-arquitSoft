@@ -4,6 +4,7 @@ import { MenuPrincipal } from './components/MenuPrincipal';
 import { CambiarContrasena } from './pages/CambiarContrasena';
 import { IniciarSesion } from './pages/IniciarSesion';
 import { Inicio } from './pages/Inicio';
+import { MatrizPermisos } from './pages/MatrizPermisos';
 import { Usuarios } from './pages/Usuarios';
 
 function Plantilla() {
@@ -34,6 +35,14 @@ export function App() {
           element={
             <RutaProtegida permiso="usuarios.gestionar">
               <Usuarios />
+            </RutaProtegida>
+          }
+        />
+        <Route
+          path="/matriz-permisos"
+          element={
+            <RutaProtegida permiso="usuarios.gestionar">
+              <MatrizPermisos />
             </RutaProtegida>
           }
         />

@@ -13,6 +13,7 @@ interface OpcionMenu {
 const OPCIONES: OpcionMenu[] = [
   { ruta: '/', etiqueta: 'Inicio' },
   { ruta: '/usuarios', etiqueta: 'Usuarios', permiso: 'usuarios.gestionar' },
+  { ruta: '/matriz-permisos', etiqueta: 'Matriz de permisos', permiso: 'usuarios.gestionar' },
 ];
 
 export function MenuPrincipal() {
