@@ -1,0 +1,44 @@
+
+
+  █ THRESHOLDS 
+
+    checks
+    ✓ 'rate==1' rate=100.00%
+
+    http_req_duration{fase:medicion}
+    ✓ 'p(95)<3000' p(95)=17.14ms
+
+    http_req_failed{fase:medicion}
+    ✓ 'rate<0.01' rate=0.00%
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 77232   331.837865/s
+    checks_succeeded...: 100.00% 77232 out of 77232
+    checks_failed......: 0.00%   0 out of 77232
+
+    ✓ listar usuarios → 200
+    ✓ matriz de permisos → 200
+    ✓ consultar bitácora → 200
+
+    HTTP
+    http_req_duration..............: avg=9.05ms min=1.05ms med=7.87ms max=90.36ms p(90)=14.9ms  p(95)=17.67ms
+      { expected_response:true }...: avg=9.05ms min=1.05ms med=7.87ms max=90.36ms p(90)=14.9ms  p(95)=17.67ms
+      { fase:medicion }............: avg=8.71ms min=1.05ms med=7.83ms max=61.59ms p(90)=14.66ms p(95)=17.14ms
+    http_req_failed................: 0.00%  0 out of 77833
+      { fase:medicion }............: 0.00%  0 out of 77232
+    http_reqs......................: 77833  334.420143/s
+
+    EXECUTION
+    iteration_duration.............: avg=1.01s  min=1s     med=1.01s  max=1.06s   p(90)=1.01s   p(95)=1.02s  
+    iterations.....................: 25744  110.612622/s
+    vus............................: 6      min=0          max=200
+    vus_max........................: 200    min=200        max=200
+
+    NETWORK
+    data_received..................: 234 MB 1.0 MB/s
+    data_sent......................: 52 MB  224 kB/s
+
+
+

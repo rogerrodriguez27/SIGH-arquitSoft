@@ -88,9 +88,20 @@ Las credenciales (token de APIPERU, claves VAPID, etc.) **nunca se suben al repo
 - [Nivel 3 - Diagrama de componentes](docs/04-modelo-c4/Nivel3-Diagrama-de-Componentes.md)
 - [Nivel 4 - Diagrama de código](docs/04-modelo-c4/Nivel4-DiagramadeCodigo.md)
 
+### 05 - Validación y evidencias (Sprint 2)
+- [Índice de entregables y actividades del Sprint 2](docs/05-validacion-y-evidencias/README.md)
+- [Evidencias de los atributos de calidad](docs/05-validacion-y-evidencias/01-evidencias-atributos-calidad.md)
+- [Análisis de la base de datos y estrategia de caché](docs/05-validacion-y-evidencias/02-analisis-base-de-datos-y-cache.md)
+- [SOLID, Clean Architecture y patrones en el código](docs/05-validacion-y-evidencias/03-solid-y-patrones-implementados.md)
+- [Pruebas automatizadas y cobertura](docs/05-validacion-y-evidencias/04-pruebas-y-cobertura.md)
+
+### Especificaciones SDD
+- [001 · Administración: autenticación, usuarios, roles y bitácora](specs/001-admin-auth-rbac/spec.md) ([plan](specs/001-admin-auth-rbac/plan.md), [tareas](specs/001-admin-auth-rbac/tasks.md), [quickstart](specs/001-admin-auth-rbac/quickstart.md))
+
 ### Otras carpetas
 - `img/`: diagramas exportados (PNG) y sus fuentes editables en `img/fuentes-svg/`.
-- `tecnologia/`: código base del sistema.
+- `tecnologia/`: código del sistema (backend .NET, frontend React, `docker-compose.yml` y pruebas de calidad).
+- `.github/workflows/`: integración continua con GitHub Actions.
 
 ---
 
@@ -98,4 +109,5 @@ Las credenciales (token de APIPERU, claves VAPID, etc.) **nunca se suben al repo
 - [x] Estructura del repositorio
 - [x] Sprint 1: análisis, arquitectura, diseño y modelo C4
 - [x] Correcciones del Sprint 1: validación de DNI con APIPERU, notificaciones push y gestión de secretos
-- [ ] Sprints siguientes: especificaciones SDD e implementación
+- [x] Sprint 2: especificación SDD e implementación del módulo Administración, API documentada con OpenAPI/Swagger, pruebas con cobertura, CI con GitHub Actions y evidencias de los atributos de calidad
+- [ ] Sprints siguientes: catálogos, Admisión y Triaje, HCE y demás módulos

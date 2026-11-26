@@ -1,0 +1,10 @@
+
+Intento DejoDeResponder ReinicioDocker SegundosHastaOk Cumple
+------- --------------- -------------- --------------- ------
+      1            True           True             2.2   True
+      2            True           True             2.2   True
+      3            True           True             2.2   True
+
+
+EQ-03: recuperación máxima = 2.2 s (límite 60 s)
+EQ-03: CUMPLE

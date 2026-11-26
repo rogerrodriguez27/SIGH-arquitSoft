@@ -300,6 +300,22 @@ obtener exactamente las esperadas, de la más reciente a la más antigua.
 
 ---
 
+## Fase 9: Entregables del Sprint 2
+
+**Propósito**: documentación de la API generada desde el código, cobertura de pruebas, integración
+continua y evidencias medidas de los atributos de calidad (`docs/01-analisis-de-sistema/08-escenarios-atributos-calidad.md`).
+
+- [X] T115 Publicar el documento OpenAPI generado desde los controladores en `/openapi/v1.json` y la interfaz Swagger UI en `/swagger`, con el esquema de seguridad Bearer (JWT) y sin exigir sesión para verlos, en `Api/Configuracion/ConfiguracionOpenApi.cs` y `Api/Program.cs`; prueba en `TApi/Documentacion/OpenApiTests.cs`
+- [X] T116 [P] Recolectar la cobertura de las pruebas del backend (coverlet) y generar el reporte HTML con ReportGenerator, y la del frontend con `@vitest/coverage-v8`, en los cuatro `*.Tests.csproj`, `back/dotnet-tools.json` y `front/package.json`
+- [X] T117 Crear el flujo de integración continua que, ante cada push y pull request, compila, ejecuta todas las pruebas (incluidas las de integración con Docker), publica los reportes de cobertura y busca secretos en el historial (EQ-11), en `.github/workflows/ci.yml`
+- [X] T118 [P] Crear las pruebas k6 de los escenarios aplicables a esta funcionalidad: EQ-01 (100 usuarios simultáneos, p95 ≤ 2 s, errores < 1 %), EQ-02 (hasta 200 usuarios, p95 ≤ 3 s, errores < 1 %, con una instancia) y EQ-04 (100 % de los accesos no autorizados rechazados), en `tecnologia/pruebas-calidad/k6/`
+- [X] T119 [P] Crear la prueba de disponibilidad EQ-03 (reinicio automático de la API en 60 s o menos tras una caída) en `tecnologia/pruebas-calidad/eq03-reinicio-api.ps1`
+- [X] T120 Ejecutar T118 y T119 contra `docker compose up` y registrar los resultados medidos en `docs/05-validacion-y-evidencias/01-evidencias-atributos-calidad.md`
+- [X] T121 [P] Documentar el comportamiento medido de la base de datos (planes `EXPLAIN ANALYZE` de las consultas principales con 100 000 entradas, índices, transacciones y conexiones) y la estrategia de caché de ADR-006, en `docs/05-validacion-y-evidencias/02-analisis-base-de-datos-y-cache.md`
+- [X] T122 [P] Documentar cómo se aplican SOLID y los patrones de diseño en el código del módulo Administración, en `docs/05-validacion-y-evidencias/03-solid-y-patrones-implementados.md`, y las pruebas y su cobertura en `docs/05-validacion-y-evidencias/04-pruebas-y-cobertura.md`
+
+---
+
 ## Dependencias y orden de ejecución
 
 ### Dependencias entre fases
@@ -315,6 +331,7 @@ obtener exactamente las esperadas, de la más reciente a la más antigua.
   `NombreUsuario`, `IRepositorioUsuarios` de la historia 1).
 - **Historia 5**: depende de la historia 4.
 - **Fase 8**: depende de todas las historias.
+- **Fase 9**: depende de la fase 8.
 
 ### Dentro de cada historia
 

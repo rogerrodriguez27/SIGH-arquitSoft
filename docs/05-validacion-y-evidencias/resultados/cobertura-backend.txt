@@ -1,0 +1,133 @@
+Summary
+  Generated on: 26/11/2026 - 05:49:45
+  Coverage date: 26/11/2026 - 05:49:31 - 26/11/2026 - 05:49:44
+  Parser: MultiReport (4x Cobertura)
+  Assemblies: 6
+  Classes: 101
+  Files: 94
+  Line coverage: 95.9%
+  Covered lines: 1274
+  Uncovered lines: 54
+  Coverable lines: 1328
+  Total lines: 3026
+  Branch coverage: 87.7% (250 of 285)
+  Covered branches: 250
+  Total branches: 285
+  Method coverage: 93.1% (219 of 235)
+  Full method coverage: 88% (207 of 235)
+  Covered methods: 219
+  Fully covered methods: 207
+  Total methods: 235
+
+Sigh.Administracion.Api                                                                             96.3%
+  Sigh.Administracion.Api.Controladores.AutenticacionController                                      100%
+  Sigh.Administracion.Api.Controladores.BitacoraController                                           100%
+  Sigh.Administracion.Api.Controladores.RolesController                                              100%
+  Sigh.Administracion.Api.Controladores.UsuariosController                                           100%
+  Sigh.Administracion.Api.Respuestas.PaginaRespuesta<T>                                              100%
+  Sigh.Administracion.Api.Respuestas.SesionRespuesta                                                 100%
+  Sigh.Administracion.Api.Respuestas.UsuarioSesionRespuesta                                          100%
+  Sigh.Administracion.Api.Solicitudes.CambiarContrasenaSolicitud                                    87.5%
+  Sigh.Administracion.Api.Solicitudes.CambiarRolesSolicitud                                          100%
+  Sigh.Administracion.Api.Solicitudes.CrearUsuarioSolicitud                                         92.8%
+  Sigh.Administracion.Api.Solicitudes.EditarUsuarioSolicitud                                         100%
+  Sigh.Administracion.Api.Solicitudes.IniciarSesionSolicitud                                        87.5%
+  Sigh.Administracion.Api.Solicitudes.RestablecerContrasenaSolicitud                                  80%
+
+Sigh.Administracion.Aplicacion                                                                      97.9%
+  Sigh.Administracion.Aplicacion.AdministradorInicial.CrearAdministradorInicialCasoUso               100%
+  Sigh.Administracion.Aplicacion.AdministradorInicial.DatosAdministradorInicial                      100%
+  Sigh.Administracion.Aplicacion.Autenticacion.CambiarContrasena.CambiarContrasenaCasoUso            100%
+  Sigh.Administracion.Aplicacion.Autenticacion.CambiarContrasena.CambiarContrasenaComando             50%
+  Sigh.Administracion.Aplicacion.Autenticacion.IniciarSesion.IniciarSesionCasoUso                   98.1%
+  Sigh.Administracion.Aplicacion.Autenticacion.IniciarSesion.IniciarSesionComando                     50%
+  Sigh.Administracion.Aplicacion.Autenticacion.SesionResultado                                       100%
+  Sigh.Administracion.Aplicacion.Bitacora.ConsultarBitacora.ConsultarBitacoraCasoUso                 100%
+  Sigh.Administracion.Aplicacion.Bitacora.ConsultarBitacora.ConsultarBitacoraConsulta                100%
+  Sigh.Administracion.Aplicacion.Bitacora.ConsultarBitacora.EntradaBitacoraDto                       100%
+  Sigh.Administracion.Aplicacion.Bitacora.ServicioBitacora                                           100%
+  Sigh.Administracion.Aplicacion.Permisos.ConsultarMatrizPermisos.ConsultarMatrizPermisosCasoUso     100%
+  Sigh.Administracion.Aplicacion.Permisos.ConsultarMatrizPermisos.MatrizPermisosDto                  100%
+  Sigh.Administracion.Aplicacion.Permisos.ConsultarMatrizPermisos.PermisoDto                         100%
+  Sigh.Administracion.Aplicacion.Permisos.ConsultarMatrizPermisos.RolDto                             100%
+  Sigh.Administracion.Aplicacion.Publico.RegistroAcceso                                              100%
+  Sigh.Administracion.Aplicacion.Seguridad.RegistrarAccesoDenegado.RegistrarAccesoDenegadoCasoUso   87.5%
+  Sigh.Administracion.Aplicacion.Seguridad.RegistrarAccesoDenegado.RegistrarAccesoDenegadoComando    100%
+  Sigh.Administracion.Aplicacion.Usuarios.CambiarRoles.CambiarRolesCasoUso                           100%
+  Sigh.Administracion.Aplicacion.Usuarios.CambiarRoles.CambiarRolesComando                           100%
+  Sigh.Administracion.Aplicacion.Usuarios.ConsultarUsuario.ConsultarUsuarioCasoUso                   100%
+  Sigh.Administracion.Aplicacion.Usuarios.CrearUsuario.CrearUsuarioCasoUso                           100%
+  Sigh.Administracion.Aplicacion.Usuarios.CrearUsuario.CrearUsuarioComando                          85.7%
+  Sigh.Administracion.Aplicacion.Usuarios.DesactivarUsuario.DesactivarUsuarioCasoUso                 100%
+  Sigh.Administracion.Aplicacion.Usuarios.DesactivarUsuario.DesactivarUsuarioComando                 100%
+  Sigh.Administracion.Aplicacion.Usuarios.EditarUsuario.EditarUsuarioCasoUso                         100%
+  Sigh.Administracion.Aplicacion.Usuarios.EditarUsuario.EditarUsuarioComando                         100%
+  Sigh.Administracion.Aplicacion.Usuarios.ListarUsuarios.ListarUsuariosCasoUso                      91.6%
+  Sigh.Administracion.Aplicacion.Usuarios.ListarUsuarios.ListarUsuariosConsulta                      100%
+  Sigh.Administracion.Aplicacion.Usuarios.ReactivarUsuario.ReactivarUsuarioCasoUso                   100%
+  Sigh.Administracion.Aplicacion.Usuarios.ReactivarUsuario.ReactivarUsuarioComando                   100%
+  Sigh.Administracion.Aplicacion.Usuarios.RepositorioUsuariosExtensiones                             100%
+  Sigh.Administracion.Aplicacion.Usuarios.RestablecerContrasena.RestablecerContrasenaCasoUso         100%
+  Sigh.Administracion.Aplicacion.Usuarios.RestablecerContrasena.RestablecerContrasenaComando          50%
+  Sigh.Administracion.Aplicacion.Usuarios.UsuarioDto                                                 100%
+
+Sigh.Administracion.Dominio                                                                         98.3%
+  Sigh.Administracion.Dominio.Bitacora.AccionBitacora                                                100%
+  Sigh.Administracion.Dominio.Bitacora.EntradaBitacora                                              95.4%
+  Sigh.Administracion.Dominio.Bitacora.ModuloOrigen                                                  100%
+  Sigh.Administracion.Dominio.Contratos.FiltroBitacora                                               100%
+  Sigh.Administracion.Dominio.Contratos.FiltroUsuarios                                               100%
+  Sigh.Administracion.Dominio.Contratos.TokenEmitido                                                 100%
+  Sigh.Administracion.Dominio.Permisos.CodigoPermiso                                                 100%
+  Sigh.Administracion.Dominio.Permisos.MatrizPermisos                                                100%
+  Sigh.Administracion.Dominio.Roles.CatalogoRoles                                                    100%
+  Sigh.Administracion.Dominio.Seguridad.EventoSeguridad                                              100%
+  Sigh.Administracion.Dominio.Seguridad.TipoEventoSeguridadExtensiones                               100%
+  Sigh.Administracion.Dominio.Usuarios.ContrasenaPropuesta                                            90%
+  Sigh.Administracion.Dominio.Usuarios.PoliticaAdministradores                                       100%
+  Sigh.Administracion.Dominio.Usuarios.ResultadoAutenticacion                                        100%
+  Sigh.Administracion.Dominio.Usuarios.RolAsignado                                                   100%
+  Sigh.Administracion.Dominio.Usuarios.Usuario                                                      97.7%
+
+Sigh.Administracion.Infraestructura                                                                 96.9%
+  Sigh.Administracion.Infraestructura.DependencyInjection                                            100%
+  Sigh.Administracion.Infraestructura.Persistencia.AdministracionDbContext                           100%
+  Sigh.Administracion.Infraestructura.Persistencia.Configuraciones.EntradaBitacoraConfiguracion      100%
+  Sigh.Administracion.Infraestructura.Persistencia.Configuraciones.EventoSeguridadConfiguracion      100%
+  Sigh.Administracion.Infraestructura.Persistencia.Configuraciones.FilaPermisoConfiguracion          100%
+  Sigh.Administracion.Infraestructura.Persistencia.Configuraciones.FilaRolConfiguracion              100%
+  Sigh.Administracion.Infraestructura.Persistencia.Configuraciones.FilaRolPermisoConfiguracion       100%
+  Sigh.Administracion.Infraestructura.Persistencia.Configuraciones.RolAsignadoConfiguracion          100%
+  Sigh.Administracion.Infraestructura.Persistencia.Configuraciones.UsuarioConfiguracion              100%
+  Sigh.Administracion.Infraestructura.Persistencia.FabricaContextoAdministracion                     100%
+  Sigh.Administracion.Infraestructura.Persistencia.FabricaDisenoAdministracion                         0%
+  Sigh.Administracion.Infraestructura.Persistencia.RepositorioBitacoraEfCore                         100%
+  Sigh.Administracion.Infraestructura.Persistencia.RepositorioBitacoraEnMemoria                      100%
+  Sigh.Administracion.Infraestructura.Persistencia.RepositorioEventosSeguridadEfCore                 100%
+  Sigh.Administracion.Infraestructura.Persistencia.RepositorioEventosSeguridadEnMemoria              100%
+  Sigh.Administracion.Infraestructura.Persistencia.RepositorioUsuariosEfCore                        95.9%
+  Sigh.Administracion.Infraestructura.Persistencia.RepositorioUsuariosEnMemoria                     97.2%
+  Sigh.Administracion.Infraestructura.Seguridad.EmisorTokensJwt                                      100%
+  Sigh.Administracion.Infraestructura.Seguridad.HasherContrasenasIdentity                           83.3%
+  Sigh.Administracion.Infraestructura.Seguridad.OpcionesJwt                                          100%
+
+Sigh.Api                                                                                            89.3%
+  Program                                                                                           93.7%
+  Sigh.Api.Arranque.AplicarMigraciones                                                                 0%
+  Sigh.Api.Arranque.CrearAdministradorInicial                                                       73.3%
+  Sigh.Api.Autorizacion.ConfiguracionAutorizacion                                                    100%
+  Sigh.Api.Autorizacion.ManejadorResultadoAutorizacion                                               100%
+  Sigh.Api.Autorizacion.ManejadorSinCambioPendiente                                                  100%
+  Sigh.Api.Configuracion.ConfiguracionJwt                                                            100%
+  Sigh.Api.Configuracion.ConfiguracionOpenApi                                                        100%
+  Sigh.Api.Middlewares.ManejadorErrores                                                               85%
+  Sigh.Api.Salud.VerificacionBaseDatos                                                                 0%
+
+Sigh.Compartido                                                                                     90.6%
+  Sigh.Compartido.Errores.ConflictoError                                                             100%
+  Sigh.Compartido.Errores.RecursoNoEncontradoError                                                   100%
+  Sigh.Compartido.Errores.ReglaNegocioError                                                          100%
+  Sigh.Compartido.Paginacion.Pagina<T>                                                               100%
+  Sigh.Compartido.Persistencia.ConexionOltp                                                          100%
+  Sigh.Compartido.Persistencia.UnidadDeTrabajoNpgsql                                                  85%
+  Sigh.Compartido.Tiempo.RelojSistema                                                                100%

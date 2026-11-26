@@ -38,6 +38,7 @@ contraseña, usuarios, matriz de permisos y bitácora.
   - Microsoft.AspNetCore.Authentication.JwtBearer
   - EF Core 10 con Npgsql.EntityFrameworkCore.PostgreSQL
   - Microsoft.Extensions.Identity.Core (solo `PasswordHasher<T>`)
+  - Microsoft.AspNetCore.OpenApi y Swashbuckle.AspNetCore.SwaggerUI (documentación OpenAPI y Swagger UI, fase 9)
 - Frontend:
   - Vite
   - React Router
@@ -52,6 +53,10 @@ Core. Redis no se usa en esta funcionalidad: los catálogos llegan en una funcio
   - API con `WebApplicationFactory`;
   - persistencia y triggers con Testcontainers (PostgreSQL).
 - Frontend con Vitest y React Testing Library.
+- Cobertura con coverlet y ReportGenerator (backend) y `@vitest/coverage-v8` (frontend).
+- Atributos de calidad con k6 contra el sistema levantado con Docker Compose (fase 9).
+- Integración continua con GitHub Actions en `.github/workflows/ci.yml`: es la única excepción al
+  principio XI, porque GitHub solo lee los flujos desde esa carpeta de la raíz.
 
 **Plataforma de destino**: contenedores Linux con Docker Compose, en local y en AWS EC2 (ADR-010).
 

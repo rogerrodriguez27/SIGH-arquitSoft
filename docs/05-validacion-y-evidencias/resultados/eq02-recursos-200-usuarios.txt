@@ -1,0 +1,3 @@
+sigh-prueba-api-1 CPU=76.74% MEM=143MiB / 7.404GiB
+sigh-prueba-web-1 CPU=1.88% MEM=15.15MiB / 7.404GiB
+sigh-prueba-postgres-1 CPU=46.06% MEM=235.2MiB / 7.404GiB

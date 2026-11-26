@@ -1,0 +1,181 @@
+{
+  "root_group": {
+    "name": "",
+    "path": "",
+    "id": "d41d8cd98f00b204e9800998ecf8427e",
+    "groups": {},
+    "checks": {
+      "inicio de sesión → 200 con token": {
+        "passes": 100,
+        "fails": 0,
+        "name": "inicio de sesión → 200 con token",
+        "path": "::inicio de sesión → 200 con token",
+        "id": "30fcb465e303d5f97f245970af5a8808"
+      },
+      "listar usuarios → 200": {
+        "name": "listar usuarios → 200",
+        "path": "::listar usuarios → 200",
+        "id": "af6550b41c0d7d78852abe24c1ba4918",
+        "passes": 11854,
+        "fails": 0
+      },
+      "matriz de permisos → 200": {
+        "id": "0d4adc60184c521ca65be1815579bf98",
+        "passes": 11854,
+        "fails": 0,
+        "name": "matriz de permisos → 200",
+        "path": "::matriz de permisos → 200"
+      },
+      "consultar bitácora → 200": {
+        "name": "consultar bitácora → 200",
+        "path": "::consultar bitácora → 200",
+        "id": "493d40c019f391a0a74b46fae62c5803",
+        "passes": 11854,
+        "fails": 0
+      }
+    }
+  },
+  "metrics": {
+    "http_req_receiving": {
+      "max": 15.905386,
+      "p(90)": 1.4969849999999991,
+      "p(95)": 2.319762200000001,
+      "avg": 0.4953437459333231,
+      "min": 0.008306,
+      "med": 0.078971
+    },
+    "iterations": {
+      "rate": 75.89264682178963,
+      "count": 11954
+    },
+    "http_req_connecting": {
+      "avg": 0.31104789992492315,
+      "min": 0,
+      "med": 0,
+      "max": 71.065578,
+      "p(90)": 0,
+      "p(95)": 0
+    },
+    "iteration_duration": {
+      "max": 1233.242852,
+      "p(90)": 1019.1905772,
+      "p(95)": 1025.2648742000001,
+      "avg": 1010.8205561733322,
+      "min": 121.737951,
+      "med": 1011.730933
+    },
+    "http_req_duration": {
+      "max": 587.613698,
+      "p(90)": 16.7858366,
+      "p(95)": 24.103373900000015,
+      "avg": 13.055045276033733,
+      "min": 1.321032,
+      "med": 9.052217
+    },
+    "data_sent": {
+      "count": 23978009,
+      "rate": 152229.76146283193
+    },
+    "checks": {
+      "fails": 0,
+      "passes": 35662,
+      "thresholds": {
+        "rate==1": false
+      },
+      "value": 1
+    },
+    "http_req_duration{expected_response:true}": {
+      "avg": 13.055045276033733,
+      "min": 1.321032,
+      "med": 9.052217,
+      "max": 587.613698,
+      "p(90)": 16.7858366,
+      "p(95)": 24.103373900000015
+    },
+    "http_req_waiting": {
+      "med": 8.376708,
+      "max": 587.424958,
+      "p(90)": 16.3190122,
+      "p(95)": 23.68838880000003,
+      "avg": 12.531883809637637,
+      "min": 1.245238
+    },
+    "http_req_sending": {
+      "avg": 0.02781772046269811,
+      "min": 0.004148,
+      "med": 0.012975,
+      "max": 17.257991,
+      "p(90)": 0.025178,
+      "p(95)": 0.03651
+    },
+    "http_req_blocked": {
+      "med": 0.004398,
+      "max": 72.672124,
+      "p(90)": 0.0086368,
+      "p(95)": 0.011927500000000006,
+      "avg": 0.32064886942134274,
+      "min": 0.000842
+    },
+    "http_req_duration{scenario:operaciones_con_100_usuarios}": {
+      "p(90)": 16.311867700000004,
+      "p(95)": 20.330051499999993,
+      "avg": 11.538053048731836,
+      "min": 1.321032,
+      "med": 8.986909,
+      "max": 220.342431,
+      "thresholds": {
+        "p(95)<2000": false
+      }
+    },
+    "http_req_failed{fase:medicion}": {
+      "passes": 0,
+      "fails": 35662,
+      "thresholds": {
+        "rate<0.01": false
+      },
+      "value": 0
+    },
+    "http_reqs": {
+      "count": 35963,
+      "rate": 228.31916159043166
+    },
+    "http_req_tls_handshaking": {
+      "med": 0,
+      "max": 0,
+      "p(90)": 0,
+      "p(95)": 0,
+      "avg": 0,
+      "min": 0
+    },
+    "vus": {
+      "value": 51,
+      "min": 0,
+      "max": 100
+    },
+    "vus_max": {
+      "value": 200,
+      "min": 200,
+      "max": 200
+    },
+    "data_received": {
+      "count": 108067567,
+      "rate": 686091.157371682
+    },
+    "http_req_duration{scenario:inicios_de_sesion_simultaneos}": {
+      "p(95)": 571.61672445,
+      "avg": 426.92932417,
+      "min": 104.74154,
+      "med": 465.897504,
+      "max": 587.613698,
+      "p(90)": 560.4791978000001,
+      "thresholds": {
+        "p(95)<2000": false
+      }
+    },
+    "http_req_failed": {
+      "passes": 0,
+      "fails": 35963,
+      "value": 0
+    }
+  }
+}
