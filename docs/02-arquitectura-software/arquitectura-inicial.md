@@ -37,6 +37,7 @@ subgraph NEGOCIO["LÓGICA DE NEGOCIO (monolito modular)"]
     Laboratorio["Laboratorio"]
     Administracion["Administración"]
     Reportes["Reportes y Alertas"]
+    Notificaciones["Notificaciones (push)"]
 end
 
 %% =========================
@@ -61,7 +62,8 @@ end
 %% SISTEMAS EXTERNOS
 %% =========================
 subgraph EXTERNOS["SISTEMAS EXTERNOS"]
-    RENIEC["Servicio RENIEC<br/>(simulado)"]
+    APIPERU["APIPERU<br/>(consulta de DNI)"]
+    WebPush["Servicio Web Push<br/>(navegador)"]
 end
 
 %% =========================
@@ -94,7 +96,18 @@ Epidemiologo -.-> BI
 %% =========================
 %% INTEGRACIONES EXTERNAS
 %% =========================
-AdmTriaje -->|valida DNI| RENIEC
+AdmTriaje -->|valida DNI| APIPERU
+Notificaciones -->|envía push| WebPush
+WebPush -.->|avisa| ACTORES
+
+%% =========================
+%% EVENTOS (OBSERVER)
+%% =========================
+AdmTriaje -.->|eventos| Notificaciones
+HCE -.->|eventos| Notificaciones
+Farmacia -.->|eventos| Notificaciones
+Laboratorio -.->|eventos| Notificaciones
+Alertas -.->|nueva alerta| Notificaciones
 
 %% =========================
 %% ESTILOS
@@ -112,14 +125,14 @@ La arquitectura inicial se organiza en cuatro capas principales, más los proces
 - **Datos:** la base transaccional (OLTP) guarda la operación clínica diaria, la caché Redis acelera las consultas frecuentes y el datamart (OLAP) guarda la información agregada para el análisis. Las bases OLTP y OLAP están separadas físicamente.
 - **Procesos analíticos:** el ETL carga periódicamente los datos de la base transaccional al datamart; el proceso de alerta epidemiológica analiza el datamart para detectar aumentos inusuales de diagnósticos, y Metabase muestra los dashboards. Ninguno de ellos accede a la base transaccional durante el análisis, por lo que no afectan la operación clínica.
 
-Además, el módulo de **Admisión y Triaje** se integra con el **servicio de RENIEC** (simulado en la prueba de concepto) para validar el DNI de los pacientes.
+Además, el módulo de **Admisión y Triaje** valida el DNI de los pacientes con el servicio **APIPERU** (que consulta los datos de RENIEC), y el módulo transversal de **Notificaciones** recibe los eventos de los demás módulos y de la alerta epidemiológica, y los envía como notificaciones push mediante el servicio **Web Push** del navegador, sin datos clínicos.
 
 ## Componentes por capa
 
 | Capa | Componentes | Tecnología |
 |---|---|---|
 | Presentación | Aplicación web, API REST | React, ASP.NET Core |
-| Lógica de negocio | Admisión y Triaje, HCE, Farmacia, Laboratorio, Administración, Reportes y Alertas | C# / .NET (Clean Architecture por módulo) |
+| Lógica de negocio | Admisión y Triaje, HCE, Farmacia, Laboratorio, Administración, Reportes y Alertas, Notificaciones | C# / .NET (Clean Architecture por módulo) |
 | Datos | Base transaccional, caché, datamart | PostgreSQL (`sigh_oltp`), Redis, PostgreSQL (`sigh_olap`) |
 | Procesos analíticos | ETL, alerta epidemiológica, BI | Python + cron, Metabase |
-| Sistemas externos | Servicio de identidad | RENIEC (simulado) |
+| Sistemas externos | Servicio de identidad, servicio de notificaciones | APIPERU (fuente RENIEC), Web Push del navegador |

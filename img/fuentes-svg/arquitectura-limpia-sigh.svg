@@ -105,8 +105,8 @@
 <line x1="1085" y1="396" x2="1012" y2="396" stroke="#6a3fb5" stroke-width="1.6" stroke-dasharray="6,4" marker-end="url(#tri)"/>
 <rect x="1085" y="445" width="195" height="62" rx="0" fill="#fff" stroke="#7e57c2" stroke-width="1.6"/>
 <text x="1182.5" y="465.5" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">«adaptador»</text>
-<text x="1182.5" y="480.5" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#111">AdaptadorReniecSimulado</text>
-<text x="1182.5" y="495.5" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">(futuro: AdaptadorReniecReal)</text>
+<text x="1182.5" y="480.5" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#111">AdaptadorApiPeru</text>
+<text x="1182.5" y="495.5" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">(pruebas: AdaptadorIdentidadSimulado)</text>
 <line x1="1085" y1="476" x2="1012" y2="476" stroke="#6a3fb5" stroke-width="1.6" stroke-dasharray="6,4" marker-end="url(#tri)"/>
 <rect x="1085" y="525" width="195" height="62" rx="0" fill="#fff" stroke="#7e57c2" stroke-width="1.6"/>
 <text x="1182.5" y="553.0" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">«adaptador»</text>
@@ -129,8 +129,8 @@
 <text x="1500" y="382.0" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">historias, atenciones, bitácora</text>
 <rect x="1380" y="445" width="240" height="62" rx="0" fill="#e6e6e6" stroke="#555" stroke-width="1.6"/>
 <text x="1500" y="462.0" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">«sistema externo»</text>
-<text x="1500" y="479.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#111">Servicio RENIEC</text>
-<text x="1500" y="495.0" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">simulado – datos ficticios</text>
+<text x="1500" y="479.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#111">Servicio APIPERU</text>
+<text x="1500" y="495.0" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">consulta de DNI – token en .env</text>
 <rect x="1380" y="525" width="240" height="62" rx="0" fill="#e6e6e6" stroke="#555" stroke-width="1.6"/>
 <text x="1500" y="542.0" font-size="11" font-weight="normal" text-anchor="middle" fill="#111">«caché»</text>
 <text x="1500" y="559.0" font-size="13" font-weight="bold" text-anchor="middle" fill="#111">Redis</text>
@@ -158,8 +158,8 @@
 <text x="885" y="920" font-size="14" font-weight="bold" text-anchor="start" fill="#111">Reglas de dependencia</text>
 <text x="885" y="945" font-size="12" font-weight="normal" text-anchor="start" fill="#111">1. El dominio no referencia ningún paquete externo (ASP.NET Core, EF Core, Redis).</text>
 <text x="885" y="969" font-size="12" font-weight="normal" text-anchor="start" fill="#111">2. Los casos de uso solo conocen entidades y contratos del dominio.</text>
-<text x="885" y="993" font-size="12" font-weight="normal" text-anchor="start" fill="#111">3. Los adaptadores implementan los contratos y son intercambiables (RENIEC simulado ↔ real).</text>
+<text x="885" y="993" font-size="12" font-weight="normal" text-anchor="start" fill="#111">3. Los adaptadores implementan los contratos y son intercambiables (AdaptadorApiPeru ↔ simulado en pruebas).</text>
 <text x="885" y="1017" font-size="12" font-weight="normal" text-anchor="start" fill="#111">4. Cambiar de tecnología = cambiar el registro en Program.cs, no el dominio.</text>
-<text x="885" y="1041" font-size="12" font-weight="normal" text-anchor="start" fill="#111">5. Admisión y Triaje, Farmacia, Laboratorio, Reportes y Administración siguen la misma estructura.</text>
+<text x="885" y="1041" font-size="12" font-weight="normal" text-anchor="start" fill="#111">5. Admisión, Farmacia, Laboratorio, Reportes, Administración y Notificaciones siguen la misma estructura.</text>
 <line x1="165" y1="460" x2="228" y2="460" stroke="#111" stroke-width="1.6" marker-end="url(#arr)"/>
 </svg>
