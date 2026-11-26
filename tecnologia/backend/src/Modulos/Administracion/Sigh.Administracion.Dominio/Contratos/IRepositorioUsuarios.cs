@@ -22,7 +22,11 @@ public interface IRepositorioUsuarios
 
     Task AgregarAsync(Usuario usuario, CancellationToken ct = default);
 
+    /// <summary>Guarda los cambios. Si otra operación lo modificó antes, lanza ConflictoError.</summary>
     Task ActualizarAsync(Usuario usuario, CancellationToken ct = default);
+
+    /// <summary>Descarta los cambios en memoria y vuelve a leer el estado guardado (tras un ConflictoError).</summary>
+    Task RecargarAsync(Usuario usuario, CancellationToken ct = default);
 }
 
 /// <summary>Búsqueda por nombre o usuario (sin distinguir mayúsculas) y filtro por rol y estado.</summary>

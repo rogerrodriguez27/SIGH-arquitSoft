@@ -66,6 +66,10 @@ internal sealed class RepositorioUsuariosEfCore(AdministracionDbContext contexto
         return GuardarAsync(ct);
     }
 
+    /// <summary>Vuelve a leer la fila (y su versión) y descarta los cambios pendientes de la entidad.</summary>
+    public Task RecargarAsync(Usuario usuario, CancellationToken ct = default) =>
+        contexto.Entry(usuario).ReloadAsync(ct);
+
     private async Task GuardarAsync(CancellationToken ct)
     {
         try

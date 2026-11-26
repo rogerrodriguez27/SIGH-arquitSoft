@@ -54,6 +54,27 @@ public sealed class InicioSesionCargaTests : IClassFixture<PostgresFixture>
     }
 
     [Fact]
+    public async Task Varios_inicios_de_sesion_simultaneos_del_mismo_usuario_funcionan_todos()
+    {
+        await using var servicios = ConstruirServicios();
+        await using (var ambito = servicios.CreateAsyncScope())
+        {
+            var usuario = Usuario.Crear("mismo01", "Usuario Ficticio", ContrasenaPropuesta.Crear(Contrasena),
+                [CodigoRol.Medico], servicios.GetRequiredService<IHasherContrasenas>(), servicios.GetRequiredService<IReloj>());
+            await ambito.ServiceProvider.GetRequiredService<IRepositorioUsuarios>().AgregarAsync(usuario);
+        }
+
+        var sesiones = await Task.WhenAll(Enumerable.Range(0, 6).Select(async _ =>
+        {
+            await using var ambito = servicios.CreateAsyncScope();             // dos pestañas, doble clic…
+            return await ambito.ServiceProvider.GetRequiredService<IniciarSesionCasoUso>()
+                .EjecutarAsync(new IniciarSesionComando("mismo01", Contrasena));
+        }));
+
+        Assert.All(sesiones, Assert.NotNull);
+    }
+
+    [Fact]
     public async Task Cien_inicios_de_sesion_simultaneos_responden_en_2_segundos_o_menos_en_el_95_por_ciento()
     {
         await using var servicios = ConstruirServicios();

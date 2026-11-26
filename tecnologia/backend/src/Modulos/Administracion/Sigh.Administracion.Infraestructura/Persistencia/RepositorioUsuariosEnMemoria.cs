@@ -55,6 +55,9 @@ public sealed class RepositorioUsuariosEnMemoria : IRepositorioUsuarios
         return Task.CompletedTask;
     }
 
+    /// <summary>En memoria la instancia es la guardada: no hay nada que volver a leer.</summary>
+    public Task RecargarAsync(Usuario usuario, CancellationToken ct = default) => Task.CompletedTask;
+
     public Task ActualizarAsync(Usuario usuario, CancellationToken ct = default)
     {
         _usuarios[usuario.Id] = usuario;

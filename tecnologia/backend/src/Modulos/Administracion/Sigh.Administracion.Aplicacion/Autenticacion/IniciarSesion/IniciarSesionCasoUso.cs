@@ -1,6 +1,7 @@
 using Sigh.Administracion.Dominio.Contratos;
 using Sigh.Administracion.Dominio.Seguridad;
 using Sigh.Administracion.Dominio.Usuarios;
+using Sigh.Compartido.Errores;
 using Sigh.Compartido.Tiempo;
 
 namespace Sigh.Administracion.Aplicacion.Autenticacion.IniciarSesion;
@@ -31,8 +32,7 @@ public sealed class IniciarSesionCasoUso(
             return null;
         }
 
-        var resultado = usuario.IntentarAutenticar(comando.Contrasena ?? string.Empty, hasher, reloj);
-        await usuarios.ActualizarAsync(usuario, ct);
+        var resultado = await AutenticarYGuardarAsync(usuario, comando.Contrasena ?? string.Empty, ct);
 
         if (!resultado.Exitoso)
         {
@@ -48,6 +48,51 @@ public sealed class IniciarSesionCasoUso(
         await eventos.AgregarAsync(
             EventoSeguridad.Crear(TipoEventoSeguridad.InicioSesionExitoso, reloj, usuario.Id, usuario.Id), ct);
         return SesionResultado.Emitir(usuario, emisor);
+    }
+
+    /// <summary>
+    /// Si otro inicio de sesión simultáneo del mismo usuario (dos pestañas, doble clic) guardó antes, el
+    /// intento se repite sobre el estado actual. Así no se pierde ningún intento fallido (FR-004) y el
+    /// usuario no recibe un error por la concurrencia.
+    /// </summary>
+    private async Task<ResultadoAutenticacion> AutenticarYGuardarAsync(Usuario usuario, string contrasena,
+        CancellationToken ct)
+    {
+        // La verificación del hash es lenta a propósito (PBKDF2). En los reintentos se reutiliza su
+        // resultado, para que cada reintento solo cueste una lectura y una escritura.
+        var hasherDelIntento = new HasherConMemoria(hasher);
+        for (var intento = 1; ; intento++)
+        {
+            var resultado = usuario.IntentarAutenticar(contrasena, hasherDelIntento, reloj);
+            try
+            {
+                await usuarios.ActualizarAsync(usuario, ct);
+                return resultado;
+            }
+            catch (ConflictoError) when (intento < MaximoIntentosPorConcurrencia)
+            {
+                await usuarios.RecargarAsync(usuario, ct);
+            }
+        }
+    }
+
+    private const int MaximoIntentosPorConcurrencia = 10;
+
+    /// <summary>Decorator: recuerda la verificación de un mismo par (hash, contraseña) dentro de un inicio de sesión.</summary>
+    private sealed class HasherConMemoria(IHasherContrasenas interno) : IHasherContrasenas
+    {
+        private (string Hash, string Contrasena, ResultadoVerificacionContrasena Resultado)? _ultima;
+
+        public string Calcular(string contrasena) => interno.Calcular(contrasena);
+
+        public ResultadoVerificacionContrasena Verificar(string hash, string contrasena)
+        {
+            if (_ultima is { } u && u.Hash == hash && u.Contrasena == contrasena)
+                return u.Resultado;
+            var resultado = interno.Verificar(hash, contrasena);
+            _ultima = (hash, contrasena, resultado);
+            return resultado;
+        }
     }
 
     private Task RegistrarAsync(TipoEventoSeguridad tipo, Guid? usuarioId, MotivoRechazo? motivo, CancellationToken ct) =>
