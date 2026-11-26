@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Cobertura de las pruebas del backend (T116). Uso:
+    dotnet test -settings cobertura.runsettings
+    dotnet tool run reportgenerator -reports:"TestResults/**/coverage.cobertura.xml" -targetdir:cobertura -reporttypes:"Html;TextSummary;MarkdownSummaryGithub"
+  Se mide el código de producción (Sigh.*) y se excluyen las pruebas y las migraciones generadas por EF Core.
+-->
+<RunSettings>
+  <RunConfiguration>
+    <ResultsDirectory>./TestResults</ResultsDirectory>
+  </RunConfiguration>
+  <DataCollectionRunSettings>
+    <DataCollectors>
+      <DataCollector friendlyName="XPlat code coverage">
+        <Configuration>
+          <Format>cobertura</Format>
+          <Include>[Sigh.*]*</Include>
+          <Exclude>[*.Tests]*,[Sigh.Administracion.Infraestructura]Sigh.Administracion.Infraestructura.Persistencia.Migraciones.*</Exclude>
+          <ExcludeByAttribute>GeneratedCodeAttribute,CompilerGeneratedAttribute,ExcludeFromCodeCoverageAttribute</ExcludeByAttribute>
+          <SkipAutoProps>true</SkipAutoProps>
+        </Configuration>
+      </DataCollector>
+    </DataCollectors>
+  </DataCollectionRunSettings>
+</RunSettings>

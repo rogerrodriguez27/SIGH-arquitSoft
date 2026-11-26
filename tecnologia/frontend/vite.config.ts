@@ -10,5 +10,12 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     setupFiles: ['./src/pruebas/configuracion.ts'],
+    // Cobertura (T116): npm run test:cobertura → coverage/index.html
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'text-summary', 'html', 'lcov', 'json-summary'],
+      include: ['src/**/*.{ts,tsx}'],
+      exclude: ['src/**/*.test.tsx', 'src/pruebas/**', 'src/main.tsx', 'src/vite-env.d.ts'],
+    },
   },
 });

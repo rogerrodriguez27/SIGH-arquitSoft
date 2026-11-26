@@ -120,6 +120,57 @@ describe('Usuarios', () => {
     expect(await screen.findByRole('status')).toHaveTextContent('Se desactivó med01.');
   });
 
+  it('edita el nombre y los roles con una llamada a cada endpoint', async () => {
+    const llamadas = simularApi();
+    renderizarApp('/usuarios');
+    const fila = (await screen.findByText('med01')).closest('tr')!;
+
+    await userEvent.click(within(fila).getByRole('button', { name: 'Editar' }));
+    const formulario = screen.getByRole('form', { name: 'Editar usuario' });
+    const nombre = within(formulario).getByLabelText('Nombre completo');
+    await userEvent.clear(nombre);
+    await userEvent.type(nombre, 'Nombre Corregido');
+    await userEvent.click(within(formulario).getByLabelText('Epidemiólogo'));
+    await userEvent.click(within(formulario).getByRole('button', { name: 'Guardar' }));
+
+    expect(await screen.findByRole('status')).toHaveTextContent('Se actualizó med01');
+    const edicion = llamadas.find((l) => l.metodo === 'PUT' && l.url.endsWith(`/usuarios/${medico.id}`));
+    const roles = llamadas.find((l) => l.metodo === 'PUT' && l.url.endsWith(`/usuarios/${medico.id}/roles`));
+    expect(edicion?.cuerpo).toEqual({ nombreCompleto: 'Nombre Corregido' });
+    expect(roles?.cuerpo).toEqual({ roles: ['Medico', 'Epidemiologo'] });
+  });
+
+  it('restablece la contraseña con una temporal', async () => {
+    const llamadas = simularApi();
+    renderizarApp('/usuarios');
+    const fila = (await screen.findByText('med01')).closest('tr')!;
+
+    await userEvent.click(within(fila).getByRole('button', { name: 'Restablecer contraseña' }));
+    const formulario = screen.getByRole('form', { name: 'Restablecer contraseña' });
+    await userEvent.type(within(formulario).getByLabelText('Contraseña temporal'), 'Temporal2026');
+    await userEvent.click(within(formulario).getByRole('button', { name: 'Restablecer' }));
+
+    expect(await screen.findByRole('status')).toHaveTextContent('Se restableció la contraseña de med01');
+    const restablecer = llamadas.find((l) => l.url.endsWith(`/usuarios/${medico.id}/restablecer-contrasena`));
+    expect(restablecer?.cuerpo).toEqual({ contrasenaTemporal: 'Temporal2026' });
+  });
+
+  it('busca y filtra por rol y estado', async () => {
+    const llamadas = simularApi();
+    renderizarApp('/usuarios');
+    await screen.findByText('med01');
+
+    await userEvent.type(screen.getByLabelText('Buscar'), 'med');
+    await userEvent.selectOptions(screen.getByLabelText('Rol'), 'Medico');
+    await userEvent.selectOptions(screen.getByLabelText('Estado'), 'Activo');
+    await userEvent.click(screen.getByRole('button', { name: 'Buscar' }));
+
+    const ultima = new URL(llamadas.filter((l) => l.metodo === 'GET').at(-1)!.url);
+    expect(ultima.searchParams.get('busqueda')).toBe('med');
+    expect(ultima.searchParams.get('rol')).toBe('Medico');
+    expect(ultima.searchParams.get('estado')).toBe('Activo');
+  });
+
   it('sin el permiso no muestra la pantalla ni la opción del menú', () => {
     sessionStorage.clear();
     conSesion(sesionFicticia());
