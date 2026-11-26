@@ -50,11 +50,11 @@ Las pruebas de `TInt/` llevan `[Trait("Category", "Integracion")]` para poder fi
 
 **Propósito**: crear la solución, los proyectos y el frontend vacíos, según la estructura de plan.md.
 
-- [ ] T001 Crear la solución `back/Sigh.slnx` con los proyectos de plan.md (`Api/`, `Comp/`, `Dom/`, `Apl/`, `Inf/`, `AdmApi/` y los cuatro proyectos de `back/tests/`) y sus referencias según la regla de dependencia: `Dom` → solo `Comp` (como en docs §6.1); `Apl` → `Dom`, `Comp`; `Inf` → `Apl`, `Dom`, `Comp`; `AdmApi` → `Apl`; `Sigh.Api` → todos. Cada prueba referencia solo la capa que prueba (más `Inf` para los dobles en memoria)
-- [ ] T002 [P] Crear `back/Directory.Build.props` con `net10.0`, `LangVersion` 14, `Nullable` y `ImplicitUsings` activos y `TreatWarningsAsErrors=true` (research D1)
-- [ ] T003 [P] Crear `back/Directory.Packages.props` con versiones centralizadas de: Microsoft.AspNetCore.Authentication.JwtBearer, Microsoft.EntityFrameworkCore, Microsoft.EntityFrameworkCore.Design, Npgsql.EntityFrameworkCore.PostgreSQL, Npgsql, Microsoft.Extensions.Identity.Core, xunit, xunit.runner.visualstudio, Microsoft.NET.Test.Sdk, Microsoft.AspNetCore.Mvc.Testing y Testcontainers.PostgreSql (research D1, D2, D10)
-- [ ] T004 [P] Crear `Api/appsettings.json` solo con valores no secretos: `Jwt:Emisor`, `Jwt:Audiencia`, `Jwt:DuracionMinutos=30` y `Logging`. Sin cadena de conexión, sin clave de firma (principio VI)
-- [ ] T005 [P] Crear el proyecto frontend en `front/` con Vite + React 19 + TypeScript + React Router + Vitest + React Testing Library: `front/package.json`, `front/vite.config.ts` (puerto 5173, entorno `jsdom` para Vitest), `front/tsconfig.json`, `front/index.html`, `front/src/main.tsx` (research D9)
+- [X] T001 Crear la solución `back/Sigh.slnx` con los proyectos de plan.md (`Api/`, `Comp/`, `Dom/`, `Apl/`, `Inf/`, `AdmApi/` y los cuatro proyectos de `back/tests/`) y sus referencias según la regla de dependencia: `Dom` → solo `Comp` (como en docs §6.1); `Apl` → `Dom`, `Comp`; `Inf` → `Apl`, `Dom`, `Comp`; `AdmApi` → `Apl`; `Sigh.Api` → todos. Cada prueba referencia solo la capa que prueba (más `Inf` para los dobles en memoria)
+- [X] T002 [P] Crear `back/Directory.Build.props` con `net10.0`, `LangVersion` 14, `Nullable` y `ImplicitUsings` activos y `TreatWarningsAsErrors=true` (research D1)
+- [X] T003 [P] Crear `back/Directory.Packages.props` con versiones centralizadas de: Microsoft.AspNetCore.Authentication.JwtBearer, Microsoft.EntityFrameworkCore, Microsoft.EntityFrameworkCore.Design, Npgsql.EntityFrameworkCore.PostgreSQL, Npgsql, Microsoft.Extensions.Identity.Core, xunit, xunit.runner.visualstudio, Microsoft.NET.Test.Sdk, Microsoft.AspNetCore.Mvc.Testing y Testcontainers.PostgreSql (research D1, D2, D10)
+- [X] T004 [P] Crear `Api/appsettings.json` solo con valores no secretos: `Jwt:Emisor`, `Jwt:Audiencia`, `Jwt:DuracionMinutos=30` y `Logging`. Sin cadena de conexión, sin clave de firma (principio VI)
+- [X] T005 [P] Crear el proyecto frontend en `front/` con Vite + React 19 + TypeScript + React Router + Vitest + React Testing Library: `front/package.json`, `front/vite.config.ts` (puerto 5173, entorno `jsdom` para Vitest), `front/tsconfig.json`, `front/index.html`, `front/src/main.tsx` (research D9)
 
 ---
 
@@ -67,58 +67,58 @@ seguridad, que usan las cinco historias.
 
 ### Sigh.Compartido
 
-- [ ] T006 [P] Crear los errores de negocio `ReglaNegocioError`, `RecursoNoEncontradoError` y `ConflictoError` en `Comp/Errores/ReglaNegocioError.cs`, `Comp/Errores/RecursoNoEncontradoError.cs` y `Comp/Errores/ConflictoError.cs` (docs §6.2 y §6.4; `ConflictoError` cubre el `409` del contrato)
-- [ ] T007 [P] Crear el puerto `IReloj` y su implementación `RelojSistema` (UTC) en `Comp/Tiempo/IReloj.cs` y `Comp/Tiempo/RelojSistema.cs`
-- [ ] T008 [P] Crear el tipo genérico `Pagina<T>` (`Elementos`, `NumeroPagina`, `Tamano`, `Total`) en `Comp/Paginacion/Pagina.cs`
-- [ ] T009 Crear la conexión y la unidad de trabajo compartidas (research D3): `Comp/Persistencia/ConexionOltp.cs` (un `NpgsqlConnection` por petición, *scoped*, desde `ConnectionStrings__SighOltp`), `Comp/Persistencia/IUnidadDeTrabajo.cs` (`EjecutarEnTransaccionAsync(Func<Task>)`, `TransaccionActiva`) y `Comp/Persistencia/UnidadDeTrabajoNpgsql.cs`. En `Sigh.Compartido.csproj`, el paquete Npgsql va con `PrivateAssets="all"` para que no llegue de forma transitiva a `Dom` (principio I)
-- [ ] T010 [P] Crear el atributo marcador `PermitirConCambioContrasenaPendienteAttribute` (sin dependencias de ASP.NET Core) en `Comp/Autorizacion/PermitirConCambioContrasenaPendienteAttribute.cs` (research D4)
+- [X] T006 [P] Crear los errores de negocio `ReglaNegocioError`, `RecursoNoEncontradoError` y `ConflictoError` en `Comp/Errores/ReglaNegocioError.cs`, `Comp/Errores/RecursoNoEncontradoError.cs` y `Comp/Errores/ConflictoError.cs` (docs §6.2 y §6.4; `ConflictoError` cubre el `409` del contrato)
+- [X] T007 [P] Crear el puerto `IReloj` y su implementación `RelojSistema` (UTC) en `Comp/Tiempo/IReloj.cs` y `Comp/Tiempo/RelojSistema.cs`
+- [X] T008 [P] Crear el tipo genérico `Pagina<T>` (`Elementos`, `NumeroPagina`, `Tamano`, `Total`) en `Comp/Paginacion/Pagina.cs`
+- [X] T009 Crear la conexión y la unidad de trabajo compartidas (research D3): `Comp/Persistencia/ConexionOltp.cs` (un `NpgsqlConnection` por petición, *scoped*, desde `ConnectionStrings__SighOltp`), `Comp/Persistencia/IUnidadDeTrabajo.cs` (`EjecutarEnTransaccionAsync(Func<Task>)`, `TransaccionActiva`) y `Comp/Persistencia/UnidadDeTrabajoNpgsql.cs`. En `Sigh.Compartido.csproj`, el paquete Npgsql va con `PrivateAssets="all"` para que no llegue de forma transitiva a `Dom` (principio I)
+- [X] T010 [P] Crear el atributo marcador `PermitirConCambioContrasenaPendienteAttribute` (sin dependencias de ASP.NET Core) en `Comp/Autorizacion/PermitirConCambioContrasenaPendienteAttribute.cs` (research D4)
 
 ### Dominio: roles, permisos y matriz fija
 
-- [ ] T011 [P] Crear la enumeración fija `CodigoRol` según [data-model.md](./data-model.md) `CodigoRol` en `Dom/Roles/CodigoRol.cs` (FR-011)
-- [ ] T012 [P] Crear las constantes `CodigoPermiso` según [data-model.md](./data-model.md) `CodigoPermiso` (códigos y descripciones) en `Dom/Permisos/CodigoPermiso.cs`
-- [ ] T013 Crear `MatrizPermisos` como valor estático, traducción literal de la tabla "Matriz inicial de permisos" de spec.md, con `PermisosDe(roles)` (unión) y `Filas()`, según [data-model.md](./data-model.md) `MatrizPermisos`, en `Dom/Permisos/MatrizPermisos.cs` (FR-012, FR-013)
+- [X] T011 [P] Crear la enumeración fija `CodigoRol` según [data-model.md](./data-model.md) `CodigoRol` en `Dom/Roles/CodigoRol.cs` (FR-011)
+- [X] T012 [P] Crear las constantes `CodigoPermiso` según [data-model.md](./data-model.md) `CodigoPermiso` (códigos y descripciones) en `Dom/Permisos/CodigoPermiso.cs`
+- [X] T013 Crear `MatrizPermisos` como valor estático, traducción literal de la tabla "Matriz inicial de permisos" de spec.md, con `PermisosDe(roles)` (unión) y `Filas()`, según [data-model.md](./data-model.md) `MatrizPermisos`, en `Dom/Permisos/MatrizPermisos.cs` (FR-012, FR-013)
 
 ### Dominio y persistencia: eventos de seguridad
 
-- [ ] T014 [P] Crear la entidad inmutable `EventoSeguridad` y la enumeración `TipoEventoSeguridad`, sin métodos de modificación, según [data-model.md](./data-model.md) `EventoSeguridad.Tipo`, `EventoSeguridad.Detalle`, `EventoSeguridad.ActorId`, `EventoSeguridad.ObjetivoId` y `EventoSeguridad.FechaHora`, en `Dom/Seguridad/EventoSeguridad.cs` y `Dom/Seguridad/TipoEventoSeguridad.cs` (FR-026)
-- [ ] T015 [P] Crear el puerto de solo inserción `IRepositorioEventosSeguridad` (`AgregarAsync`) en `Dom/Contratos/IRepositorioEventosSeguridad.cs` (research D5)
-- [ ] T016 Crear `AdministracionDbContext` (esquema `administracion`, nombres `snake_case`, usa `ConexionOltp` y se une a la transacción activa con `Database.UseTransactionAsync`, research D3) y el mapeo `EventoSeguridadConfiguracion` según [data-model.md](./data-model.md) tabla `eventos_seguridad`, en `Inf/Persistencia/AdministracionDbContext.cs` y `Inf/Persistencia/Configuraciones/EventoSeguridadConfiguracion.cs`
-- [ ] T017 Implementar `RepositorioEventosSeguridadEfCore` con conexión y transacción propias, para que el evento quede guardado aunque la operación que lo causó se revierta (research D3), en `Inf/Persistencia/RepositorioEventosSeguridadEfCore.cs`
-- [ ] T018 [P] Implementar el doble `RepositorioEventosSeguridadEnMemoria` en `Inf/Persistencia/RepositorioEventosSeguridadEnMemoria.cs` (docs §2: los dobles en memoria viven en Infraestructura)
-- [ ] T019 Crear la migración inicial `Inicial`: esquema `administracion`, tabla `eventos_seguridad` con índice `(fecha_hora DESC)`, función `administracion.bloquear_modificacion()`, *trigger* `BEFORE UPDATE OR DELETE` sobre `eventos_seguridad` y `REVOKE UPDATE, DELETE` (research D5), en `Inf/Persistencia/Migraciones/`
-- [ ] T020 Crear `AgregarModuloAdministracion(IServiceCollection, IConfiguration)` que registra `ConexionOltp`, `IUnidadDeTrabajo`, `IReloj`, `AdministracionDbContext` y los repositorios, en `Inf/DependencyInjection.cs` (principio I, docs §6.5)
+- [X] T014 [P] Crear la entidad inmutable `EventoSeguridad` y la enumeración `TipoEventoSeguridad`, sin métodos de modificación, según [data-model.md](./data-model.md) `EventoSeguridad.Tipo`, `EventoSeguridad.Detalle`, `EventoSeguridad.ActorId`, `EventoSeguridad.ObjetivoId` y `EventoSeguridad.FechaHora`, en `Dom/Seguridad/EventoSeguridad.cs` y `Dom/Seguridad/TipoEventoSeguridad.cs` (FR-026)
+- [X] T015 [P] Crear el puerto de solo inserción `IRepositorioEventosSeguridad` (`AgregarAsync`) en `Dom/Contratos/IRepositorioEventosSeguridad.cs` (research D5)
+- [X] T016 Crear `AdministracionDbContext` (esquema `administracion`, nombres `snake_case`, usa `ConexionOltp` y se une a la transacción activa con `Database.UseTransactionAsync`, research D3) y el mapeo `EventoSeguridadConfiguracion` según [data-model.md](./data-model.md) tabla `eventos_seguridad`, en `Inf/Persistencia/AdministracionDbContext.cs` y `Inf/Persistencia/Configuraciones/EventoSeguridadConfiguracion.cs`
+- [X] T017 Implementar `RepositorioEventosSeguridadEfCore` con conexión y transacción propias, para que el evento quede guardado aunque la operación que lo causó se revierta (research D3), en `Inf/Persistencia/RepositorioEventosSeguridadEfCore.cs`
+- [X] T018 [P] Implementar el doble `RepositorioEventosSeguridadEnMemoria` en `Inf/Persistencia/RepositorioEventosSeguridadEnMemoria.cs` (docs §2: los dobles en memoria viven en Infraestructura)
+- [X] T019 Crear la migración inicial `Inicial`: esquema `administracion`, tabla `eventos_seguridad` con índice `(fecha_hora DESC)`, función `administracion.bloquear_modificacion()`, *trigger* `BEFORE UPDATE OR DELETE` sobre `eventos_seguridad` y `REVOKE UPDATE, DELETE` (research D5), en `Inf/Persistencia/Migraciones/`
+- [X] T020 Crear `AgregarModuloAdministracion(IServiceCollection, IConfiguration)` que registra `ConexionOltp`, `IUnidadDeTrabajo`, `IReloj`, `AdministracionDbContext` y los repositorios, en `Inf/DependencyInjection.cs` (principio I, docs §6.5)
 
 ### Host Sigh.Api
 
-- [ ] T021 Configurar la autenticación JWT HS256: clave desde `Jwt__ClaveFirma` (la API no arranca si falta o tiene menos de 32 bytes), emisor y audiencia desde configuración, `ClockSkew` de 30 s, en `Api/Configuracion/ConfiguracionJwt.cs` (research D4, ADR-012)
-- [ ] T022 Configurar la autorización: una política por cada `CodigoPermiso` que exige el *claim* `perm`; política de respaldo que exige usuario autenticado; requisito global `RequisitoSinCambioPendiente` que responde `403` si el token tiene `cambio_contrasena_pendiente`, salvo en endpoints marcados con `PermitirConCambioContrasenaPendienteAttribute`; en `Api/Autorizacion/ConfiguracionAutorizacion.cs` y `Api/Autorizacion/RequisitoSinCambioPendiente.cs` (research D4, FR-006, FR-007)
-- [ ] T023 Crear el manejador global de errores que traduce `ReglaNegocioError` → `422`, `RecursoNoEncontradoError` → `404`, `ConflictoError` → `409` y cualquier otro error → `500`, siempre en `application/problem+json` con `traceId` y sin trazas internas; y respuestas `401`/`403` también en `problem+json`; en `Api/Middlewares/ManejadorErrores.cs` (principio III, contrato `Problema`)
-- [ ] T024 Crear el *health check* `/salud` que abre la conexión a `sigh_oltp`, en `Api/Salud/VerificacionBaseDatos.cs` (quickstart paso 3)
-- [ ] T025 Crear la aplicación de migraciones al arrancar en `Api/Arranque/AplicarMigraciones.cs`
-- [ ] T026 Escribir `Api/Program.cs`: `AgregarModuloAdministracion`, JWT, autorización, manejador de errores, CORS limitado a `Cors__OrigenPermitido`, controladores con prefijo `/api/v1`, `/salud`, migraciones al arrancar, y registro de `AdmApi` como *application part* (docs §6.5, principio III)
+- [X] T021 Configurar la autenticación JWT HS256: clave desde `Jwt__ClaveFirma` (la API no arranca si falta o tiene menos de 32 bytes), emisor y audiencia desde configuración, `ClockSkew` de 30 s, en `Api/Configuracion/ConfiguracionJwt.cs` (research D4, ADR-012)
+- [X] T022 Configurar la autorización: una política por cada `CodigoPermiso` que exige el *claim* `perm`; política de respaldo que exige usuario autenticado; requisito global `RequisitoSinCambioPendiente` que responde `403` si el token tiene `cambio_contrasena_pendiente`, salvo en endpoints marcados con `PermitirConCambioContrasenaPendienteAttribute`; en `Api/Autorizacion/ConfiguracionAutorizacion.cs` y `Api/Autorizacion/RequisitoSinCambioPendiente.cs` (research D4, FR-006, FR-007)
+- [X] T023 Crear el manejador global de errores que traduce `ReglaNegocioError` → `422`, `RecursoNoEncontradoError` → `404`, `ConflictoError` → `409` y cualquier otro error → `500`, siempre en `application/problem+json` con `traceId` y sin trazas internas; y respuestas `401`/`403` también en `problem+json`; en `Api/Middlewares/ManejadorErrores.cs` (principio III, contrato `Problema`)
+- [X] T024 Crear el *health check* `/salud` que abre la conexión a `sigh_oltp`, en `Api/Salud/VerificacionBaseDatos.cs` (quickstart paso 3)
+- [X] T025 Crear la aplicación de migraciones al arrancar en `Api/Arranque/AplicarMigraciones.cs`
+- [X] T026 Escribir `Api/Program.cs`: `AgregarModuloAdministracion`, JWT, autorización, manejador de errores, CORS limitado a `Cors__OrigenPermitido`, controladores con prefijo `/api/v1`, `/salud`, migraciones al arrancar, y registro de `AdmApi` como *application part* (docs §6.5, principio III)
 
 ### Soporte de pruebas
 
-- [ ] T027 [P] Crear el doble `RelojFijo` en `TApl/Dobles/RelojFijo.cs` y una copia equivalente en `TDom/Dobles/RelojFijo.cs`
-- [ ] T028 [P] Prueba de que `MatrizPermisos` coincide fila por fila con la tabla de spec.md y de que `PermisosDe` devuelve la unión para dos roles, en `TDom/Permisos/MatrizPermisosTests.cs`
-- [ ] T029 [P] Prueba de `EventoSeguridad`: rechaza `Detalle` mayor a 500 caracteres y toma la hora de `IReloj`, en `TDom/Seguridad/EventoSeguridadTests.cs`
-- [ ] T030 [P] Prueba de arquitectura: los ensamblados `Sigh.Administracion.Dominio` y `Sigh.Compartido` (salvo `Persistencia/`) no referencian EF Core, Npgsql ni ASP.NET Core, en `TDom/Arquitectura/ReglaDependenciaTests.cs` (principio I)
-- [ ] T031 Crear `FabricaApiPruebas` (`WebApplicationFactory<Program>`) que reemplaza los repositorios por los dobles en memoria, usa una clave JWT de prueba y ofrece un emisor de tokens de prueba por rol, expirados, con firma inválida o con cambio pendiente, en `TApi/Soporte/FabricaApiPruebas.cs` y `TApi/Soporte/TokensPrueba.cs` (research D10)
-- [ ] T032 Crear el *fixture* `PostgresFixture` con Testcontainers (`postgres:17`) que aplica las migraciones, en `TInt/Soporte/PostgresFixture.cs`
-- [ ] T033 Prueba de integración: `UPDATE` y `DELETE` sobre `administracion.eventos_seguridad` fallan por el *trigger*, en `TInt/Persistencia/EventosSeguridadInmutablesTests.cs` (FR-021, SC-003)
+- [X] T027 [P] Crear el doble `RelojFijo` en `TApl/Dobles/RelojFijo.cs` y una copia equivalente en `TDom/Dobles/RelojFijo.cs`
+- [X] T028 [P] Prueba de que `MatrizPermisos` coincide fila por fila con la tabla de spec.md y de que `PermisosDe` devuelve la unión para dos roles, en `TDom/Permisos/MatrizPermisosTests.cs`
+- [X] T029 [P] Prueba de `EventoSeguridad`: rechaza `Detalle` mayor a 500 caracteres y toma la hora de `IReloj`, en `TDom/Seguridad/EventoSeguridadTests.cs`
+- [X] T030 [P] Prueba de arquitectura: los ensamblados `Sigh.Administracion.Dominio` y `Sigh.Compartido` (salvo `Persistencia/`) no referencian EF Core, Npgsql ni ASP.NET Core, en `TDom/Arquitectura/ReglaDependenciaTests.cs` (principio I)
+- [X] T031 Crear `FabricaApiPruebas` (`WebApplicationFactory<Program>`) que reemplaza los repositorios por los dobles en memoria, usa una clave JWT de prueba y ofrece un emisor de tokens de prueba por rol, expirados, con firma inválida o con cambio pendiente, en `TApi/Soporte/FabricaApiPruebas.cs` y `TApi/Soporte/TokensPrueba.cs` (research D10)
+- [X] T032 Crear el *fixture* `PostgresFixture` con Testcontainers (`postgres:17`) que aplica las migraciones, en `TInt/Soporte/PostgresFixture.cs`
+- [X] T033 Prueba de integración: `UPDATE` y `DELETE` sobre `administracion.eventos_seguridad` fallan por el *trigger*, en `TInt/Persistencia/EventosSeguridadInmutablesTests.cs` (FR-021, SC-003)
 
 ### Frontend base
 
-- [ ] T034 [P] Crear el cliente HTTP que agrega `Authorization: Bearer`, interpreta `problem+json` y ante `401` borra la sesión y lleva al inicio de sesión, en `front/src/api/cliente.ts` (research D9)
-- [ ] T035 Crear el contexto de sesión (token, usuario, permisos, `expiraEn` y cambio pendiente, guardados en `sessionStorage`) y el componente `RutaProtegida` que exige sesión y, opcionalmente, un permiso, en `front/src/auth/ContextoSesion.tsx` y `front/src/auth/RutaProtegida.tsx`
-- [ ] T036 Crear el enrutador y el menú construido con los permisos de la sesión, en `front/src/App.tsx` y `front/src/components/MenuPrincipal.tsx`
+- [X] T034 [P] Crear el cliente HTTP que agrega `Authorization: Bearer`, interpreta `problem+json` y ante `401` borra la sesión y lleva al inicio de sesión, en `front/src/api/cliente.ts` (research D9)
+- [X] T035 Crear el contexto de sesión (token, usuario, permisos, `expiraEn` y cambio pendiente, guardados en `sessionStorage`) y el componente `RutaProtegida` que exige sesión y, opcionalmente, un permiso, en `front/src/auth/ContextoSesion.tsx` y `front/src/auth/RutaProtegida.tsx`
+- [X] T036 Crear el enrutador y el menú construido con los permisos de la sesión, en `front/src/App.tsx` y `front/src/components/MenuPrincipal.tsx`
 
 ### Contenedores
 
-- [ ] T037 [P] Crear `back/Dockerfile` (build con SDK 10 y ejecución con `aspnet:10`, puerto 8080)
-- [ ] T038 [P] Crear `front/Dockerfile` (build con Node 22 y servido con nginx) y `front/nginx.conf` con *fallback* a `index.html`
-- [ ] T039 Crear `tecnologia/docker-compose.yml` con los servicios `postgres` (17), `api` y `web`, todos con *healthcheck* y `restart: always`, leyendo variables de `../.env` (principio XI, quickstart paso 3)
+- [X] T037 [P] Crear `back/Dockerfile` (build con SDK 10 y ejecución con `aspnet:10`, puerto 8080)
+- [X] T038 [P] Crear `front/Dockerfile` (build con Node 22 y servido con nginx) y `front/nginx.conf` con *fallback* a `index.html`
+- [X] T039 Crear `tecnologia/docker-compose.yml` con los servicios `postgres` (17), `api` y `web`, todos con *healthcheck* y `restart: always`, leyendo variables de `../.env` (principio XI, quickstart paso 3)
 
 **Punto de control**: la solución compila, `docker compose up` levanta los tres servicios, `/salud`
 responde y las pruebas de la fase pasan.
@@ -136,34 +136,34 @@ e inválidas y verificar que solo las válidas obtienen una sesión con acceso a
 
 ### Pruebas de la historia 1 ⚠️
 
-- [ ] T040 [P] [US1] Pruebas de `Usuario.Crear` (normalización y validación de [data-model.md](./data-model.md) `Usuario.NombreUsuario`, `Usuario.NombreCompleto`; al menos un rol en `Usuario.Roles`; estado inicial de `Usuario.Estado` y `Usuario.CambioContrasenaPendiente`) y de `Usuario.IntentarAutenticar` (desactivado, bloqueado, quinto fallo fija `Usuario.BloqueadoHasta`, éxito reinicia `Usuario.IntentosFallidos` y actualiza `Usuario.UltimoAcceso`) en `TDom/Usuarios/UsuarioAutenticacionTests.cs`
-- [ ] T041 [P] [US1] Pruebas de `ContrasenaPropuesta` (8 o más caracteres, con letras y números) y de `Usuario.CambiarContrasena` en `TDom/Usuarios/ContrasenaPropuestaTests.cs`
-- [ ] T042 [P] [US1] Pruebas de `IniciarSesionCasoUso`: resultado genérico para contraseña incorrecta, usuario inexistente (calcula hash de referencia, `ActorId` nulo), desactivado y bloqueado; eventos `INICIO_SESION_EXITOSO`, `INICIO_SESION_FALLIDO` y `CUENTA_BLOQUEADA` sin contraseñas; permisos efectivos calculados con `MatrizPermisos`; en `TApl/Autenticacion/IniciarSesionCasoUsoTests.cs`
-- [ ] T043 [P] [US1] Pruebas de `CambiarContrasenaCasoUso` (exige la actual, aplica la política, quita el cambio pendiente, entrega sesión nueva y registra `CONTRASENA_CAMBIADA`) en `TApl/Autenticacion/CambiarContrasenaCasoUsoTests.cs`
-- [ ] T044 [P] [US1] Pruebas de `CrearAdministradorInicialCasoUso`: sin usuarios y con las tres variables crea un `Administrador` con cambio pendiente; si falta una variable no crea nada y avisa sin mostrar valores; si ya hay usuarios no hace nada; en `TApl/AdministradorInicial/CrearAdministradorInicialCasoUsoTests.cs` (FR-016)
-- [ ] T045 [P] [US1] Pruebas de API de `AutenticacionController`: `200` con token cuyos *claims* son `sub`, `name`, `role`, `perm` y `exp` a 30 minutos; `401` con el mismo cuerpo "Usuario o contraseña incorrectos" para los cuatro casos de FR-003/FR-004; `400` por validación; en `TApi/Autenticacion/IniciarSesionTests.cs`
-- [ ] T046 [P] [US1] Pruebas de API de sesión: sin token, con firma inválida y con token vencido → `401`; con cambio pendiente → `403` en cualquier endpoint salvo cambiar contraseña y cerrar sesión; en `TApi/Autenticacion/SesionTests.cs` (FR-002, FR-006, FR-007, SC-001)
-- [ ] T047 [P] [US1] Prueba de integración del repositorio de usuarios: `UNIQUE (nombre_usuario)`, `CHECK` de `estado`, `CHECK` de rol en `usuario_roles`, `ON DELETE RESTRICT` y *token* `version`, según [data-model.md](./data-model.md) tablas `usuarios` y `usuario_roles`, en `TInt/Persistencia/RepositorioUsuariosTests.cs`
-- [ ] T048 [P] [US1] Pruebas de las pantallas de inicio de sesión (éxito, error genérico, redirección obligatoria al cambio de contraseña) y de `RutaProtegida` en `front/src/pages/IniciarSesion.test.tsx` y `front/src/auth/RutaProtegida.test.tsx`
+- [X] T040 [P] [US1] Pruebas de `Usuario.Crear` (normalización y validación de [data-model.md](./data-model.md) `Usuario.NombreUsuario`, `Usuario.NombreCompleto`; al menos un rol en `Usuario.Roles`; estado inicial de `Usuario.Estado` y `Usuario.CambioContrasenaPendiente`) y de `Usuario.IntentarAutenticar` (desactivado, bloqueado, quinto fallo fija `Usuario.BloqueadoHasta`, éxito reinicia `Usuario.IntentosFallidos` y actualiza `Usuario.UltimoAcceso`) en `TDom/Usuarios/UsuarioAutenticacionTests.cs`
+- [X] T041 [P] [US1] Pruebas de `ContrasenaPropuesta` (8 o más caracteres, con letras y números) y de `Usuario.CambiarContrasena` en `TDom/Usuarios/ContrasenaPropuestaTests.cs`
+- [X] T042 [P] [US1] Pruebas de `IniciarSesionCasoUso`: resultado genérico para contraseña incorrecta, usuario inexistente (calcula hash de referencia, `ActorId` nulo), desactivado y bloqueado; eventos `INICIO_SESION_EXITOSO`, `INICIO_SESION_FALLIDO` y `CUENTA_BLOQUEADA` sin contraseñas; permisos efectivos calculados con `MatrizPermisos`; en `TApl/Autenticacion/IniciarSesionCasoUsoTests.cs`
+- [X] T043 [P] [US1] Pruebas de `CambiarContrasenaCasoUso` (exige la actual, aplica la política, quita el cambio pendiente, entrega sesión nueva y registra `CONTRASENA_CAMBIADA`) en `TApl/Autenticacion/CambiarContrasenaCasoUsoTests.cs`
+- [X] T044 [P] [US1] Pruebas de `CrearAdministradorInicialCasoUso`: sin usuarios y con las tres variables crea un `Administrador` con cambio pendiente; si falta una variable no crea nada y avisa sin mostrar valores; si ya hay usuarios no hace nada; en `TApl/AdministradorInicial/CrearAdministradorInicialCasoUsoTests.cs` (FR-016)
+- [X] T045 [P] [US1] Pruebas de API de `AutenticacionController`: `200` con token cuyos *claims* son `sub`, `name`, `role`, `perm` y `exp` a 30 minutos; `401` con el mismo cuerpo "Usuario o contraseña incorrectos" para los cuatro casos de FR-003/FR-004; `400` por validación; en `TApi/Autenticacion/IniciarSesionTests.cs`
+- [X] T046 [P] [US1] Pruebas de API de sesión: sin token, con firma inválida y con token vencido → `401`; con cambio pendiente → `403` en cualquier endpoint salvo cambiar contraseña y cerrar sesión; en `TApi/Autenticacion/SesionTests.cs` (FR-002, FR-006, FR-007, SC-001)
+- [X] T047 [P] [US1] Prueba de integración del repositorio de usuarios: `UNIQUE (nombre_usuario)`, `CHECK` de `estado`, `CHECK` de rol en `usuario_roles`, `ON DELETE RESTRICT` y *token* `version`, según [data-model.md](./data-model.md) tablas `usuarios` y `usuario_roles`, en `TInt/Persistencia/RepositorioUsuariosTests.cs`
+- [X] T048 [P] [US1] Pruebas de las pantallas de inicio de sesión (éxito, error genérico, redirección obligatoria al cambio de contraseña) y de `RutaProtegida` en `front/src/pages/IniciarSesion.test.tsx` y `front/src/auth/RutaProtegida.test.tsx`
 
 ### Implementación de la historia 1
 
-- [ ] T049 [P] [US1] Crear el objeto de valor `ContrasenaPropuesta` (política de FR-005) en `Dom/Usuarios/ContrasenaPropuesta.cs`
-- [ ] T050 [P] [US1] Crear los puertos `IHasherContrasenas` (`Calcular`, `Verificar`) y `IEmisorTokens` en `Dom/Contratos/IHasherContrasenas.cs` y `Dom/Contratos/IEmisorTokens.cs` (research D2, D4)
-- [ ] T051 [US1] Crear la raíz de agregado `Usuario` con `Crear`, `IntentarAutenticar` (devuelve `ResultadoAutenticacion` con motivo interno), `CambiarContrasena` y `EstadoUsuario`, según [data-model.md](./data-model.md) `Usuario.Id`, `Usuario.NombreUsuario`, `Usuario.NombreCompleto`, `Usuario.HashContrasena`, `Usuario.Estado`, `Usuario.CambioContrasenaPendiente`, `Usuario.IntentosFallidos`, `Usuario.BloqueadoHasta`, `Usuario.Roles`, `Usuario.CreadoEn` y `Usuario.UltimoAcceso`, en `Dom/Usuarios/Usuario.cs`, `Dom/Usuarios/EstadoUsuario.cs` y `Dom/Usuarios/ResultadoAutenticacion.cs`
-- [ ] T052 [US1] Crear el puerto `IRepositorioUsuarios` (`ObtenerPorIdAsync`, `ObtenerPorNombreUsuarioAsync`, `ExisteAlgunoAsync`, `AgregarAsync`, `ActualizarAsync`) en `Dom/Contratos/IRepositorioUsuarios.cs`
-- [ ] T053 [P] [US1] Implementar `HasherContrasenasIdentity` con `PasswordHasher<T>` en `Inf/Seguridad/HasherContrasenasIdentity.cs` (research D2)
-- [ ] T054 [P] [US1] Implementar `EmisorTokensJwt` (HS256, 30 minutos; *claims* `sub`, `name`, `role`, `perm` y `cambio_contrasena_pendiente`) en `Inf/Seguridad/EmisorTokensJwt.cs` (research D4)
-- [ ] T055 [US1] Crear el mapeo `UsuarioConfiguracion` (tablas `usuarios` y `usuario_roles`, *token* `version`, `CHECK`, `ON DELETE RESTRICT`) según [data-model.md](./data-model.md) tablas `usuarios` y `usuario_roles`, en `Inf/Persistencia/Configuraciones/UsuarioConfiguracion.cs`
-- [ ] T056 [US1] Implementar `RepositorioUsuariosEfCore` y el doble `RepositorioUsuariosEnMemoria` en `Inf/Persistencia/RepositorioUsuariosEfCore.cs` y `Inf/Persistencia/RepositorioUsuariosEnMemoria.cs`
-- [ ] T057 [US1] Crear la migración `AgregarUsuarios` en `Inf/Persistencia/Migraciones/`
-- [ ] T058 [US1] Implementar `IniciarSesionCasoUso` con su comando y `SesionResultado` (incluye hash de referencia para usuarios inexistentes, research D6) en `Apl/Autenticacion/IniciarSesion/`
-- [ ] T059 [US1] Implementar `CambiarContrasenaCasoUso` y su comando en `Apl/Autenticacion/CambiarContrasena/`
-- [ ] T060 [US1] Implementar `CrearAdministradorInicialCasoUso` en `Apl/AdministradorInicial/CrearAdministradorInicialCasoUso.cs` y su invocación al arrancar (después de las migraciones, leyendo `AdminInicial__*`) en `Api/Arranque/CrearAdministradorInicial.cs` (research D7)
-- [ ] T061 [US1] Crear `AutenticacionController` con `POST iniciar-sesion` (anónimo), `POST cambiar-contrasena` y `POST cerrar-sesion` (ambos con `PermitirConCambioContrasenaPendienteAttribute`) y las solicitudes `IniciarSesionSolicitud` y `CambiarContrasenaSolicitud`, según el contrato, en `AdmApi/Controladores/AutenticacionController.cs` y `AdmApi/Solicitudes/`
-- [ ] T062 [US1] Registrar hasher, emisor, repositorio de usuarios en `Inf/DependencyInjection.cs` y los casos de uso de la historia en `Api/Program.cs`
-- [ ] T063 [P] [US1] Crear la pantalla de inicio de sesión en `front/src/pages/IniciarSesion.tsx` y el botón de cerrar sesión en `front/src/components/MenuPrincipal.tsx`
-- [ ] T064 [US1] Crear la pantalla de cambio de contraseña y la redirección obligatoria cuando `cambioContrasenaPendiente` es verdadero, en `front/src/pages/CambiarContrasena.tsx` y `front/src/auth/RutaProtegida.tsx`
+- [X] T049 [P] [US1] Crear el objeto de valor `ContrasenaPropuesta` (política de FR-005) en `Dom/Usuarios/ContrasenaPropuesta.cs`
+- [X] T050 [P] [US1] Crear los puertos `IHasherContrasenas` (`Calcular`, `Verificar`) y `IEmisorTokens` en `Dom/Contratos/IHasherContrasenas.cs` y `Dom/Contratos/IEmisorTokens.cs` (research D2, D4)
+- [X] T051 [US1] Crear la raíz de agregado `Usuario` con `Crear`, `IntentarAutenticar` (devuelve `ResultadoAutenticacion` con motivo interno), `CambiarContrasena` y `EstadoUsuario`, según [data-model.md](./data-model.md) `Usuario.Id`, `Usuario.NombreUsuario`, `Usuario.NombreCompleto`, `Usuario.HashContrasena`, `Usuario.Estado`, `Usuario.CambioContrasenaPendiente`, `Usuario.IntentosFallidos`, `Usuario.BloqueadoHasta`, `Usuario.Roles`, `Usuario.CreadoEn` y `Usuario.UltimoAcceso`, en `Dom/Usuarios/Usuario.cs`, `Dom/Usuarios/EstadoUsuario.cs` y `Dom/Usuarios/ResultadoAutenticacion.cs`
+- [X] T052 [US1] Crear el puerto `IRepositorioUsuarios` (`ObtenerPorIdAsync`, `ObtenerPorNombreUsuarioAsync`, `ExisteAlgunoAsync`, `AgregarAsync`, `ActualizarAsync`) en `Dom/Contratos/IRepositorioUsuarios.cs`
+- [X] T053 [P] [US1] Implementar `HasherContrasenasIdentity` con `PasswordHasher<T>` en `Inf/Seguridad/HasherContrasenasIdentity.cs` (research D2)
+- [X] T054 [P] [US1] Implementar `EmisorTokensJwt` (HS256, 30 minutos; *claims* `sub`, `name`, `role`, `perm` y `cambio_contrasena_pendiente`) en `Inf/Seguridad/EmisorTokensJwt.cs` (research D4)
+- [X] T055 [US1] Crear el mapeo `UsuarioConfiguracion` (tablas `usuarios` y `usuario_roles`, *token* `version`, `CHECK`, `ON DELETE RESTRICT`) según [data-model.md](./data-model.md) tablas `usuarios` y `usuario_roles`, en `Inf/Persistencia/Configuraciones/UsuarioConfiguracion.cs`
+- [X] T056 [US1] Implementar `RepositorioUsuariosEfCore` y el doble `RepositorioUsuariosEnMemoria` en `Inf/Persistencia/RepositorioUsuariosEfCore.cs` y `Inf/Persistencia/RepositorioUsuariosEnMemoria.cs`
+- [X] T057 [US1] Crear la migración `AgregarUsuarios` en `Inf/Persistencia/Migraciones/`
+- [X] T058 [US1] Implementar `IniciarSesionCasoUso` con su comando y `SesionResultado` (incluye hash de referencia para usuarios inexistentes, research D6) en `Apl/Autenticacion/IniciarSesion/`
+- [X] T059 [US1] Implementar `CambiarContrasenaCasoUso` y su comando en `Apl/Autenticacion/CambiarContrasena/`
+- [X] T060 [US1] Implementar `CrearAdministradorInicialCasoUso` en `Apl/AdministradorInicial/CrearAdministradorInicialCasoUso.cs` y su invocación al arrancar (después de las migraciones, leyendo `AdminInicial__*`) en `Api/Arranque/CrearAdministradorInicial.cs` (research D7)
+- [X] T061 [US1] Crear `AutenticacionController` con `POST iniciar-sesion` (anónimo), `POST cambiar-contrasena` y `POST cerrar-sesion` (ambos con `PermitirConCambioContrasenaPendienteAttribute`) y las solicitudes `IniciarSesionSolicitud` y `CambiarContrasenaSolicitud`, según el contrato, en `AdmApi/Controladores/AutenticacionController.cs` y `AdmApi/Solicitudes/`
+- [X] T062 [US1] Registrar hasher, emisor, repositorio de usuarios en `Inf/DependencyInjection.cs` y los casos de uso de la historia en `Api/Program.cs`
+- [X] T063 [P] [US1] Crear la pantalla de inicio de sesión en `front/src/pages/IniciarSesion.tsx` y el botón de cerrar sesión en `front/src/components/MenuPrincipal.tsx`
+- [X] T064 [US1] Crear la pantalla de cambio de contraseña y la redirección obligatoria cuando `cambioContrasenaPendiente` es verdadero, en `front/src/pages/CambiarContrasena.tsx` y `front/src/auth/RutaProtegida.tsx`
 
 **Punto de control**: el administrador inicial entra, cambia su contraseña y obtiene una sesión
 válida; las credenciales inválidas reciben el mensaje genérico y el bloqueo funciona.

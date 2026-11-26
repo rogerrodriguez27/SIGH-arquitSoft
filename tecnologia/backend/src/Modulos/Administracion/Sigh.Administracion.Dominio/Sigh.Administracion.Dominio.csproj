@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Regla de dependencia: el dominio solo referencia a Sigh.Compartido, sin paquetes externos -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Compartido\Sigh.Compartido\Sigh.Compartido.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="Sigh.Administracion.Infraestructura" />
+  </ItemGroup>
+</Project>
