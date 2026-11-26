@@ -42,7 +42,7 @@ paths:
   /autenticacion/cerrar-sesion:
     post:
       tags: [Autenticacion]
-      summary: Cierra la sesión (el cliente descarta el token; se registra el evento)
+      summary: Cierra la sesión (el cliente descarta el token; la API no guarda estado de sesión, DA07)
       responses:
         '204': { description: Sesión cerrada }
         '401': { $ref: '#/components/responses/NoAutenticado' }
