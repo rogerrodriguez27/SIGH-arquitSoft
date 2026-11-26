@@ -4,7 +4,7 @@
 Roger Eduardo Rodriguez Delgadillo
 
 ## Descripción
-Sistema académico de gestión hospitalaria cuyo módulo núcleo son las **Historias Clínicas Electrónicas (HCE)**, alrededor del cual se articulan admisión y triaje, farmacia, laboratorio, reportes epidemiológicos, explotación analítica (OLAP / BI) y, como valor agregado, un módulo de **alerta epidemiológica temprana**.
+Sistema académico de gestión hospitalaria cuyo módulo núcleo son las **Historias Clínicas Electrónicas (HCE)**, alrededor del cual se articulan admisión y triaje, farmacia, laboratorio, reportes epidemiológicos, explotación analítica (OLAP / BI) y, como valor agregado, un módulo de **alerta epidemiológica temprana**. La identidad de los pacientes se valida con **APIPERU** y los eventos que requieren atención inmediata se avisan con **notificaciones push**.
 
 Es un proyecto individual desarrollado bajo el estándar **Spec-Driven Development (SDD)**: primero se redactan especificaciones detalladas de cada módulo y, a partir de ellas, se genera el código con apoyo de inteligencia artificial (Claude Code).
 
@@ -31,6 +31,7 @@ Universidad Nacional de San Cristóbal de Huamanga (UNSCH) - Escuela Profesional
 4. **Reportes Epidemiológicos**: reportes agregados por diagnóstico, zona y periodo.
 5. **Explotación OLAP / Business Intelligence**: cubos analíticos y dashboards, separados físicamente de la base transaccional.
 6. **Alerta Epidemiológica Temprana (valor agregado)**: proceso automatizado que analiza el datamart OLAP para detectar aumentos inusuales de un diagnóstico en una zona o periodo y notificar al área de epidemiología. Es un módulo independiente y de solo lectura, que no afecta la operación transaccional.
+7. **Notificaciones push**: avisos en el navegador del personal ante eventos que requieren atención (paciente con prioridad I, orden y resultado de laboratorio, receta, stock bajo y alerta epidemiológica), sin datos clínicos y con bandeja interna.
 
 ## Tecnologías previstas
 | Capa | Tecnología |
@@ -41,10 +42,20 @@ Universidad Nacional de San Cristóbal de Huamanga (UNSCH) - Escuela Profesional
 | Caché | Redis |
 | ETL | Scripts Python programados (cron) |
 | Analítica (OLAP / BI) | PostgreSQL (vistas materializadas / datamart) + Metabase |
-| Seguridad | JWT, TLS, AWS WAF (capa básica), Fail2ban |
+| Validación de DNI | APIPERU (API externa con datos de RENIEC) |
+| Notificaciones | Web Push estándar (claves VAPID) + Service Worker |
+| Seguridad | JWT, TLS, AWS WAF (capa básica), Fail2ban, secretos en variables de entorno |
 | Observabilidad | Grafana / Prometheus |
 | Contenedores | Docker Compose |
 | Nube | AWS (EC2, EBS, S3) |
+
+---
+
+## Configuración de secretos
+Las credenciales (token de APIPERU, claves VAPID, etc.) **nunca se suben al repositorio**.
+1. Copia `.env.example` con el nombre `.env`.
+2. Completa los valores reales en `.env`. Este archivo está en `.gitignore` y solo existe en tu computadora o en el servidor.
+3. Antes de cada commit, verifica con `git check-ignore -v .env` que Git lo ignora.
 
 ---
 
@@ -86,4 +97,5 @@ Universidad Nacional de San Cristóbal de Huamanga (UNSCH) - Escuela Profesional
 ## Estado del proyecto
 - [x] Estructura del repositorio
 - [x] Sprint 1: análisis, arquitectura, diseño y modelo C4
+- [x] Correcciones del Sprint 1: validación de DNI con APIPERU, notificaciones push y gestión de secretos
 - [ ] Sprints siguientes: especificaciones SDD e implementación
