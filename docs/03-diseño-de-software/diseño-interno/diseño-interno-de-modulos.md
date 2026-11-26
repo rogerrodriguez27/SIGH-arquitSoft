@@ -111,7 +111,7 @@ src/
 |---|---|---|
 | RN-01 | Toda atención debe pertenecer a una historia clínica existente. | `HistoriaClinica` |
 | RN-02 | Una atención solo puede firmarse si tiene al menos un diagnóstico con un código CIE-10 válido. | `Atencion`, `ICatalogoCie10` |
-| RN-03 | Solo un usuario con rol Médico puede registrar y firmar una atención. | Middleware de autorización, `Atencion` |
+| RN-03 | Solo un usuario con rol Médico puede registrar una atención, y solo el médico que la registró puede firmarla. | Middleware de autorización, `Atencion` |
 | RN-04 | Una atención firmada no se modifica ni se elimina. | `Atencion` |
 | RN-05 | Las correcciones se registran como una nota vinculada a la atención original, con autor y fecha. | `Atencion`, `NotaCorreccion` |
 | RN-06 | Todo acceso o modificación a una historia clínica se registra en la bitácora de auditoría. | `IBitacoraAuditoria` |
