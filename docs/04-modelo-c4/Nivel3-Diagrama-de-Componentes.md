@@ -7,7 +7,7 @@
 
 ## 1. Objetivo
 
-Abrir el contenedor **API SIGH** del nivel 2 y mostrar sus **componentes**: los módulos del monolito modular, la responsabilidad de cada uno y cómo se relacionan entre sí y con la base transaccional, el datamart, la caché y el servicio RENIEC.
+Abrir el contenedor **API SIGH** del nivel 2 y mostrar sus **componentes**: los módulos del monolito modular, la responsabilidad de cada uno y cómo se relacionan entre sí y con la base transaccional, el datamart, la caché y los servicios APIPERU y Web Push.
 
 | Aspecto | Descripción |
 |---|---|
@@ -38,6 +38,7 @@ Abrir el contenedor **API SIGH** del nivel 2 y mostrar sus **componentes**: los 
 | **Laboratorio** | Exámenes | Recepción de órdenes y registro de resultados vinculados a la historia clínica | `src/Modulos/Laboratorio/` |
 | **Administración** | Identidad, acceso y catálogos | Usuarios, roles, permisos, catálogos (CIE-10, medicamentos, exámenes) y bitácora de accesos | `src/Modulos/Administracion/` |
 | **Reportes y Alertas** | Análisis epidemiológico | Reportes por diagnóstico, zona y periodo, y revisión del estado de las alertas | `src/Modulos/Reportes/` |
+| **Notificaciones** | Avisos al personal | Recibe eventos de los módulos y de la alerta epidemiológica, guarda la bandeja interna, gestiona suscripciones y envía push sin datos clínicos | `src/Modulos/Notificaciones/` |
 
 ---
 
@@ -51,6 +52,7 @@ Abrir el contenedor **API SIGH** del nivel 2 y mostrar sus **componentes**: los 
 | Farmacia | HCE | Lee las recetas emitidas | Llamada en memoria (fachada `IHceFachada`) |
 | Laboratorio | HCE | Lee las órdenes de examen y vincula los resultados | Llamada en memoria (fachada `IHceFachada`) |
 | HCE | Administración | Registra cada acceso en la bitácora | Llamada en memoria (`IBitacoraAuditoria`) |
+| Admisión, HCE, Farmacia y Laboratorio | Notificaciones | Publican eventos de dominio (por ejemplo, `ResultadoLaboratorioRegistrado`) | Eventos en memoria (Observer) |
 
 ---
 
@@ -61,7 +63,9 @@ Abrir el contenedor **API SIGH** del nivel 2 y mostrar sus **componentes**: los 
 | Todos los módulos clínicos | Base transaccional (`sigh_oltp`) | Cada módulo lee y escribe **solo sus propias tablas** | SQL | Repository |
 | Reportes y Alertas | Datamart analítico (`sigh_olap`) | Consulta reportes y alertas en modo solo lectura | SQL | Repository (solo lectura) |
 | HCE, Farmacia y Laboratorio | Caché (Redis) | Guardan y leen catálogos en memoria | TCP | Decorator |
-| Admisión y Triaje | Servicio RENIEC (simulado) | Valida el DNI de los pacientes | HTTPS/JSON | Adapter |
+| Admisión y Triaje | Servicio APIPERU | Valida el DNI de los pacientes | HTTPS/JSON + token | Adapter + Circuit Breaker |
+| Notificaciones | Servicio Web Push | Envía las notificaciones push | HTTPS + VAPID | Observer |
+| Notificaciones | Base transaccional (`sigh_oltp`) | Guarda suscripciones y la bandeja de notificaciones | SQL | Repository |
 
 ---
 
@@ -72,8 +76,9 @@ Abrir el contenedor **API SIGH** del nivel 2 y mostrar sus **componentes**: los 
 | 1 | Todos los componentes se despliegan juntos en el contenedor API SIGH | Es un monolito: un solo proceso y un solo despliegue |
 | 2 | Un módulo usa a otro solo a través de su fachada pública (por ejemplo, `IHceFachada`) | Evita que un cambio interno en un módulo rompa a los demás |
 | 3 | Un módulo no lee ni escribe las tablas de otro módulo | Mantiene la independencia de los datos de cada módulo |
-| 4 | Cada sistema externo se integra en un único módulo | La integración queda en un solo lugar y es fácil de reemplazar (RENIEC solo en Admisión y Triaje) |
+| 4 | Cada sistema externo se integra en un único módulo | La integración queda en un solo lugar y es fácil de reemplazar (APIPERU solo en Admisión y Triaje; Web Push solo en Notificaciones) |
 | 5 | Ningún módulo clínico consulta el datamart; solo Reportes y Alertas lo hace | Mantiene la separación OLTP / OLAP |
 | 6 | Cada módulo se organiza por dentro con Clean Architecture | Las reglas del negocio clínico no dependen de la tecnología (ver nivel 4) |
+| 7 | Los módulos no envían notificaciones: publican eventos y Notificaciones decide a quién avisar | Desacopla los módulos del canal de aviso (ADR-014) |
 
 ---
