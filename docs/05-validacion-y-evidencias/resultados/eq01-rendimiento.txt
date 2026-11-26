@@ -1,0 +1,49 @@
+
+
+  █ THRESHOLDS 
+
+    checks
+    ✓ 'rate==1' rate=100.00%
+
+    http_req_duration{scenario:inicios_de_sesion_simultaneos}
+    ✓ 'p(95)<2000' p(95)=571.61ms
+
+    http_req_duration{scenario:operaciones_con_100_usuarios}
+    ✓ 'p(95)<2000' p(95)=20.33ms
+
+    http_req_failed{fase:medicion}
+    ✓ 'rate<0.01' rate=0.00%
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 35662   226.408196/s
+    checks_succeeded...: 100.00% 35662 out of 35662
+    checks_failed......: 0.00%   0 out of 35662
+
+    ✓ inicio de sesión → 200 con token
+    ✓ listar usuarios → 200
+    ✓ matriz de permisos → 200
+    ✓ consultar bitácora → 200
+
+    HTTP
+    http_req_duration..............................: avg=13.05ms  min=1.32ms   med=9.05ms   max=587.61ms p(90)=16.78ms  p(95)=24.1ms  
+      { expected_response:true }...................: avg=13.05ms  min=1.32ms   med=9.05ms   max=587.61ms p(90)=16.78ms  p(95)=24.1ms  
+      { scenario:inicios_de_sesion_simultaneos }...: avg=426.92ms min=104.74ms med=465.89ms max=587.61ms p(90)=560.47ms p(95)=571.61ms
+      { scenario:operaciones_con_100_usuarios }....: avg=11.53ms  min=1.32ms   med=8.98ms   max=220.34ms p(90)=16.31ms  p(95)=20.33ms 
+    http_req_failed................................: 0.00%  0 out of 35963
+      { fase:medicion }............................: 0.00%  0 out of 35662
+    http_reqs......................................: 35963  228.319162/s
+
+    EXECUTION
+    iteration_duration.............................: avg=1.01s    min=121.73ms med=1.01s    max=1.23s    p(90)=1.01s    p(95)=1.02s   
+    iterations.....................................: 11954  75.892647/s
+    vus............................................: 51     min=0          max=100
+    vus_max........................................: 200    min=200        max=200
+
+    NETWORK
+    data_received..................................: 108 MB 686 kB/s
+    data_sent......................................: 24 MB  152 kB/s
+
+
+

@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" />
+    <PackageReference Include="Npgsql" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Compartido\Sigh.Compartido\Sigh.Compartido.csproj" />
+    <ProjectReference Include="..\Modulos\Administracion\Sigh.Administracion.Dominio\Sigh.Administracion.Dominio.csproj" />
+    <ProjectReference Include="..\Modulos\Administracion\Sigh.Administracion.Aplicacion\Sigh.Administracion.Aplicacion.csproj" />
+    <ProjectReference Include="..\Modulos\Administracion\Sigh.Administracion.Infraestructura\Sigh.Administracion.Infraestructura.csproj" />
+    <ProjectReference Include="..\Modulos\Administracion\Sigh.Administracion.Api\Sigh.Administracion.Api.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="Sigh.Api.Tests" />
+  </ItemGroup>
+</Project>

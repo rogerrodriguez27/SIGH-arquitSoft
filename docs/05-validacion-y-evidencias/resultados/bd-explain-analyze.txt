@@ -1,0 +1,202 @@
+=== Q1. Inicio de sesión: usuario por nombre (índice único ux_usuarios_nombre_usuario) ===
+                                                 QUERY PLAN                                                  
+-------------------------------------------------------------------------------------------------------------
+ Nested Loop Left Join (actual time=0.036..0.038 rows=1 loops=1)
+   Buffers: shared hit=6
+   ->  Index Scan using ux_usuarios_nombre_usuario on usuarios u (actual time=0.023..0.023 rows=1 loops=1)
+         Index Cond: ((nombre_usuario)::text = 'admin'::text)
+         Buffers: shared hit=3
+   ->  Index Only Scan using "PK_usuario_roles" on usuario_roles r (actual time=0.010..0.010 rows=1 loops=1)
+         Index Cond: (usuario_id = u.id)
+         Heap Fetches: 1
+         Buffers: shared hit=3
+ Planning:
+   Buffers: shared hit=296
+ Planning Time: 1.117 ms
+ Execution Time: 0.091 ms
+(13 rows)
+
+=== Q2. Bitácora: un usuario en los últimos 30 días, página 1 (ix_bitacora_accesos_hce_usuario_fecha_hora) ===
+                                                                             QUERY PLAN                                                                              
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Limit (actual time=0.154..0.155 rows=20 loops=1)
+   Buffers: shared hit=33
+   ->  Incremental Sort (actual time=0.153..0.154 rows=20 loops=1)
+         Sort Key: fecha_hora DESC, id DESC
+         Presorted Key: fecha_hora
+         Full-sort Groups: 1  Sort Method: quicksort  Average Memory: 29kB  Peak Memory: 29kB
+         Buffers: shared hit=33
+         ->  Index Scan using ix_bitacora_accesos_hce_usuario_fecha_hora on bitacora_accesos_hce (actual time=0.032..0.127 rows=21 loops=1)
+               Index Cond: ((usuario_id = '00000000-0000-0000-0000-000000000042'::uuid) AND (fecha_hora >= (now() - '30 days'::interval)) AND (fecha_hora <= now()))
+               Buffers: shared hit=24
+ Planning:
+   Buffers: shared hit=120
+ Planning Time: 0.770 ms
+ Execution Time: 0.172 ms
+(14 rows)
+
+=== Q2b. Total de la misma consulta (COUNT para la paginación) ===
+                                                                             QUERY PLAN                                                                              
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Aggregate (actual time=0.080..0.080 rows=1 loops=1)
+   Buffers: shared hit=28
+   ->  Bitmap Heap Scan on bitacora_accesos_hce (actual time=0.040..0.077 rows=25 loops=1)
+         Recheck Cond: ((usuario_id = '00000000-0000-0000-0000-000000000042'::uuid) AND (fecha_hora >= (now() - '30 days'::interval)) AND (fecha_hora <= now()))
+         Heap Blocks: exact=25
+         Buffers: shared hit=28
+         ->  Bitmap Index Scan on ix_bitacora_accesos_hce_usuario_fecha_hora (actual time=0.026..0.026 rows=25 loops=1)
+               Index Cond: ((usuario_id = '00000000-0000-0000-0000-000000000042'::uuid) AND (fecha_hora >= (now() - '30 days'::interval)) AND (fecha_hora <= now()))
+               Buffers: shared hit=3
+ Planning:
+   Buffers: shared hit=9
+ Planning Time: 0.080 ms
+ Execution Time: 0.135 ms
+(13 rows)
+
+=== Q3. Bitácora: una historia clínica en todo el año (ix_bitacora_accesos_hce_historia_fecha_hora) ===
+                                                                                QUERY PLAN                                                                                 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Limit (actual time=0.272..0.274 rows=20 loops=1)
+   Buffers: shared hit=23
+   ->  Sort (actual time=0.271..0.272 rows=20 loops=1)
+         Sort Key: fecha_hora DESC, id DESC
+         Sort Method: quicksort  Memory: 29kB
+         Buffers: shared hit=23
+         ->  Bitmap Heap Scan on bitacora_accesos_hce (actual time=0.097..0.262 rows=20 loops=1)
+               Recheck Cond: ((historia_id = '10000000-0000-0000-0000-000000000123'::uuid) AND (fecha_hora >= (now() - '1 year'::interval)) AND (fecha_hora <= now()))
+               Heap Blocks: exact=20
+               Buffers: shared hit=23
+               ->  Bitmap Index Scan on ix_bitacora_accesos_hce_historia_fecha_hora (actual time=0.090..0.090 rows=20 loops=1)
+                     Index Cond: ((historia_id = '10000000-0000-0000-0000-000000000123'::uuid) AND (fecha_hora >= (now() - '1 year'::interval)) AND (fecha_hora <= now()))
+                     Buffers: shared hit=3
+ Planning:
+   Buffers: shared hit=6
+ Planning Time: 0.127 ms
+ Execution Time: 0.288 ms
+(17 rows)
+
+=== Q4. Bitácora: todo el año sin otros filtros, página 1 (ix_bitacora_accesos_hce_fecha_hora) ===
+                                                             QUERY PLAN                                                             
+------------------------------------------------------------------------------------------------------------------------------------
+ Limit (actual time=0.190..0.193 rows=20 loops=1)
+   Buffers: shared hit=23
+   ->  Incremental Sort (actual time=0.190..0.191 rows=20 loops=1)
+         Sort Key: fecha_hora DESC, id DESC
+         Presorted Key: fecha_hora
+         Full-sort Groups: 1  Sort Method: quicksort  Average Memory: 29kB  Peak Memory: 29kB
+         Buffers: shared hit=23
+         ->  Index Scan using ix_bitacora_accesos_hce_fecha_hora on bitacora_accesos_hce (actual time=0.010..0.180 rows=21 loops=1)
+               Index Cond: ((fecha_hora >= (now() - '1 year'::interval)) AND (fecha_hora <= now()))
+               Buffers: shared hit=23
+ Planning:
+   Buffers: shared hit=6
+ Planning Time: 0.090 ms
+ Execution Time: 0.205 ms
+(14 rows)
+
+=== Q4b. Total de todo el año (peor caso del COUNT) ===
+                                        QUERY PLAN                                        
+------------------------------------------------------------------------------------------
+ Aggregate (actual time=21.945..21.947 rows=1 loops=1)
+   Buffers: shared hit=1786
+   ->  Seq Scan on bitacora_accesos_hce (actual time=0.006..18.789 rows=100000 loops=1)
+         Filter: ((fecha_hora <= now()) AND (fecha_hora >= (now() - '1 year'::interval)))
+         Buffers: shared hit=1786
+ Planning:
+   Buffers: shared hit=6
+ Planning Time: 0.070 ms
+ Execution Time: 21.966 ms
+(9 rows)
+
+=== Q5. Bitácora: denegados de la última semana con una acción (índice de fecha + filtro) ===
+                                                       QUERY PLAN                                                       
+------------------------------------------------------------------------------------------------------------------------
+ Limit (actual time=1.356..1.359 rows=20 loops=1)
+   Buffers: shared hit=1211
+   ->  Sort (actual time=1.355..1.356 rows=20 loops=1)
+         Sort Key: fecha_hora DESC, id DESC
+         Sort Method: quicksort  Memory: 28kB
+         Buffers: shared hit=1211
+         ->  Bitmap Heap Scan on bitacora_accesos_hce (actual time=0.415..1.347 rows=24 loops=1)
+               Recheck Cond: ((fecha_hora >= (now() - '7 days'::interval)) AND (fecha_hora <= now()))
+               Filter: (((accion)::text = 'CONSULTAR_HISTORIA'::text) AND ((resultado)::text = 'Denegado'::text))
+               Rows Removed by Filter: 1897
+               Heap Blocks: exact=1203
+               Buffers: shared hit=1211
+               ->  Bitmap Index Scan on ix_bitacora_accesos_hce_fecha_hora (actual time=0.272..0.272 rows=1921 loops=1)
+                     Index Cond: ((fecha_hora >= (now() - '7 days'::interval)) AND (fecha_hora <= now()))
+                     Buffers: shared hit=8
+ Planning:
+   Buffers: shared hit=3
+ Planning Time: 0.150 ms
+ Execution Time: 1.395 ms
+(19 rows)
+
+=== Q6. Inserción en la bitácora (lo que hace cada acceso a la HCE) ===
+BEGIN
+                                QUERY PLAN                                
+--------------------------------------------------------------------------
+ Insert on bitacora_accesos_hce (actual time=0.112..0.112 rows=0 loops=1)
+   Buffers: shared hit=13
+   ->  Result (actual time=0.024..0.024 rows=1 loops=1)
+ Planning Time: 0.013 ms
+ Execution Time: 0.122 ms
+(5 rows)
+
+ROLLBACK
+=== Índices del esquema administracion ===
+       tablename       |                  indexname                  |                                                                  indexdef                                                                  
+-----------------------+---------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------
+ bitacora_accesos_hce  | PK_bitacora_accesos_hce                     | CREATE UNIQUE INDEX "PK_bitacora_accesos_hce" ON administracion.bitacora_accesos_hce USING btree (id)
+ bitacora_accesos_hce  | ix_bitacora_accesos_hce_fecha_hora          | CREATE INDEX ix_bitacora_accesos_hce_fecha_hora ON administracion.bitacora_accesos_hce USING btree (fecha_hora DESC)
+ bitacora_accesos_hce  | ix_bitacora_accesos_hce_historia_fecha_hora | CREATE INDEX ix_bitacora_accesos_hce_historia_fecha_hora ON administracion.bitacora_accesos_hce USING btree (historia_id, fecha_hora DESC)
+ bitacora_accesos_hce  | ix_bitacora_accesos_hce_usuario_fecha_hora  | CREATE INDEX ix_bitacora_accesos_hce_usuario_fecha_hora ON administracion.bitacora_accesos_hce USING btree (usuario_id, fecha_hora DESC)
+ eventos_seguridad     | PK_eventos_seguridad                        | CREATE UNIQUE INDEX "PK_eventos_seguridad" ON administracion.eventos_seguridad USING btree (id)
+ eventos_seguridad     | ix_eventos_seguridad_fecha_hora             | CREATE INDEX ix_eventos_seguridad_fecha_hora ON administracion.eventos_seguridad USING btree (fecha_hora DESC)
+ historial_migraciones | PK_historial_migraciones                    | CREATE UNIQUE INDEX "PK_historial_migraciones" ON administracion.historial_migraciones USING btree ("MigrationId")
+ permisos              | PK_permisos                                 | CREATE UNIQUE INDEX "PK_permisos" ON administracion.permisos USING btree (codigo)
+ rol_permisos          | IX_rol_permisos_permiso                     | CREATE INDEX "IX_rol_permisos_permiso" ON administracion.rol_permisos USING btree (permiso)
+ rol_permisos          | PK_rol_permisos                             | CREATE UNIQUE INDEX "PK_rol_permisos" ON administracion.rol_permisos USING btree (rol, permiso)
+ roles                 | PK_roles                                    | CREATE UNIQUE INDEX "PK_roles" ON administracion.roles USING btree (codigo)
+ usuario_roles         | PK_usuario_roles                            | CREATE UNIQUE INDEX "PK_usuario_roles" ON administracion.usuario_roles USING btree (usuario_id, rol)
+ usuarios              | PK_usuarios                                 | CREATE UNIQUE INDEX "PK_usuarios" ON administracion.usuarios USING btree (id)
+ usuarios              | ux_usuarios_nombre_usuario                  | CREATE UNIQUE INDEX ux_usuarios_nombre_usuario ON administracion.usuarios USING btree (nombre_usuario)
+(14 rows)
+
+=== Triggers de inmutabilidad ===
+        tabla         |     trigger_name      | action_timing |    eventos     | action_orientation 
+----------------------+-----------------------+---------------+----------------+--------------------
+ bitacora_accesos_hce | bloquear_modificacion | BEFORE        | DELETE, UPDATE | STATEMENT
+ eventos_seguridad    | bloquear_modificacion | BEFORE        | DELETE, UPDATE | STATEMENT
+(2 rows)
+
+=== Uso de índices durante las pruebas (pg_stat_user_indexes) ===
+         tabla         |                   indice                    | lecturas 
+-----------------------+---------------------------------------------+----------
+ usuario_roles         | PK_usuario_roles                            |   105748
+ bitacora_accesos_hce  | ix_bitacora_accesos_hce_fecha_hora          |    98998
+ usuarios              | ux_usuarios_nombre_usuario                  |    26375
+ usuarios              | PK_usuarios                                 |     1583
+ permisos              | PK_permisos                                 |       22
+ roles                 | PK_roles                                    |       22
+ bitacora_accesos_hce  | ix_bitacora_accesos_hce_historia_fecha_hora |        0
+ historial_migraciones | PK_historial_migraciones                    |        0
+ bitacora_accesos_hce  | ix_bitacora_accesos_hce_usuario_fecha_hora  |        0
+ eventos_seguridad     | PK_eventos_seguridad                        |        0
+ eventos_seguridad     | ix_eventos_seguridad_fecha_hora             |        0
+ rol_permisos          | PK_rol_permisos                             |        0
+ rol_permisos          | IX_rol_permisos_permiso                     |        0
+ bitacora_accesos_hce  | PK_bitacora_accesos_hce                     |        0
+(14 rows)
+
+=== Conexiones ===
+ max_connections 
+-----------------
+ 100
+(1 row)
+
+ conexiones_abiertas | activas 
+---------------------+---------
+                   2 |       1
+(1 row)
+

@@ -1,0 +1,10 @@
+**/bin/
+**/obj/
+**/.vs/
+**/*.user
+tests/
+.config/
+dotnet-tools.json
+Dockerfile
+.dockerignore
+**/.env*

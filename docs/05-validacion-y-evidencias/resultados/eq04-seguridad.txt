@@ -1,0 +1,94 @@
+time="2026-11-26T10:51:16Z" level=info msg="Intentos no autorizados ejecutados: 54" source=console
+
+
+  █ THRESHOLDS 
+
+    checks
+    ✓ 'rate==1' rate=100.00%
+
+      {caso:no-autorizado}
+      ✓ 'rate==1' rate=100.00%
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 57      32.900624/s
+    checks_succeeded...: 100.00% 57 out of 57
+    checks_failed......: 0.00%   0 out of 57
+
+    ✓ GET usuarios sin sesión → 401 sin información
+    ✓ GET usuarios con token manipulado → 401
+    ✓ GET usuarios como PersonalAdmision → 403 sin información
+    ✓ GET usuarios como EnfermeroTriaje → 403 sin información
+    ✓ GET usuarios como Medico → 403 sin información
+    ✓ GET usuarios como Farmaceutico → 403 sin información
+    ✓ GET usuarios como PersonalLaboratorio → 403 sin información
+    ✓ GET usuarios como Epidemiologo → 403 sin información
+    ✓ GET usuarios como Directivo → 403 sin información
+    ✓ POST usuarios sin sesión → 401 sin información
+    ✓ POST usuarios con token manipulado → 401
+    ✓ POST usuarios como PersonalAdmision → 403 sin información
+    ✓ POST usuarios como EnfermeroTriaje → 403 sin información
+    ✓ POST usuarios como Medico → 403 sin información
+    ✓ POST usuarios como Farmaceutico → 403 sin información
+    ✓ POST usuarios como PersonalLaboratorio → 403 sin información
+    ✓ POST usuarios como Epidemiologo → 403 sin información
+    ✓ POST usuarios como Directivo → 403 sin información
+    ✓ PUT roles sin sesión → 401 sin información
+    ✓ PUT roles con token manipulado → 401
+    ✓ PUT roles como PersonalAdmision → 403 sin información
+    ✓ PUT roles como EnfermeroTriaje → 403 sin información
+    ✓ PUT roles como Medico → 403 sin información
+    ✓ PUT roles como Farmaceutico → 403 sin información
+    ✓ PUT roles como PersonalLaboratorio → 403 sin información
+    ✓ PUT roles como Epidemiologo → 403 sin información
+    ✓ PUT roles como Directivo → 403 sin información
+    ✓ POST desactivar sin sesión → 401 sin información
+    ✓ POST desactivar con token manipulado → 401
+    ✓ POST desactivar como PersonalAdmision → 403 sin información
+    ✓ POST desactivar como EnfermeroTriaje → 403 sin información
+    ✓ POST desactivar como Medico → 403 sin información
+    ✓ POST desactivar como Farmaceutico → 403 sin información
+    ✓ POST desactivar como PersonalLaboratorio → 403 sin información
+    ✓ POST desactivar como Epidemiologo → 403 sin información
+    ✓ POST desactivar como Directivo → 403 sin información
+    ✓ GET matriz sin sesión → 401 sin información
+    ✓ GET matriz con token manipulado → 401
+    ✓ GET matriz como PersonalAdmision → 403 sin información
+    ✓ GET matriz como EnfermeroTriaje → 403 sin información
+    ✓ GET matriz como Medico → 403 sin información
+    ✓ GET matriz como Farmaceutico → 403 sin información
+    ✓ GET matriz como PersonalLaboratorio → 403 sin información
+    ✓ GET matriz como Epidemiologo → 403 sin información
+    ✓ GET matriz como Directivo → 403 sin información
+    ✓ GET bitácora sin sesión → 401 sin información
+    ✓ GET bitácora con token manipulado → 401
+    ✓ GET bitácora como PersonalAdmision → 403 sin información
+    ✓ GET bitácora como EnfermeroTriaje → 403 sin información
+    ✓ GET bitácora como Medico → 403 sin información
+    ✓ GET bitácora como Farmaceutico → 403 sin información
+    ✓ GET bitácora como PersonalLaboratorio → 403 sin información
+    ✓ GET bitácora como Epidemiologo → 403 sin información
+    ✓ GET bitácora como Directivo → 403 sin información
+    ✓ GET usuarios como Administrador → 200
+    ✓ GET matriz como Administrador → 200
+    ✓ GET bitácora como Administrador → 200
+
+    HTTP
+    http_req_duration..............: avg=20.09ms min=1.52ms med=4.26ms  max=76.71ms p(90)=62.37ms p(95)=75.29ms
+      { expected_response:true }...: avg=48.8ms  min=1.83ms med=43.76ms max=76.71ms p(90)=76.06ms p(95)=76.6ms 
+    http_req_failed................: 63.52% 54 out of 85
+    http_reqs......................: 85     49.062335/s
+
+    EXECUTION
+    iteration_duration.............: avg=225ms   min=225ms  med=225ms   max=225ms   p(90)=225ms   p(95)=225ms  
+    iterations.....................: 1      0.577204/s
+    vus............................: 0      min=0        max=0
+    vus_max........................: 1      min=1        max=1
+
+    NETWORK
+    data_received..................: 57 kB  33 kB/s
+    data_sent......................: 52 kB  30 kB/s
+
+
+

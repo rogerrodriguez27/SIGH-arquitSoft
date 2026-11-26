@@ -1,0 +1,532 @@
+﻿{
+    "root_group":  {
+                       "name":  "",
+                       "path":  "",
+                       "id":  "d41d8cd98f00b204e9800998ecf8427e",
+                       "groups":  {
+
+                                  },
+                       "checks":  {
+                                      "GET usuarios sin sesión → 401 sin información":  {
+                                                                                            "name":  "GET usuarios sin sesión → 401 sin información",
+                                                                                            "path":  "::GET usuarios sin sesión → 401 sin información",
+                                                                                            "id":  "43967b9ca7ca02ba91c337d9ae0065c2",
+                                                                                            "passes":  1,
+                                                                                            "fails":  0
+                                                                                        },
+                                      "GET usuarios con token manipulado → 401":  {
+                                                                                      "path":  "::GET usuarios con token manipulado → 401",
+                                                                                      "id":  "07c2db12e18ec9842312cde699ceed8e",
+                                                                                      "passes":  1,
+                                                                                      "fails":  0,
+                                                                                      "name":  "GET usuarios con token manipulado → 401"
+                                                                                  },
+                                      "GET usuarios como PersonalAdmision → 403 sin información":  {
+                                                                                                       "id":  "8957172eb9b87613be1199ad65d63e22",
+                                                                                                       "passes":  1,
+                                                                                                       "fails":  0,
+                                                                                                       "name":  "GET usuarios como PersonalAdmision → 403 sin información",
+                                                                                                       "path":  "::GET usuarios como PersonalAdmision → 403 sin información"
+                                                                                                   },
+                                      "GET usuarios como EnfermeroTriaje → 403 sin información":  {
+                                                                                                      "id":  "94b65fcd42c19981fbacaa672dc8ca7d",
+                                                                                                      "passes":  1,
+                                                                                                      "fails":  0,
+                                                                                                      "name":  "GET usuarios como EnfermeroTriaje → 403 sin información",
+                                                                                                      "path":  "::GET usuarios como EnfermeroTriaje → 403 sin información"
+                                                                                                  },
+                                      "GET usuarios como Medico → 403 sin información":  {
+                                                                                             "name":  "GET usuarios como Medico → 403 sin información",
+                                                                                             "path":  "::GET usuarios como Medico → 403 sin información",
+                                                                                             "id":  "7df92f133f5896444d3d22407758dfc2",
+                                                                                             "passes":  1,
+                                                                                             "fails":  0
+                                                                                         },
+                                      "GET usuarios como Farmaceutico → 403 sin información":  {
+                                                                                                   "path":  "::GET usuarios como Farmaceutico → 403 sin información",
+                                                                                                   "id":  "02578005b56d7b940fc3f5b0aefd1ef3",
+                                                                                                   "passes":  1,
+                                                                                                   "fails":  0,
+                                                                                                   "name":  "GET usuarios como Farmaceutico → 403 sin información"
+                                                                                               },
+                                      "GET usuarios como PersonalLaboratorio → 403 sin información":  {
+                                                                                                          "passes":  1,
+                                                                                                          "fails":  0,
+                                                                                                          "name":  "GET usuarios como PersonalLaboratorio → 403 sin información",
+                                                                                                          "path":  "::GET usuarios como PersonalLaboratorio → 403 sin información",
+                                                                                                          "id":  "2af7a0cc7aa4aaf5a75fd5911cfa7c99"
+                                                                                                      },
+                                      "GET usuarios como Epidemiologo → 403 sin información":  {
+                                                                                                   "name":  "GET usuarios como Epidemiologo → 403 sin información",
+                                                                                                   "path":  "::GET usuarios como Epidemiologo → 403 sin información",
+                                                                                                   "id":  "d8e34e6442fe165c574169095f38c57e",
+                                                                                                   "passes":  1,
+                                                                                                   "fails":  0
+                                                                                               },
+                                      "GET usuarios como Directivo → 403 sin información":  {
+                                                                                                "id":  "d7643bbea37b0f4659958b14969754cd",
+                                                                                                "passes":  1,
+                                                                                                "fails":  0,
+                                                                                                "name":  "GET usuarios como Directivo → 403 sin información",
+                                                                                                "path":  "::GET usuarios como Directivo → 403 sin información"
+                                                                                            },
+                                      "POST usuarios sin sesión → 401 sin información":  {
+                                                                                             "fails":  0,
+                                                                                             "name":  "POST usuarios sin sesión → 401 sin información",
+                                                                                             "path":  "::POST usuarios sin sesión → 401 sin información",
+                                                                                             "id":  "10785abf9b0da70b3e9a58c4040921ef",
+                                                                                             "passes":  1
+                                                                                         },
+                                      "POST usuarios con token manipulado → 401":  {
+                                                                                       "fails":  0,
+                                                                                       "name":  "POST usuarios con token manipulado → 401",
+                                                                                       "path":  "::POST usuarios con token manipulado → 401",
+                                                                                       "id":  "7055d6c618807896081c820a731c841a",
+                                                                                       "passes":  1
+                                                                                   },
+                                      "POST usuarios como PersonalAdmision → 403 sin información":  {
+                                                                                                        "path":  "::POST usuarios como PersonalAdmision → 403 sin información",
+                                                                                                        "id":  "f3cf1efc63abe350d0b3ea29a6e96245",
+                                                                                                        "passes":  1,
+                                                                                                        "fails":  0,
+                                                                                                        "name":  "POST usuarios como PersonalAdmision → 403 sin información"
+                                                                                                    },
+                                      "POST usuarios como EnfermeroTriaje → 403 sin información":  {
+                                                                                                       "id":  "d443eb0777815b9a1f59c0c0ec21cde7",
+                                                                                                       "passes":  1,
+                                                                                                       "fails":  0,
+                                                                                                       "name":  "POST usuarios como EnfermeroTriaje → 403 sin información",
+                                                                                                       "path":  "::POST usuarios como EnfermeroTriaje → 403 sin información"
+                                                                                                   },
+                                      "POST usuarios como Medico → 403 sin información":  {
+                                                                                              "path":  "::POST usuarios como Medico → 403 sin información",
+                                                                                              "id":  "351c4e68c081d66b4856bc839714cd08",
+                                                                                              "passes":  1,
+                                                                                              "fails":  0,
+                                                                                              "name":  "POST usuarios como Medico → 403 sin información"
+                                                                                          },
+                                      "POST usuarios como Farmaceutico → 403 sin información":  {
+                                                                                                    "id":  "1c483155885687ca0aa80ac0cda7482f",
+                                                                                                    "passes":  1,
+                                                                                                    "fails":  0,
+                                                                                                    "name":  "POST usuarios como Farmaceutico → 403 sin información",
+                                                                                                    "path":  "::POST usuarios como Farmaceutico → 403 sin información"
+                                                                                                },
+                                      "POST usuarios como PersonalLaboratorio → 403 sin información":  {
+                                                                                                           "passes":  1,
+                                                                                                           "fails":  0,
+                                                                                                           "name":  "POST usuarios como PersonalLaboratorio → 403 sin información",
+                                                                                                           "path":  "::POST usuarios como PersonalLaboratorio → 403 sin información",
+                                                                                                           "id":  "37712679a4f2fce3d17e7c0f5474f905"
+                                                                                                       },
+                                      "POST usuarios como Epidemiologo → 403 sin información":  {
+                                                                                                    "name":  "POST usuarios como Epidemiologo → 403 sin información",
+                                                                                                    "path":  "::POST usuarios como Epidemiologo → 403 sin información",
+                                                                                                    "id":  "18ee118ef9c84a2fc542de816f8ac11b",
+                                                                                                    "passes":  1,
+                                                                                                    "fails":  0
+                                                                                                },
+                                      "POST usuarios como Directivo → 403 sin información":  {
+                                                                                                 "id":  "c23390132d48f3e4ffdc30586162e458",
+                                                                                                 "passes":  1,
+                                                                                                 "fails":  0,
+                                                                                                 "name":  "POST usuarios como Directivo → 403 sin información",
+                                                                                                 "path":  "::POST usuarios como Directivo → 403 sin información"
+                                                                                             },
+                                      "PUT roles sin sesión → 401 sin información":  {
+                                                                                         "path":  "::PUT roles sin sesión → 401 sin información",
+                                                                                         "id":  "173cf94b499a1a1c949f8f868272e147",
+                                                                                         "passes":  1,
+                                                                                         "fails":  0,
+                                                                                         "name":  "PUT roles sin sesión → 401 sin información"
+                                                                                     },
+                                      "PUT roles con token manipulado → 401":  {
+                                                                                   "name":  "PUT roles con token manipulado → 401",
+                                                                                   "path":  "::PUT roles con token manipulado → 401",
+                                                                                   "id":  "650387a65e4f036c78776bfebf0616f7",
+                                                                                   "passes":  1,
+                                                                                   "fails":  0
+                                                                               },
+                                      "PUT roles como PersonalAdmision → 403 sin información":  {
+                                                                                                    "name":  "PUT roles como PersonalAdmision → 403 sin información",
+                                                                                                    "path":  "::PUT roles como PersonalAdmision → 403 sin información",
+                                                                                                    "id":  "98e75aae7b6772359e7314f21626ada2",
+                                                                                                    "passes":  1,
+                                                                                                    "fails":  0
+                                                                                                },
+                                      "PUT roles como EnfermeroTriaje → 403 sin información":  {
+                                                                                                   "name":  "PUT roles como EnfermeroTriaje → 403 sin información",
+                                                                                                   "path":  "::PUT roles como EnfermeroTriaje → 403 sin información",
+                                                                                                   "id":  "2d319dcd7f0a866026b06201eafbd7d9",
+                                                                                                   "passes":  1,
+                                                                                                   "fails":  0
+                                                                                               },
+                                      "PUT roles como Medico → 403 sin información":  {
+                                                                                          "name":  "PUT roles como Medico → 403 sin información",
+                                                                                          "path":  "::PUT roles como Medico → 403 sin información",
+                                                                                          "id":  "48f3b40709bc592c14df1f54d456c156",
+                                                                                          "passes":  1,
+                                                                                          "fails":  0
+                                                                                      },
+                                      "PUT roles como Farmaceutico → 403 sin información":  {
+                                                                                                "name":  "PUT roles como Farmaceutico → 403 sin información",
+                                                                                                "path":  "::PUT roles como Farmaceutico → 403 sin información",
+                                                                                                "id":  "b09c94d09b7f1a82514e6bf21f00bd9f",
+                                                                                                "passes":  1,
+                                                                                                "fails":  0
+                                                                                            },
+                                      "PUT roles como PersonalLaboratorio → 403 sin información":  {
+                                                                                                       "name":  "PUT roles como PersonalLaboratorio → 403 sin información",
+                                                                                                       "path":  "::PUT roles como PersonalLaboratorio → 403 sin información",
+                                                                                                       "id":  "92cc65982da87235bb561f7a445b1fe4",
+                                                                                                       "passes":  1,
+                                                                                                       "fails":  0
+                                                                                                   },
+                                      "PUT roles como Epidemiologo → 403 sin información":  {
+                                                                                                "name":  "PUT roles como Epidemiologo → 403 sin información",
+                                                                                                "path":  "::PUT roles como Epidemiologo → 403 sin información",
+                                                                                                "id":  "c55a9332a59757873acdeb29b815070e",
+                                                                                                "passes":  1,
+                                                                                                "fails":  0
+                                                                                            },
+                                      "PUT roles como Directivo → 403 sin información":  {
+                                                                                             "name":  "PUT roles como Directivo → 403 sin información",
+                                                                                             "path":  "::PUT roles como Directivo → 403 sin información",
+                                                                                             "id":  "2288cb2cda8f494c5033fa52c3154de7",
+                                                                                             "passes":  1,
+                                                                                             "fails":  0
+                                                                                         },
+                                      "POST desactivar sin sesión → 401 sin información":  {
+                                                                                               "passes":  1,
+                                                                                               "fails":  0,
+                                                                                               "name":  "POST desactivar sin sesión → 401 sin información",
+                                                                                               "path":  "::POST desactivar sin sesión → 401 sin información",
+                                                                                               "id":  "06e4d0f160880cdd8758cf6cf64e2b6a"
+                                                                                           },
+                                      "POST desactivar con token manipulado → 401":  {
+                                                                                         "name":  "POST desactivar con token manipulado → 401",
+                                                                                         "path":  "::POST desactivar con token manipulado → 401",
+                                                                                         "id":  "112c58498b13fc8a5f72d1fe9c72870e",
+                                                                                         "passes":  1,
+                                                                                         "fails":  0
+                                                                                     },
+                                      "POST desactivar como PersonalAdmision → 403 sin información":  {
+                                                                                                          "id":  "5369a512cbc5a91abc2cb685a2906515",
+                                                                                                          "passes":  1,
+                                                                                                          "fails":  0,
+                                                                                                          "name":  "POST desactivar como PersonalAdmision → 403 sin información",
+                                                                                                          "path":  "::POST desactivar como PersonalAdmision → 403 sin información"
+                                                                                                      },
+                                      "POST desactivar como EnfermeroTriaje → 403 sin información":  {
+                                                                                                         "id":  "f0e00a039c434fd4d418a91194539e8c",
+                                                                                                         "passes":  1,
+                                                                                                         "fails":  0,
+                                                                                                         "name":  "POST desactivar como EnfermeroTriaje → 403 sin información",
+                                                                                                         "path":  "::POST desactivar como EnfermeroTriaje → 403 sin información"
+                                                                                                     },
+                                      "POST desactivar como Medico → 403 sin información":  {
+                                                                                                "name":  "POST desactivar como Medico → 403 sin información",
+                                                                                                "path":  "::POST desactivar como Medico → 403 sin información",
+                                                                                                "id":  "98ab90dae3b4598ac67609a31bb622ba",
+                                                                                                "passes":  1,
+                                                                                                "fails":  0
+                                                                                            },
+                                      "POST desactivar como Farmaceutico → 403 sin información":  {
+                                                                                                      "passes":  1,
+                                                                                                      "fails":  0,
+                                                                                                      "name":  "POST desactivar como Farmaceutico → 403 sin información",
+                                                                                                      "path":  "::POST desactivar como Farmaceutico → 403 sin información",
+                                                                                                      "id":  "7819fcb77c42fa55601e771e395bf8b8"
+                                                                                                  },
+                                      "POST desactivar como PersonalLaboratorio → 403 sin información":  {
+                                                                                                             "id":  "150a971342a378f56fdcf8bf97314521",
+                                                                                                             "passes":  1,
+                                                                                                             "fails":  0,
+                                                                                                             "name":  "POST desactivar como PersonalLaboratorio → 403 sin información",
+                                                                                                             "path":  "::POST desactivar como PersonalLaboratorio → 403 sin información"
+                                                                                                         },
+                                      "POST desactivar como Epidemiologo → 403 sin información":  {
+                                                                                                      "passes":  1,
+                                                                                                      "fails":  0,
+                                                                                                      "name":  "POST desactivar como Epidemiologo → 403 sin información",
+                                                                                                      "path":  "::POST desactivar como Epidemiologo → 403 sin información",
+                                                                                                      "id":  "a5238a17a75d71a1ab43cad198ae315f"
+                                                                                                  },
+                                      "POST desactivar como Directivo → 403 sin información":  {
+                                                                                                   "path":  "::POST desactivar como Directivo → 403 sin información",
+                                                                                                   "id":  "09d928dcdb70baee7fdcff3fac15c778",
+                                                                                                   "passes":  1,
+                                                                                                   "fails":  0,
+                                                                                                   "name":  "POST desactivar como Directivo → 403 sin información"
+                                                                                               },
+                                      "GET matriz sin sesión → 401 sin información":  {
+                                                                                          "name":  "GET matriz sin sesión → 401 sin información",
+                                                                                          "path":  "::GET matriz sin sesión → 401 sin información",
+                                                                                          "id":  "a942500b5ac884426e3887b9f162d900",
+                                                                                          "passes":  1,
+                                                                                          "fails":  0
+                                                                                      },
+                                      "GET matriz con token manipulado → 401":  {
+                                                                                    "id":  "0d93a2babd14031ed94c13b122ac9ed6",
+                                                                                    "passes":  1,
+                                                                                    "fails":  0,
+                                                                                    "name":  "GET matriz con token manipulado → 401",
+                                                                                    "path":  "::GET matriz con token manipulado → 401"
+                                                                                },
+                                      "GET matriz como PersonalAdmision → 403 sin información":  {
+                                                                                                     "path":  "::GET matriz como PersonalAdmision → 403 sin información",
+                                                                                                     "id":  "e05cd9eb32a41065a5cd5656c1905a8f",
+                                                                                                     "passes":  1,
+                                                                                                     "fails":  0,
+                                                                                                     "name":  "GET matriz como PersonalAdmision → 403 sin información"
+                                                                                                 },
+                                      "GET matriz como EnfermeroTriaje → 403 sin información":  {
+                                                                                                    "path":  "::GET matriz como EnfermeroTriaje → 403 sin información",
+                                                                                                    "id":  "fb5370659c83d18b16819426ae3928bf",
+                                                                                                    "passes":  1,
+                                                                                                    "fails":  0,
+                                                                                                    "name":  "GET matriz como EnfermeroTriaje → 403 sin información"
+                                                                                                },
+                                      "GET matriz como Medico → 403 sin información":  {
+                                                                                           "name":  "GET matriz como Medico → 403 sin información",
+                                                                                           "path":  "::GET matriz como Medico → 403 sin información",
+                                                                                           "id":  "e29fdb88d73d1838618bbdf52ea39ac9",
+                                                                                           "passes":  1,
+                                                                                           "fails":  0
+                                                                                       },
+                                      "GET matriz como Farmaceutico → 403 sin información":  {
+                                                                                                 "id":  "89db7141a399dd2bb49d2cb455373b94",
+                                                                                                 "passes":  1,
+                                                                                                 "fails":  0,
+                                                                                                 "name":  "GET matriz como Farmaceutico → 403 sin información",
+                                                                                                 "path":  "::GET matriz como Farmaceutico → 403 sin información"
+                                                                                             },
+                                      "GET matriz como PersonalLaboratorio → 403 sin información":  {
+                                                                                                        "path":  "::GET matriz como PersonalLaboratorio → 403 sin información",
+                                                                                                        "id":  "56fad8630edce706beb046ec41672e88",
+                                                                                                        "passes":  1,
+                                                                                                        "fails":  0,
+                                                                                                        "name":  "GET matriz como PersonalLaboratorio → 403 sin información"
+                                                                                                    },
+                                      "GET matriz como Epidemiologo → 403 sin información":  {
+                                                                                                 "name":  "GET matriz como Epidemiologo → 403 sin información",
+                                                                                                 "path":  "::GET matriz como Epidemiologo → 403 sin información",
+                                                                                                 "id":  "00629ba6f189d51555ec3100a878d41a",
+                                                                                                 "passes":  1,
+                                                                                                 "fails":  0
+                                                                                             },
+                                      "GET matriz como Directivo → 403 sin información":  {
+                                                                                              "name":  "GET matriz como Directivo → 403 sin información",
+                                                                                              "path":  "::GET matriz como Directivo → 403 sin información",
+                                                                                              "id":  "602786081ea347f9631b45b0205bdc92",
+                                                                                              "passes":  1,
+                                                                                              "fails":  0
+                                                                                          },
+                                      "GET bitácora sin sesión → 401 sin información":  {
+                                                                                            "name":  "GET bitácora sin sesión → 401 sin información",
+                                                                                            "path":  "::GET bitácora sin sesión → 401 sin información",
+                                                                                            "id":  "f26b3c1d30ad1d88c8110b22feb2aaca",
+                                                                                            "passes":  1,
+                                                                                            "fails":  0
+                                                                                        },
+                                      "GET bitácora con token manipulado → 401":  {
+                                                                                      "name":  "GET bitácora con token manipulado → 401",
+                                                                                      "path":  "::GET bitácora con token manipulado → 401",
+                                                                                      "id":  "ef21307b8253aa562efcc47e7a333ed2",
+                                                                                      "passes":  1,
+                                                                                      "fails":  0
+                                                                                  },
+                                      "GET bitácora como PersonalAdmision → 403 sin información":  {
+                                                                                                       "passes":  1,
+                                                                                                       "fails":  0,
+                                                                                                       "name":  "GET bitácora como PersonalAdmision → 403 sin información",
+                                                                                                       "path":  "::GET bitácora como PersonalAdmision → 403 sin información",
+                                                                                                       "id":  "13170be8390da46ca264166b08b3bb19"
+                                                                                                   },
+                                      "GET bitácora como EnfermeroTriaje → 403 sin información":  {
+                                                                                                      "name":  "GET bitácora como EnfermeroTriaje → 403 sin información",
+                                                                                                      "path":  "::GET bitácora como EnfermeroTriaje → 403 sin información",
+                                                                                                      "id":  "7abaa9988e28bc2a3dcf48e41d5a742c",
+                                                                                                      "passes":  1,
+                                                                                                      "fails":  0
+                                                                                                  },
+                                      "GET bitácora como Medico → 403 sin información":  {
+                                                                                             "id":  "5fdc725d4725d1767768f3bfdcafa1f5",
+                                                                                             "passes":  1,
+                                                                                             "fails":  0,
+                                                                                             "name":  "GET bitácora como Medico → 403 sin información",
+                                                                                             "path":  "::GET bitácora como Medico → 403 sin información"
+                                                                                         },
+                                      "GET bitácora como Farmaceutico → 403 sin información":  {
+                                                                                                   "path":  "::GET bitácora como Farmaceutico → 403 sin información",
+                                                                                                   "id":  "65461a1f511e8f275dea55f6aa822e2e",
+                                                                                                   "passes":  1,
+                                                                                                   "fails":  0,
+                                                                                                   "name":  "GET bitácora como Farmaceutico → 403 sin información"
+                                                                                               },
+                                      "GET bitácora como PersonalLaboratorio → 403 sin información":  {
+                                                                                                          "fails":  0,
+                                                                                                          "name":  "GET bitácora como PersonalLaboratorio → 403 sin información",
+                                                                                                          "path":  "::GET bitácora como PersonalLaboratorio → 403 sin información",
+                                                                                                          "id":  "e57163c76926aa7586914aab7d69b770",
+                                                                                                          "passes":  1
+                                                                                                      },
+                                      "GET bitácora como Epidemiologo → 403 sin información":  {
+                                                                                                   "name":  "GET bitácora como Epidemiologo → 403 sin información",
+                                                                                                   "path":  "::GET bitácora como Epidemiologo → 403 sin información",
+                                                                                                   "id":  "6e2aba1927063a6423970ade841f91a9",
+                                                                                                   "passes":  1,
+                                                                                                   "fails":  0
+                                                                                               },
+                                      "GET bitácora como Directivo → 403 sin información":  {
+                                                                                                "name":  "GET bitácora como Directivo → 403 sin información",
+                                                                                                "path":  "::GET bitácora como Directivo → 403 sin información",
+                                                                                                "id":  "ece2527392c5e94a713c283aba6b3baa",
+                                                                                                "passes":  1,
+                                                                                                "fails":  0
+                                                                                            },
+                                      "GET usuarios como Administrador → 200":  {
+                                                                                    "path":  "::GET usuarios como Administrador → 200",
+                                                                                    "id":  "d70fa80da251041fc5876c5f542188ec",
+                                                                                    "passes":  1,
+                                                                                    "fails":  0,
+                                                                                    "name":  "GET usuarios como Administrador → 200"
+                                                                                },
+                                      "GET matriz como Administrador → 200":  {
+                                                                                  "name":  "GET matriz como Administrador → 200",
+                                                                                  "path":  "::GET matriz como Administrador → 200",
+                                                                                  "id":  "6cbc8b691e200159189b297fcf7efc04",
+                                                                                  "passes":  1,
+                                                                                  "fails":  0
+                                                                              },
+                                      "GET bitácora como Administrador → 200":  {
+                                                                                    "name":  "GET bitácora como Administrador → 200",
+                                                                                    "path":  "::GET bitácora como Administrador → 200",
+                                                                                    "id":  "979849347e71e485eb2be2a4a99994c9",
+                                                                                    "passes":  1,
+                                                                                    "fails":  0
+                                                                                }
+                                  }
+                   },
+    "metrics":  {
+                    "iterations":  {
+                                       "count":  1,
+                                       "rate":  0.5772039364775131
+                                   },
+                    "http_req_tls_handshaking":  {
+                                                     "avg":  0,
+                                                     "min":  0,
+                                                     "med":  0,
+                                                     "max":  0,
+                                                     "p(90)":  0,
+                                                     "p(95)":  0
+                                                 },
+                    "http_req_duration{expected_response:true}":  {
+                                                                      "min":  1.833308,
+                                                                      "med":  43.765451,
+                                                                      "max":  76.71657,
+                                                                      "p(90)":  76.063564,
+                                                                      "p(95)":  76.608699,
+                                                                      "avg":  48.80147077419356
+                                                                  },
+                    "http_req_blocked":  {
+                                             "max":  3.775275,
+                                             "p(90)":  0.005584400000000001,
+                                             "p(95)":  0.008085199999999994,
+                                             "avg":  0.06693547058823525,
+                                             "min":  0.001573,
+                                             "med":  0.003436
+                                         },
+                    "http_req_failed":  {
+                                            "passes":  54,
+                                            "fails":  31,
+                                            "value":  0.6352941176470588
+                                        },
+                    "vus":  {
+                                "value":  0,
+                                "min":  0,
+                                "max":  0
+                            },
+                    "data_sent":  {
+                                      "count":  52341,
+                                      "rate":  30211.431239169513
+                                  },
+                    "data_received":  {
+                                          "count":  56765,
+                                          "rate":  32764.981454146033
+                                      },
+                    "http_req_connecting":  {
+                                                "med":  0,
+                                                "max":  1.500857,
+                                                "p(90)":  0,
+                                                "p(95)":  0,
+                                                "avg":  0.03322872941176471,
+                                                "min":  0
+                                            },
+                    "http_req_waiting":  {
+                                             "p(90)":  62.14498160000022,
+                                             "p(95)":  75.10592039999999,
+                                             "avg":  19.95654914117647,
+                                             "min":  1.443028,
+                                             "med":  4.17113,
+                                             "max":  76.478385
+                                         },
+                    "vus_max":  {
+                                    "value":  1,
+                                    "min":  1,
+                                    "max":  1
+                                },
+                    "http_reqs":  {
+                                      "count":  85,
+                                      "rate":  49.06233460058861
+                                  },
+                    "iteration_duration":  {
+                                               "min":  225.008554,
+                                               "med":  225.008554,
+                                               "max":  225.008554,
+                                               "p(90)":  225.008554,
+                                               "p(95)":  225.008554,
+                                               "avg":  225.008554
+                                           },
+                    "checks{caso:no-autorizado}":  {
+                                                       "passes":  54,
+                                                       "fails":  0,
+                                                       "thresholds":  {
+                                                                          "rate==1":  false
+                                                                      },
+                                                       "value":  1
+                                                   },
+                    "http_req_receiving":  {
+                                               "max":  0.304801,
+                                               "p(90)":  0.18129560000000008,
+                                               "p(95)":  0.21182979999999998,
+                                               "avg":  0.11443968235294122,
+                                               "min":  0.046549,
+                                               "med":  0.09973
+                                           },
+                    "checks":  {
+                                   "passes":  57,
+                                   "fails":  0,
+                                   "thresholds":  {
+                                                      "rate==1":  false
+                                                  },
+                                   "value":  1
+                               },
+                    "http_req_sending":  {
+                                             "p(95)":  0.06526019999999998,
+                                             "avg":  0.028988423529411774,
+                                             "min":  0.006613,
+                                             "med":  0.018465,
+                                             "max":  0.216368,
+                                             "p(90)":  0.054518000000000004
+                                         },
+                    "http_req_duration":  {
+                                              "max":  76.71657,
+                                              "p(90)":  62.371618400000216,
+                                              "p(95)":  75.2962574,
+                                              "avg":  20.099977247058835,
+                                              "min":  1.529307,
+                                              "med":  4.260451
+                                          }
+                }
+}

@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\Sigh.Administracion.Dominio\Sigh.Administracion.Dominio.csproj" />
+    <ProjectReference Include="..\..\..\Compartido\Sigh.Compartido\Sigh.Compartido.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="Sigh.Administracion.Infraestructura" />
+    <InternalsVisibleTo Include="Sigh.Administracion.Aplicacion.Tests" />
+    <InternalsVisibleTo Include="Sigh.Administracion.Integracion.Tests" />
+  </ItemGroup>
+</Project>

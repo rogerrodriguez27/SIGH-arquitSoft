@@ -1,0 +1,416 @@
+openapi: 3.1.0
+info:
+  title: SIGH – API del módulo Administración
+  version: 1.0.0
+  description: >
+    Autenticación, usuarios, roles, matriz de permisos y bitácora de accesos (spec 001-admin-auth-rbac).
+    Todas las rutas exigen JWT (Bearer) salvo iniciar-sesion. Los errores usan application/problem+json.
+servers:
+  - url: /api/v1
+security:
+  - bearer: []
+tags:
+  - name: Autenticacion
+  - name: Usuarios
+  - name: Permisos
+  - name: Bitacora
+
+paths:
+  /autenticacion/iniciar-sesion:
+    post:
+      tags: [Autenticacion]
+      summary: Inicia sesión (FR-001, FR-003, FR-004)
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/IniciarSesionSolicitud' }
+      responses:
+        '200':
+          description: Sesión creada
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SesionRespuesta' }
+        '400': { $ref: '#/components/responses/Validacion' }
+        '401':
+          description: 'Mensaje genérico "Usuario o contraseña incorrectos" para credenciales inválidas, usuario inexistente, desactivado o bloqueado'
+          content:
+            application/problem+json:
+              schema: { $ref: '#/components/schemas/Problema' }
+
+  /autenticacion/cerrar-sesion:
+    post:
+      tags: [Autenticacion]
+      summary: Cierra la sesión (el cliente descarta el token; la API no guarda estado de sesión, DA07)
+      responses:
+        '204': { description: Sesión cerrada }
+        '401': { $ref: '#/components/responses/NoAutenticado' }
+
+  /autenticacion/cambiar-contrasena:
+    post:
+      tags: [Autenticacion]
+      summary: Cambia la contraseña propia (FR-006). Permitido aunque el cambio sea obligatorio.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/CambiarContrasenaSolicitud' }
+      responses:
+        '200':
+          description: Contraseña cambiada; se entrega una sesión nueva sin el cambio pendiente
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SesionRespuesta' }
+        '401': { $ref: '#/components/responses/NoAutenticado' }
+        '422': { $ref: '#/components/responses/ReglaNegocio' }
+
+  /usuarios:
+    get:
+      tags: [Usuarios]
+      summary: Lista usuarios (FR-008) – permiso usuarios.gestionar
+      parameters:
+        - { name: busqueda, in: query, schema: { type: string, maxLength: 100 } }
+        - { name: rol, in: query, schema: { $ref: '#/components/schemas/CodigoRol' } }
+        - { name: estado, in: query, schema: { $ref: '#/components/schemas/EstadoUsuario' } }
+        - { $ref: '#/components/parameters/Pagina' }
+        - { $ref: '#/components/parameters/Tamano' }
+      responses:
+        '200':
+          description: Página de usuarios
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/PaginaUsuarios' }
+        '401': { $ref: '#/components/responses/NoAutenticado' }
+        '403': { $ref: '#/components/responses/SinPermiso' }
+    post:
+      tags: [Usuarios]
+      summary: Registra un usuario (FR-008, FR-010) – permiso usuarios.gestionar
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/CrearUsuarioSolicitud' }
+      responses:
+        '201':
+          description: Usuario creado
+          headers:
+            Location: { schema: { type: string } }
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Usuario' }
+        '400': { $ref: '#/components/responses/Validacion' }
+        '401': { $ref: '#/components/responses/NoAutenticado' }
+        '403': { $ref: '#/components/responses/SinPermiso' }
+        '409':
+          description: El nombre de usuario ya existe
+          content:
+            application/problem+json:
+              schema: { $ref: '#/components/schemas/Problema' }
+        '422': { $ref: '#/components/responses/ReglaNegocio' }
+
+  /usuarios/{id}:
+    parameters:
+      - { $ref: '#/components/parameters/IdUsuario' }
+    get:
+      tags: [Usuarios]
+      summary: Consulta un usuario – permiso usuarios.gestionar
+      responses:
+        '200':
+          description: Usuario
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Usuario' }
+        '401': { $ref: '#/components/responses/NoAutenticado' }
+        '403': { $ref: '#/components/responses/SinPermiso' }
+        '404': { $ref: '#/components/responses/NoEncontrado' }
+    put:
+      tags: [Usuarios]
+      summary: Edita los datos básicos (nombre completo) – permiso usuarios.gestionar
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/EditarUsuarioSolicitud' }
+      responses:
+        '200':
+          description: Usuario actualizado
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Usuario' }
+        '400': { $ref: '#/components/responses/Validacion' }
+        '401': { $ref: '#/components/responses/NoAutenticado' }
+        '403': { $ref: '#/components/responses/SinPermiso' }
+        '404': { $ref: '#/components/responses/NoEncontrado' }
+    # No existe DELETE: los usuarios solo se desactivan (FR-009).
+
+  /usuarios/{id}/roles:
+    parameters:
+      - { $ref: '#/components/parameters/IdUsuario' }
+    put:
+      tags: [Usuarios]
+      summary: Reemplaza los roles del usuario (FR-010, FR-014) – permiso usuarios.gestionar
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [roles]
+              properties:
+                roles:
+                  type: array
+                  minItems: 1
+                  uniqueItems: true
+                  items: { $ref: '#/components/schemas/CodigoRol' }
+      responses:
+        '200':
+          description: Roles actualizados (aplican en la siguiente sesión del usuario)
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Usuario' }
+        '401': { $ref: '#/components/responses/NoAutenticado' }
+        '403': { $ref: '#/components/responses/SinPermiso' }
+        '404': { $ref: '#/components/responses/NoEncontrado' }
+        '422': { $ref: '#/components/responses/ReglaNegocio' }
+
+  /usuarios/{id}/desactivar:
+    parameters:
+      - { $ref: '#/components/parameters/IdUsuario' }
+    post:
+      tags: [Usuarios]
+      summary: Desactiva al usuario (FR-008, FR-014) – permiso usuarios.gestionar
+      responses:
+        '204': { description: Usuario desactivado }
+        '401': { $ref: '#/components/responses/NoAutenticado' }
+        '403': { $ref: '#/components/responses/SinPermiso' }
+        '404': { $ref: '#/components/responses/NoEncontrado' }
+        '422': { $ref: '#/components/responses/ReglaNegocio' }
+
+  /usuarios/{id}/reactivar:
+    parameters:
+      - { $ref: '#/components/parameters/IdUsuario' }
+    post:
+      tags: [Usuarios]
+      summary: Reactiva al usuario – permiso usuarios.gestionar
+      responses:
+        '204': { description: Usuario reactivado }
+        '401': { $ref: '#/components/responses/NoAutenticado' }
+        '403': { $ref: '#/components/responses/SinPermiso' }
+        '404': { $ref: '#/components/responses/NoEncontrado' }
+
+  /usuarios/{id}/restablecer-contrasena:
+    parameters:
+      - { $ref: '#/components/parameters/IdUsuario' }
+    post:
+      tags: [Usuarios]
+      summary: Asigna una contraseña temporal y exige cambiarla (FR-015) – permiso usuarios.gestionar
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [contrasenaTemporal]
+              properties:
+                contrasenaTemporal: { type: string, minLength: 8, maxLength: 128, writeOnly: true }
+      responses:
+        '204': { description: Contraseña restablecida }
+        '401': { $ref: '#/components/responses/NoAutenticado' }
+        '403': { $ref: '#/components/responses/SinPermiso' }
+        '404': { $ref: '#/components/responses/NoEncontrado' }
+        '422': { $ref: '#/components/responses/ReglaNegocio' }
+
+  /roles/matriz-permisos:
+    get:
+      tags: [Permisos]
+      summary: Consulta la matriz fija de roles y permisos (FR-013) – permiso usuarios.gestionar
+      responses:
+        '200':
+          description: Matriz
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/MatrizPermisos' }
+        '401': { $ref: '#/components/responses/NoAutenticado' }
+        '403': { $ref: '#/components/responses/SinPermiso' }
+
+  /bitacora-accesos:
+    get:
+      tags: [Bitacora]
+      summary: Consulta la bitácora de accesos a la HCE (FR-024, FR-025) – permiso bitacora.consultar
+      description: Cada consulta se registra como evento de seguridad BITACORA_CONSULTADA.
+      parameters:
+        - { name: desde, in: query, required: true, schema: { type: string, format: date-time } }
+        - { name: hasta, in: query, required: true, schema: { type: string, format: date-time } }
+        - { name: usuarioId, in: query, schema: { type: string, format: uuid } }
+        - { name: historiaId, in: query, schema: { type: string, format: uuid } }
+        - { name: accion, in: query, schema: { type: string } }
+        - { name: resultado, in: query, schema: { type: string, enum: [Permitido, Denegado] } }
+        - { $ref: '#/components/parameters/Pagina' }
+        - { $ref: '#/components/parameters/Tamano' }
+      responses:
+        '200':
+          description: Página de entradas, de la más reciente a la más antigua
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/PaginaBitacora' }
+        '401': { $ref: '#/components/responses/NoAutenticado' }
+        '403': { $ref: '#/components/responses/SinPermiso' }
+        '422':
+          description: Rango inválido (desde > hasta o mayor a un año)
+          content:
+            application/problem+json:
+              schema: { $ref: '#/components/schemas/Problema' }
+
+components:
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    IdUsuario: { name: id, in: path, required: true, schema: { type: string, format: uuid } }
+    Pagina: { name: pagina, in: query, schema: { type: integer, minimum: 1, default: 1 } }
+    Tamano: { name: tamano, in: query, schema: { type: integer, minimum: 1, maximum: 100, default: 20 } }
+  responses:
+    Validacion:
+      description: Datos de entrada inválidos
+      content: { application/problem+json: { schema: { $ref: '#/components/schemas/Problema' } } }
+    NoAutenticado:
+      description: Sin sesión, sesión inválida o vencida
+      content: { application/problem+json: { schema: { $ref: '#/components/schemas/Problema' } } }
+    SinPermiso:
+      description: El rol del usuario no tiene el permiso necesario (o tiene un cambio de contraseña pendiente)
+      content: { application/problem+json: { schema: { $ref: '#/components/schemas/Problema' } } }
+    NoEncontrado:
+      description: Recurso inexistente
+      content: { application/problem+json: { schema: { $ref: '#/components/schemas/Problema' } } }
+    ReglaNegocio:
+      description: Se viola una regla de negocio (por ejemplo, último administrador activo, política de contraseñas)
+      content: { application/problem+json: { schema: { $ref: '#/components/schemas/Problema' } } }
+  schemas:
+    CodigoRol:
+      type: string
+      enum: [Administrador, PersonalAdmision, EnfermeroTriaje, Medico, Farmaceutico, PersonalLaboratorio, Epidemiologo, Directivo]
+    EstadoUsuario:
+      type: string
+      enum: [Activo, Desactivado]
+    IniciarSesionSolicitud:
+      type: object
+      required: [nombreUsuario, contrasena]
+      properties:
+        nombreUsuario: { type: string, maxLength: 50 }
+        contrasena: { type: string, maxLength: 128, writeOnly: true }
+    CambiarContrasenaSolicitud:
+      type: object
+      required: [contrasenaActual, contrasenaNueva]
+      properties:
+        contrasenaActual: { type: string, writeOnly: true }
+        contrasenaNueva: { type: string, minLength: 8, maxLength: 128, writeOnly: true }
+    SesionRespuesta:
+      type: object
+      required: [token, expiraEn, usuario]
+      properties:
+        token: { type: string, description: JWT firmado (30 minutos) }
+        expiraEn: { type: string, format: date-time }
+        usuario:
+          type: object
+          required: [id, nombreUsuario, nombreCompleto, roles, permisos, cambioContrasenaPendiente]
+          properties:
+            id: { type: string, format: uuid }
+            nombreUsuario: { type: string }
+            nombreCompleto: { type: string }
+            roles: { type: array, items: { $ref: '#/components/schemas/CodigoRol' } }
+            permisos: { type: array, items: { type: string } }
+            cambioContrasenaPendiente: { type: boolean }
+    CrearUsuarioSolicitud:
+      type: object
+      required: [nombreUsuario, nombreCompleto, contrasenaInicial, roles]
+      properties:
+        nombreUsuario: { type: string, minLength: 3, maxLength: 50, pattern: '^[A-Za-z0-9._-]+$' }
+        nombreCompleto: { type: string, minLength: 3, maxLength: 150 }
+        contrasenaInicial: { type: string, minLength: 8, maxLength: 128, writeOnly: true }
+        roles:
+          type: array
+          minItems: 1
+          uniqueItems: true
+          items: { $ref: '#/components/schemas/CodigoRol' }
+    EditarUsuarioSolicitud:
+      type: object
+      required: [nombreCompleto]
+      properties:
+        nombreCompleto: { type: string, minLength: 3, maxLength: 150 }
+    Usuario:
+      type: object
+      description: Nunca incluye el hash de la contraseña.
+      required: [id, nombreUsuario, nombreCompleto, estado, roles, cambioContrasenaPendiente, bloqueado, creadoEn]
+      properties:
+        id: { type: string, format: uuid }
+        nombreUsuario: { type: string }
+        nombreCompleto: { type: string }
+        estado: { $ref: '#/components/schemas/EstadoUsuario' }
+        roles: { type: array, items: { $ref: '#/components/schemas/CodigoRol' } }
+        cambioContrasenaPendiente: { type: boolean }
+        bloqueado: { type: boolean }
+        creadoEn: { type: string, format: date-time }
+        ultimoAcceso: { type: [string, 'null'], format: date-time }
+    PaginaUsuarios:
+      type: object
+      required: [elementos, pagina, tamano, total]
+      properties:
+        elementos: { type: array, items: { $ref: '#/components/schemas/Usuario' } }
+        pagina: { type: integer }
+        tamano: { type: integer }
+        total: { type: integer }
+    MatrizPermisos:
+      type: object
+      required: [roles, permisos]
+      properties:
+        roles:
+          type: array
+          items:
+            type: object
+            required: [codigo, nombre]
+            properties:
+              codigo: { $ref: '#/components/schemas/CodigoRol' }
+              nombre: { type: string }
+        permisos:
+          type: array
+          items:
+            type: object
+            required: [codigo, descripcion, roles]
+            properties:
+              codigo: { type: string }
+              descripcion: { type: string }
+              roles: { type: array, items: { $ref: '#/components/schemas/CodigoRol' } }
+    EntradaBitacora:
+      type: object
+      description: Sin datos clínicos (FR-023).
+      required: [id, usuarioId, nombreUsuario, rol, fechaHora, accion, historiaId, moduloOrigen, resultado]
+      properties:
+        id: { type: string, format: uuid }
+        usuarioId: { type: string, format: uuid }
+        nombreUsuario: { type: string }
+        rol: { $ref: '#/components/schemas/CodigoRol' }
+        fechaHora: { type: string, format: date-time }
+        accion: { type: string }
+        historiaId: { type: string, format: uuid }
+        moduloOrigen: { type: string }
+        resultado: { type: string, enum: [Permitido, Denegado] }
+    PaginaBitacora:
+      type: object
+      required: [elementos, pagina, tamano, total]
+      properties:
+        elementos: { type: array, items: { $ref: '#/components/schemas/EntradaBitacora' } }
+        pagina: { type: integer }
+        tamano: { type: integer }
+        total: { type: integer }
+    Problema:
+      type: object
+      description: RFC 9457 (application/problem+json). Nunca incluye información clínica ni trazas internas.
+      properties:
+        type: { type: string }
+        title: { type: string }
+        status: { type: integer }
+        detail: { type: string }
+        traceId: { type: string }

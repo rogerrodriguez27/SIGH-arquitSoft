@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <!-- PrivateAssets="all": Npgsql no llega de forma transitiva al dominio (principio I) -->
+    <PackageReference Include="Npgsql" PrivateAssets="all" />
+  </ItemGroup>
+</Project>

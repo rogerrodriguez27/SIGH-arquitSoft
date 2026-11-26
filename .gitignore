@@ -12,4 +12,9 @@ obj/
 # ===== Node / React =====
 node_modules/
 dist/
+*.tsbuildinfo
 build/
+# ===== Reportes de pruebas y cobertura =====
+TestResults/
+tecnologia/backend/cobertura/
+coverage/

@@ -51,11 +51,13 @@ Mostrar **cómo está organizado el código** de un componente del nivel 3: sus 
 | `EstadoAtencion` | Enumeración | Dominio | BORRADOR, FIRMADA |
 | `IRepositorioHistorias` | Interfaz | Dominio | Contrato para consultar historias y guardar atenciones |
 | `ICatalogoCie10` | Interfaz | Dominio | Contrato para validar códigos CIE-10 |
-| `IBitacoraAuditoria` | Interfaz | Dominio | Contrato para registrar accesos a la historia clínica (RN-06) |
+| `IBitacoraAuditoria` | Interfaz | Dominio | Puerto de la HCE para registrar accesos a la historia clínica (RN-06); la bitácora pertenece al módulo Administración |
 | `RepositorioHistoriasEfCore` | Repositorio | Infraestructura | Implementa `IRepositorioHistorias` con EF Core y PostgreSQL |
 | `CatalogoCie10EnCache` | Decorador | Infraestructura | Implementa `ICatalogoCie10` consultando primero Redis y luego `CatalogoCie10EfCore` |
 | `CatalogoCie10EfCore` | Repositorio | Infraestructura | Implementa `ICatalogoCie10` consultando PostgreSQL |
-| `BitacoraAuditoriaEfCore` | Repositorio | Infraestructura | Implementa `IBitacoraAuditoria` con EF Core y PostgreSQL |
+| `BitacoraAuditoriaAdministracion` | Adaptador | Infraestructura | Implementa `IBitacoraAuditoria` delegando en el servicio público de bitácora del módulo Administración, dueño de las tablas; la HCE no accede a ellas |
+
+> **Dueño de la bitácora:** la HCE conserva el puerto `IBitacoraAuditoria` en su dominio, pero el registro lo hace el módulo Administración a través de su servicio público (FR-018 de `specs/001-admin-auth-rbac/spec.md`), de acuerdo con el nivel 3 (HCE → Administración) y el principio II de la constitución.
 
 ### 2.3 Fachada pública del módulo HCE
 
@@ -93,7 +95,7 @@ Mostrar **cómo está organizado el código** de un componente del nivel 3: sus 
 | 5 | `RegistrarAtencionCasoUso` → `HistoriaClinica` | Registra la atención en estado BORRADOR |
 | 6 | `RegistrarAtencionCasoUso` → `Atencion` | Firma la atención; desde ese momento no se modifica (RN-04) |
 | 7–8 | `RegistrarAtencionCasoUso` → `IRepositorioHistorias` | Guarda la atención y sus diagnósticos en PostgreSQL |
-| 9–10 | `RegistrarAtencionCasoUso` → `IBitacoraAuditoria` | Registra el acceso en la bitácora (RN-06) |
+| 9–10 | `RegistrarAtencionCasoUso` → `IBitacoraAuditoria` | Registra el acceso en la bitácora del módulo Administración, en la misma transacción que la atención (RN-06, FR-022) |
 | 11 | `AtencionesController` → Cliente web | Responde `201 Created` con el identificador de la atención |
 | 12–13 | Alternativa | Si la historia no existe o un código no es válido, la atención no se guarda y se responde `404 Not Found` o `422 Unprocessable Entity` |
 

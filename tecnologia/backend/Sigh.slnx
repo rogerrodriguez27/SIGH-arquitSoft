@@ -1,0 +1,21 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Sigh.Api/Sigh.Api.csproj" />
+  </Folder>
+  <Folder Name="/src/Compartido/">
+    <Project Path="src/Compartido/Sigh.Compartido/Sigh.Compartido.csproj" />
+  </Folder>
+  <Folder Name="/src/Modulos/" />
+  <Folder Name="/src/Modulos/Administracion/">
+    <Project Path="src/Modulos/Administracion/Sigh.Administracion.Api/Sigh.Administracion.Api.csproj" />
+    <Project Path="src/Modulos/Administracion/Sigh.Administracion.Aplicacion/Sigh.Administracion.Aplicacion.csproj" />
+    <Project Path="src/Modulos/Administracion/Sigh.Administracion.Dominio/Sigh.Administracion.Dominio.csproj" />
+    <Project Path="src/Modulos/Administracion/Sigh.Administracion.Infraestructura/Sigh.Administracion.Infraestructura.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Sigh.Administracion.Aplicacion.Tests/Sigh.Administracion.Aplicacion.Tests.csproj" />
+    <Project Path="tests/Sigh.Administracion.Dominio.Tests/Sigh.Administracion.Dominio.Tests.csproj" />
+    <Project Path="tests/Sigh.Administracion.Integracion.Tests/Sigh.Administracion.Integracion.Tests.csproj" />
+    <Project Path="tests/Sigh.Api.Tests/Sigh.Api.Tests.csproj" />
+  </Folder>
+</Solution>
