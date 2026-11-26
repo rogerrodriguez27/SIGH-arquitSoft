@@ -62,8 +62,7 @@ public sealed class IniciarSesionCasoUsoTests
     public async Task Con_usuario_desactivado_rechaza_aunque_la_contrasena_sea_correcta()
     {
         var usuario = await _e.AgregarUsuarioAsync("lab01", Contrasena, CodigoRol.PersonalLaboratorio);
-        typeof(Sigh.Administracion.Dominio.Usuarios.Usuario).GetProperty("Estado")!
-            .SetValue(usuario, Sigh.Administracion.Dominio.Usuarios.EstadoUsuario.Desactivado);
+        usuario.Desactivar();
 
         Assert.Null(await Iniciar("lab01", Contrasena));
     }

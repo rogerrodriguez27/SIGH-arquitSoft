@@ -95,6 +95,34 @@ public sealed class RepositorioUsuariosTests(PostgresFixture bd)
     }
 
     [Fact]
+    public async Task Listar_busca_sin_distinguir_mayusculas_filtra_por_rol_y_estado_y_cuenta_administradores()
+    {
+        var prefijo = $"z{Guid.NewGuid():N}"[..9];
+        var medico = NuevoUsuario(prefijo + "med", CodigoRol.Medico);
+        var inactivo = NuevoUsuario(prefijo + "med2", CodigoRol.Medico);
+        inactivo.Desactivar();
+        var admin = NuevoUsuario(prefijo + "adm", CodigoRol.Administrador);
+        await using (var contexto = bd.CrearContexto())
+        {
+            var repositorio = new RepositorioUsuariosEfCore(contexto);
+            await repositorio.AgregarAsync(medico);
+            await repositorio.AgregarAsync(inactivo);
+            await repositorio.AgregarAsync(admin);
+        }
+
+        await using var lectura = bd.CrearContexto();
+        var repo = new RepositorioUsuariosEfCore(lectura);
+        var porBusqueda = await repo.ListarAsync(new FiltroUsuarios(prefijo.ToUpperInvariant()), 1, 10);
+        var medicosActivos = await repo.ListarAsync(new FiltroUsuarios(prefijo, CodigoRol.Medico, EstadoUsuario.Activo), 1, 10);
+        var comodin = await repo.ListarAsync(new FiltroUsuarios("%"), 1, 10);
+
+        Assert.Equal(3, porBusqueda.Total);
+        Assert.Equal(medico.Id, Assert.Single(medicosActivos.Elementos).Id);
+        Assert.Equal(0, comodin.Total);                              // "%" se busca como texto, no como comodín
+        Assert.True(await repo.ContarAdministradoresActivosAsync() >= 1);
+    }
+
+    [Fact]
     public async Task Cada_actualizacion_sube_la_version_y_una_copia_vieja_genera_conflicto()
     {
         var usuario = NuevoUsuario(NombreUnico("tri"));

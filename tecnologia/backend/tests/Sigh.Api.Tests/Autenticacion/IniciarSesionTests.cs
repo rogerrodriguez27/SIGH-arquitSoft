@@ -4,7 +4,6 @@ using System.Text.Json;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Sigh.Administracion.Dominio.Permisos;
 using Sigh.Administracion.Dominio.Roles;
-using Sigh.Administracion.Dominio.Usuarios;
 using Sigh.Api.Tests.Soporte;
 
 namespace Sigh.Api.Tests.Autenticacion;
@@ -63,7 +62,7 @@ public sealed class IniciarSesionTests : IDisposable
     {
         await _fabrica.CrearUsuarioAsync("farm01", Contrasena, [CodigoRol.Farmaceutico]);
         var desactivado = await _fabrica.CrearUsuarioAsync("lab01", Contrasena, [CodigoRol.PersonalLaboratorio]);
-        typeof(Usuario).GetProperty(nameof(Usuario.Estado))!.SetValue(desactivado, EstadoUsuario.Desactivado);
+        desactivado.Desactivar();
         await _fabrica.CrearUsuarioAsync("bloq01", Contrasena, [CodigoRol.Medico]);
         for (var i = 0; i < 5; i++) await Iniciar("bloq01", "Incorrecta1");
 

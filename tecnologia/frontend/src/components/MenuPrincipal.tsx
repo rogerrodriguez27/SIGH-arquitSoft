@@ -10,7 +10,10 @@ interface OpcionMenu {
 }
 
 /** Opciones del menú. Cada historia agrega aquí sus pantallas con su permiso. */
-const OPCIONES: OpcionMenu[] = [{ ruta: '/', etiqueta: 'Inicio' }];
+const OPCIONES: OpcionMenu[] = [
+  { ruta: '/', etiqueta: 'Inicio' },
+  { ruta: '/usuarios', etiqueta: 'Usuarios', permiso: 'usuarios.gestionar' },
+];
 
 export function MenuPrincipal() {
   const { sesion, tienePermiso, cerrarSesion } = useSesion();

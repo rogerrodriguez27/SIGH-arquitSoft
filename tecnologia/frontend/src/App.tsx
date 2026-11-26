@@ -4,6 +4,7 @@ import { MenuPrincipal } from './components/MenuPrincipal';
 import { CambiarContrasena } from './pages/CambiarContrasena';
 import { IniciarSesion } from './pages/IniciarSesion';
 import { Inicio } from './pages/Inicio';
+import { Usuarios } from './pages/Usuarios';
 
 function Plantilla() {
   return (
@@ -28,6 +29,14 @@ export function App() {
       >
         <Route index element={<Inicio />} />
         <Route path={RUTA_CAMBIAR_CONTRASENA} element={<CambiarContrasena />} />
+        <Route
+          path="/usuarios"
+          element={
+            <RutaProtegida permiso="usuarios.gestionar">
+              <Usuarios />
+            </RutaProtegida>
+          }
+        />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

@@ -181,22 +181,22 @@ recibe `403` en las funciones de gestión de usuarios.
 
 ### Pruebas de la historia 2 ⚠️
 
-- [ ] T065 [P] [US2] Pruebas de `Usuario.AsignarRoles` (al menos un rol), `EditarDatos`, `Desactivar`, `Reactivar` y `RestablecerContrasena` (cambio pendiente y reinicio del bloqueo) en `TDom/Usuarios/UsuarioGestionTests.cs`
-- [ ] T066 [P] [US2] Pruebas de `PoliticaAdministradores`: último administrador activo, auto-desactivación y auto-retiro del rol `Administrador` en `TDom/Usuarios/PoliticaAdministradoresTests.cs` (FR-014)
-- [ ] T067 [P] [US2] Pruebas de los casos de uso de gestión: crear (duplicado normalizado → `ConflictoError`), editar, cambiar roles, desactivar, reactivar, restablecer contraseña, listar (búsqueda, filtro por rol y estado, paginación) y consultar; cada acción registra su evento (`USUARIO_CREADO`, `USUARIO_EDITADO`, `ROLES_CAMBIADOS` con detalle `roles: A → B`, `USUARIO_DESACTIVADO`, `USUARIO_REACTIVADO`, `CONTRASENA_RESTABLECIDA`) sin contraseñas en `EventoSeguridad.Detalle`; en `TApl/Usuarios/GestionUsuariosTests.cs` (FR-017)
-- [ ] T068 [P] [US2] Pruebas de API de `UsuariosController`: `201` con `Location`, `409`, `422` (último administrador, auto-desactivación), `404`, ausencia de `DELETE` (`405`), respuesta sin hash ni contraseñas, y `403` para un usuario sin `usuarios.gestionar`; en `TApi/Usuarios/UsuariosControllerTests.cs`
-- [ ] T069 [P] [US2] Prueba de la pantalla de usuarios (listar, crear con roles, desactivar) en `front/src/pages/Usuarios.test.tsx`
+- [X] T065 [P] [US2] Pruebas de `Usuario.AsignarRoles` (al menos un rol), `EditarDatos`, `Desactivar`, `Reactivar` y `RestablecerContrasena` (cambio pendiente y reinicio del bloqueo) en `TDom/Usuarios/UsuarioGestionTests.cs`
+- [X] T066 [P] [US2] Pruebas de `PoliticaAdministradores`: último administrador activo, auto-desactivación y auto-retiro del rol `Administrador` en `TDom/Usuarios/PoliticaAdministradoresTests.cs` (FR-014)
+- [X] T067 [P] [US2] Pruebas de los casos de uso de gestión: crear (duplicado normalizado → `ConflictoError`), editar, cambiar roles, desactivar, reactivar, restablecer contraseña, listar (búsqueda, filtro por rol y estado, paginación) y consultar; cada acción registra su evento (`USUARIO_CREADO`, `USUARIO_EDITADO`, `ROLES_CAMBIADOS` con detalle `roles: A → B`, `USUARIO_DESACTIVADO`, `USUARIO_REACTIVADO`, `CONTRASENA_RESTABLECIDA`) sin contraseñas en `EventoSeguridad.Detalle`; en `TApl/Usuarios/GestionUsuariosTests.cs` (FR-017)
+- [X] T068 [P] [US2] Pruebas de API de `UsuariosController`: `201` con `Location`, `409`, `422` (último administrador, auto-desactivación), `404`, ausencia de `DELETE` (`405`), respuesta sin hash ni contraseñas, y `403` para un usuario sin `usuarios.gestionar`; en `TApi/Usuarios/UsuariosControllerTests.cs`
+- [X] T069 [P] [US2] Prueba de la pantalla de usuarios (listar, crear con roles, desactivar) en `front/src/pages/Usuarios.test.tsx`
 
 ### Implementación de la historia 2
 
-- [ ] T070 [US2] Agregar a `Usuario` los métodos `EditarDatos`, `AsignarRoles`, `Desactivar`, `Reactivar` y `RestablecerContrasena`, según [data-model.md](./data-model.md) `Usuario.Roles`, `Usuario.Estado`, `Usuario.CambioContrasenaPendiente` y `Usuario.BloqueadoHasta`, en `Dom/Usuarios/Usuario.cs`
-- [ ] T071 [US2] Crear el servicio de dominio `PoliticaAdministradores` en `Dom/Usuarios/PoliticaAdministradores.cs`
-- [ ] T072 [US2] Ampliar `IRepositorioUsuarios` con `ContarAdministradoresActivosAsync` y `ListarAsync(filtro, pagina, tamano)` en `Dom/Contratos/IRepositorioUsuarios.cs`, y sus implementaciones en `Inf/Persistencia/RepositorioUsuariosEfCore.cs` y `Inf/Persistencia/RepositorioUsuariosEnMemoria.cs`
-- [ ] T073 [US2] Crear el DTO `UsuarioDto` (sin hash) en `Apl/Usuarios/UsuarioDto.cs`
-- [ ] T074 [US2] Implementar los casos de uso `CrearUsuario`, `EditarUsuario`, `CambiarRoles`, `DesactivarUsuario`, `ReactivarUsuario`, `RestablecerContrasena`, `ListarUsuarios` y `ConsultarUsuario`, cada uno en su carpeta bajo `Apl/Usuarios/` y cada escritura con su evento dentro de `IUnidadDeTrabajo`
-- [ ] T075 [US2] Crear `UsuariosController` con `[Authorize(Policy = CodigoPermiso.GestionarUsuarios)]`, las rutas del contrato (sin `DELETE`) y las solicitudes `CrearUsuarioSolicitud`, `EditarUsuarioSolicitud`, `CambiarRolesSolicitud` y `RestablecerContrasenaSolicitud`, en `AdmApi/Controladores/UsuariosController.cs` y `AdmApi/Solicitudes/`
-- [ ] T076 [US2] Registrar los casos de uso de la historia en `Api/Program.cs`
-- [ ] T077 [US2] Crear la pantalla de usuarios (lista con búsqueda y filtros, formulario de alta y edición con roles, desactivar, reactivar y restablecer contraseña) en `front/src/pages/Usuarios.tsx` y `front/src/components/FormularioUsuario.tsx`
+- [X] T070 [US2] Agregar a `Usuario` los métodos `EditarDatos`, `AsignarRoles`, `Desactivar`, `Reactivar` y `RestablecerContrasena`, según [data-model.md](./data-model.md) `Usuario.Roles`, `Usuario.Estado`, `Usuario.CambioContrasenaPendiente` y `Usuario.BloqueadoHasta`, en `Dom/Usuarios/Usuario.cs`
+- [X] T071 [US2] Crear el servicio de dominio `PoliticaAdministradores` en `Dom/Usuarios/PoliticaAdministradores.cs`
+- [X] T072 [US2] Ampliar `IRepositorioUsuarios` con `ContarAdministradoresActivosAsync` y `ListarAsync(filtro, pagina, tamano)` en `Dom/Contratos/IRepositorioUsuarios.cs`, y sus implementaciones en `Inf/Persistencia/RepositorioUsuariosEfCore.cs` y `Inf/Persistencia/RepositorioUsuariosEnMemoria.cs`
+- [X] T073 [US2] Crear el DTO `UsuarioDto` (sin hash) en `Apl/Usuarios/UsuarioDto.cs`
+- [X] T074 [US2] Implementar los casos de uso `CrearUsuario`, `EditarUsuario`, `CambiarRoles`, `DesactivarUsuario`, `ReactivarUsuario`, `RestablecerContrasena`, `ListarUsuarios` y `ConsultarUsuario`, cada uno en su carpeta bajo `Apl/Usuarios/`; cada acción registra su evento de seguridad, que se guarda en su propia transacción (research D3)
+- [X] T075 [US2] Crear `UsuariosController` con `[Authorize(Policy = CodigoPermiso.GestionarUsuarios)]`, las rutas del contrato (sin `DELETE`) y las solicitudes `CrearUsuarioSolicitud`, `EditarUsuarioSolicitud`, `CambiarRolesSolicitud` y `RestablecerContrasenaSolicitud`, en `AdmApi/Controladores/UsuariosController.cs` y `AdmApi/Solicitudes/`
+- [X] T076 [US2] Registrar los casos de uso de la historia en `Api/Program.cs`
+- [X] T077 [US2] Crear la pantalla de usuarios (lista con búsqueda y filtros, formulario de alta y edición con roles, desactivar, reactivar y restablecer contraseña) en `front/src/pages/Usuarios.tsx` y `front/src/components/FormularioUsuario.tsx`
 
 **Punto de control**: las historias 1 y 2 funcionan juntas; un usuario creado por el administrador
 inicia sesión con sus roles.

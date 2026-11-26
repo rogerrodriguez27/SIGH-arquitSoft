@@ -2,6 +2,7 @@ using System.Collections.Concurrent;
 using Sigh.Administracion.Dominio.Contratos;
 using Sigh.Administracion.Dominio.Usuarios;
 using Sigh.Compartido.Errores;
+using Sigh.Compartido.Paginacion;
 
 namespace Sigh.Administracion.Infraestructura.Persistencia;
 
@@ -19,6 +20,29 @@ public sealed class RepositorioUsuariosEnMemoria : IRepositorioUsuarios
         Task.FromResult(_usuarios.Values.FirstOrDefault(u => u.NombreUsuario == nombreUsuarioNormalizado));
 
     public Task<bool> ExisteAlgunoAsync(CancellationToken ct = default) => Task.FromResult(!_usuarios.IsEmpty);
+
+    public Task<int> ContarAdministradoresActivosAsync(CancellationToken ct = default) =>
+        Task.FromResult(_usuarios.Values.Count(u => u.EsAdministradorActivo));
+
+    public Task<Pagina<Usuario>> ListarAsync(FiltroUsuarios filtro, int pagina, int tamano,
+        CancellationToken ct = default)
+    {
+        IEnumerable<Usuario> consulta = _usuarios.Values;
+        if (!string.IsNullOrWhiteSpace(filtro.Busqueda))
+        {
+            var texto = filtro.Busqueda.Trim();
+            consulta = consulta.Where(u => u.NombreUsuario.Contains(texto, StringComparison.OrdinalIgnoreCase)
+                || u.NombreCompleto.Contains(texto, StringComparison.OrdinalIgnoreCase));
+        }
+        if (filtro.Rol is { } rol)
+            consulta = consulta.Where(u => u.Roles.Contains(rol));
+        if (filtro.Estado is { } estado)
+            consulta = consulta.Where(u => u.Estado == estado);
+
+        var lista = consulta.OrderBy(u => u.NombreCompleto).ThenBy(u => u.NombreUsuario).ToList();
+        var elementos = lista.Skip((pagina - 1) * tamano).Take(tamano).ToList();
+        return Task.FromResult(new Pagina<Usuario>(elementos, pagina, tamano, lista.Count));
+    }
 
     public Task AgregarAsync(Usuario usuario, CancellationToken ct = default)
     {

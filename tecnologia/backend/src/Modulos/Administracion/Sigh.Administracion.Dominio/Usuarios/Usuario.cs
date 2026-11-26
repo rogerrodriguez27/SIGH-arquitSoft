@@ -108,6 +108,35 @@ public sealed partial class Usuario
         CambioContrasenaPendiente = false;
     }
 
+    public bool EsAdministradorActivo =>
+        Estado == EstadoUsuario.Activo && _rolesAsignados.Any(r => r.Rol == CodigoRol.Administrador);
+
+    /// <summary>Edita los datos básicos (nombre completo) (FR-008).</summary>
+    public void EditarDatos(string nombreCompleto) => NombreCompleto = ValidarNombreCompleto(nombreCompleto);
+
+    /// <summary>
+    /// Reemplaza los roles; exige al menos uno (FR-010). Las reglas sobre el rol Administrador las
+    /// valida antes <see cref="PoliticaAdministradores"/>. Los nuevos roles aplican en la siguiente sesión.
+    /// </summary>
+    public void AsignarRoles(IEnumerable<CodigoRol> roles) => ReemplazarRoles(roles);
+
+    /// <summary>
+    /// Desactiva la cuenta: ya no puede iniciar sesión y pierde el acceso al vencer su sesión vigente
+    /// (máximo 30 minutos). No existe la eliminación (FR-009).
+    /// </summary>
+    public void Desactivar() => Estado = EstadoUsuario.Desactivado;
+
+    public void Reactivar() => Estado = EstadoUsuario.Activo;
+
+    /// <summary>Asigna una contraseña temporal, exige cambiarla y quita el bloqueo (FR-015, FR-006).</summary>
+    public void RestablecerContrasena(ContrasenaPropuesta temporal, IHasherContrasenas hasher)
+    {
+        HashContrasena = hasher.Calcular(temporal.Valor);
+        CambioContrasenaPendiente = true;
+        IntentosFallidos = 0;
+        BloqueadoHasta = null;
+    }
+
     private void ReemplazarRoles(IEnumerable<CodigoRol> roles)
     {
         var distintos = (roles ?? []).Distinct().ToList();
