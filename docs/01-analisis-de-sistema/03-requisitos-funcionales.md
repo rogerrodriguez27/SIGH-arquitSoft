@@ -4,8 +4,8 @@
 
 | ID | Módulo | Requisito funcional |
 |---|---|---|
-| RF01 | Admisión y Triaje | El sistema debe permitir registrar pacientes validando su DNI mediante el servicio de identidad RENIEC (simulado en la prueba de concepto). |
-| RF02 | Admisión y Triaje | El sistema debe permitir registrar pacientes de forma manual cuando no cuenten con DNI (extranjeros o pacientes no identificados) o cuando el servicio de RENIEC no esté disponible. |
+| RF01 | Admisión y Triaje | El sistema debe permitir registrar pacientes validando su DNI mediante el servicio APIPERU, que devuelve los datos de identificación registrados en RENIEC. |
+| RF02 | Admisión y Triaje | El sistema debe permitir registrar pacientes de forma manual cuando no cuenten con DNI (extranjeros o pacientes no identificados) o cuando el servicio APIPERU no esté disponible. |
 | RF03 | Admisión y Triaje | El sistema debe permitir buscar pacientes por DNI, nombres y apellidos o número de historia clínica. |
 | RF04 | Admisión y Triaje | El sistema debe permitir registrar el ingreso de un paciente a una atención (consulta externa o emergencia). |
 | RF05 | Admisión y Triaje | El sistema debe permitir registrar los signos vitales y el motivo de consulta del paciente en el triaje. |
@@ -28,6 +28,9 @@
 | RF22 | Administración | El sistema debe permitir gestionar usuarios, roles y permisos, restringiendo el acceso a cada funcionalidad según el rol del usuario. |
 | RF23 | Administración | El sistema debe permitir gestionar los catálogos de diagnósticos (CIE-10), medicamentos y exámenes de laboratorio. |
 | RF24 | Administración | El sistema debe registrar cada acceso y modificación a una historia clínica (usuario, fecha, hora y acción) y permitir consultar dicho registro. |
+| RF25 | Notificaciones | El sistema debe enviar notificaciones push a los usuarios suscritos ante estos eventos: paciente con prioridad I en triaje (médico de emergencia), nueva orden de laboratorio (personal de laboratorio), resultado de laboratorio registrado (médico tratante), receta emitida (farmacia), stock bajo o medicamento por vencer (farmacéutico) y nueva alerta epidemiológica (epidemiólogo). La notificación no debe incluir datos clínicos ni personales del paciente: solo indica el tipo de evento y un enlace para revisarlo dentro del sistema. |
+| RF26 | Notificaciones | El sistema debe permitir a cada usuario suscribir su navegador a las notificaciones push, o darse de baja, y enviarle solo las notificaciones que correspondan a su rol. |
+| RF27 | Notificaciones | El sistema debe registrar cada notificación en una bandeja interna que el usuario pueda consultar dentro del sistema, aunque la notificación push no se haya podido entregar. |
 
 ---
 
@@ -42,12 +45,14 @@
 | HU05 Registrar atención médica | RF08, RF09 |
 | HU06 Emitir receta electrónica | RF10 |
 | HU07 Solicitar exámenes de laboratorio | RF11 |
-| HU08 Gestionar inventario de medicamentos | RF12, RF13 |
+| HU08 Gestionar inventario de medicamentos | RF12, RF13, RF25 |
 | HU09 Atender recetas | RF14 |
 | HU10 Registrar resultados de laboratorio | RF15 |
 | HU11 Generar reportes epidemiológicos | RF16, RF17 |
-| HU12 Recibir alertas epidemiológicas | RF17, RF18, RF19 |
+| HU12 Recibir alertas epidemiológicas | RF17, RF18, RF19, RF25 |
 | HU13 Consultar dashboards de gestión | RF17, RF20 |
 | HU14 Gestionar usuarios, roles y permisos | RF21, RF22 |
 | HU15 Gestionar catálogos | RF23 |
 | HU16 Consultar registro de accesos | RF24 |
+| HU17 Recibir notificaciones push | RF25, RF27 |
+| HU18 Gestionar mis notificaciones | RF26, RF27 |
