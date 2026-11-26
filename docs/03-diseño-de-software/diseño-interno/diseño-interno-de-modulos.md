@@ -51,7 +51,7 @@ src/
         │   │   ├── RepositorioHistoriasEfCore.cs      Implementación con PostgreSQL
         │   │   └── RepositorioHistoriasEnMemoria.cs   Implementación para pruebas
         │   ├── Auditoria/
-        │   │   └── BitacoraAuditoriaEfCore.cs Registro de accesos en PostgreSQL
+        │   │   └── BitacoraAuditoriaAdministracion.cs  Adaptador al servicio de bitácora de Administración
         │   ├── Catalogos/
         │   │   ├── CatalogoCie10EfCore.cs     Consulta del catálogo en PostgreSQL
         │   │   └── CatalogoCie10EnCache.cs    Decorador con Redis
@@ -79,13 +79,15 @@ src/
 | `HceDbContext.cs` | Infraestructura | Mapear las entidades a tablas de PostgreSQL con EF Core | Dominio + EF Core |
 | `RepositorioHistoriasEfCore.cs` | Infraestructura | Guardar y leer historias y atenciones en PostgreSQL | Dominio + EF Core |
 | `RepositorioHistoriasEnMemoria.cs` | Infraestructura | Implementación en memoria para pruebas unitarias | Dominio |
-| `BitacoraAuditoriaEfCore.cs` | Infraestructura | Registrar usuario, fecha, hora y acción de cada acceso | Dominio + EF Core |
+| `BitacoraAuditoriaAdministracion.cs` | Infraestructura | Implementar `IBitacoraAuditoria` delegando en el servicio público de bitácora del módulo Administración, que registra usuario, fecha, hora y acción de cada acceso | Dominio + servicio público de Administración |
 | `CatalogoCie10EfCore.cs` | Infraestructura | Consultar códigos CIE-10 en PostgreSQL | Dominio + EF Core |
 | `CatalogoCie10EnCache.cs` | Infraestructura | Consultar primero en Redis y luego en PostgreSQL (Decorator) | Dominio + StackExchange.Redis |
 | `DependencyInjection.cs` | Infraestructura | Registrar qué adaptador implementa cada contrato (`AgregarModuloHce()`) | Todas las capas del módulo |
 | `AtencionesController.cs` | Presentación | Leer la petición HTTP, invocar el caso de uso y responder | Aplicación |
 | `RegistrarAtencionSolicitud.cs` | Presentación | Estructura del cuerpo JSON de la petición | Nada |
 | `Program.cs` | Composición | Configurar el host, JWT, autorización y registrar todos los módulos | Todos los proyectos |
+
+> **Dueño de la bitácora.** La bitácora de accesos a la HCE pertenece al módulo **Administración**, que es el dueño de sus tablas (RF24, C4 nivel 3). La HCE mantiene su puerto `IBitacoraAuditoria` en su dominio, para que sus casos de uso no dependan de otro módulo, pero su implementación (`BitacoraAuditoriaAdministracion`) solo delega en el servicio público de bitácora de Administración (FR-018 de `specs/001-admin-auth-rbac/spec.md`). La HCE nunca lee ni escribe las tablas de la bitácora (constitución, principio II). Los demás módulos que acceden a historias clínicas siguen el mismo esquema.
 
 ---
 
@@ -339,7 +341,7 @@ public sealed class RegistrarAtencionCasoUso
 }
 ```
 
-> En la implementación, el guardado de la atención y el registro en la bitácora deben ejecutarse en una misma transacción, para que no quede una atención sin su registro de auditoría. Se omite aquí para mantener el ejemplo corto.
+> En la implementación, el guardado de la atención y el registro en la bitácora deben confirmarse en una misma transacción, para que no quede una atención sin su registro de auditoría (FR-022). Como la atención pertenece a la HCE y la bitácora a Administración, el mecanismo para lograrlo sin que un módulo acceda a las tablas del otro se define en el plan de la funcionalidad de Administración. Se omite aquí para mantener el ejemplo corto.
 
 ### 6.3 Infraestructura · repositorio y decorador
 
@@ -468,7 +470,7 @@ public static class DependencyInjection
             opciones.UseNpgsql(configuracion.GetConnectionString("SighOltp")));
 
         services.AddScoped<IRepositorioHistorias, RepositorioHistoriasEfCore>();  // en pruebas: RepositorioHistoriasEnMemoria
-        services.AddScoped<IBitacoraAuditoria, BitacoraAuditoriaEfCore>();
+        services.AddScoped<IBitacoraAuditoria, BitacoraAuditoriaAdministracion>();  // delega en el servicio de bitácora de Administración
 
         services.AddScoped<CatalogoCie10EfCore>();
         services.AddScoped<ICatalogoCie10>(sp => new CatalogoCie10EnCache(       // Decorator: Redis envuelve a EF Core
