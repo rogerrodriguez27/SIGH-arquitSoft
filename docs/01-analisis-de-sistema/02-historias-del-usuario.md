@@ -2,7 +2,7 @@
 
 | ID | Módulo | Historia de usuario |
 |---|---|---|
-| HU01 | Admisión y Triaje | Como personal de admisión, quiero registrar a un paciente nuevo validando su DNI con el servicio de RENIEC, para evitar errores en sus datos de identificación. |
+| HU01 | Admisión y Triaje | Como personal de admisión, quiero registrar a un paciente nuevo validando su DNI mediante el servicio APIPERU (que consulta los datos de RENIEC), para evitar errores en sus datos de identificación. |
 | HU02 | Admisión y Triaje | Como personal de admisión, quiero buscar a un paciente ya registrado y registrar su ingreso a una atención, para no duplicar su información. |
 | HU03 | Admisión y Triaje | Como enfermero(a) de triaje, quiero registrar los signos vitales y el motivo de consulta y clasificar el nivel de urgencia, para priorizar la atención de los pacientes más graves. |
 | HU04 | HCE | Como médico, quiero consultar la historia clínica completa del paciente (antecedentes, atenciones, recetas y resultados de laboratorio), para tomar decisiones clínicas informadas. |
@@ -18,3 +18,5 @@
 | HU14 | Administración | Como administrador del sistema, quiero gestionar usuarios, roles y permisos, para que cada persona acceda solo a la información que le corresponde. |
 | HU15 | Administración | Como administrador del sistema, quiero gestionar los catálogos de diagnósticos, medicamentos y exámenes, para mantener estandarizada la información clínica. |
 | HU16 | Administración | Como administrador del sistema, quiero consultar el registro de accesos a las historias clínicas, para garantizar la trazabilidad y la confidencialidad de la información del paciente. |
+| HU17 | Notificaciones | Como personal del hospital (médico, farmacéutico, personal de laboratorio o epidemiólogo), quiero recibir notificaciones push cuando ocurra un evento que requiere mi atención, para actuar a tiempo sin tener que revisar el sistema constantemente. |
+| HU18 | Notificaciones | Como usuario del sistema, quiero activar o desactivar las notificaciones push en mi navegador y revisar dentro del sistema las notificaciones recibidas, para controlar cómo me llegan los avisos y no perder ninguno. |
