@@ -499,7 +499,7 @@ builder.Services.AddScoped<RegistrarAtencionCasoUso>();         // casos de uso 
 // builder.Services.AgregarModuloFarmacia(builder.Configuration);   ... resto de módulos
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(opciones => { /* emisor, audiencia y clave desde appsettings.json */ });
+    .AddJwtBearer(opciones => { /* emisor y audiencia desde appsettings.json; clave de firma desde la variable de entorno Jwt__ClaveFirma (ADR-012) */ });
 builder.Services.AddAuthorization();
 builder.Services.AddControllers();
 
